@@ -1,6 +1,5 @@
 ---
 hide:
-	- navigation
 	- toc
 	- title
 ---
@@ -11,36 +10,55 @@ hide:
 			<div class="landing-brand">
 				<span class="landing-brand-mark">TS</span>
 				<div>
-					<strong>Telegram Shop Platform</strong>
-					<span>Telegram-first commerce для власників магазинів</span>
+					<strong>Telegram Shop OS</strong>
+					<span>Telegram-first commerce для магазинів, яким потрібен продаж і контроль в одному інтерфейсі</span>
 				</div>
 			</div>
 			<div class="landing-nav-links">
 				<a href="#product">Продукт</a>
-				<a href="#operations">Операційка</a>
-				<a href="#growth">Ріст</a>
+				<a href="#workflow">Як працює</a>
+				<a href="#control">Керування</a>
 				<a href="#launch">Запуск</a>
 			</div>
 		</div>
 
 		<div class="landing-hero-grid">
 			<div class="landing-copy">
-				<span class="landing-eyebrow">Telegram-first commerce OS</span>
-				<h1>Продавайте в Telegram без сайту, але з повною операційкою магазину.</h1>
+				<span class="landing-eyebrow">Telegram-first commerce operating system</span>
+				<h1>Запускайте Telegram-магазин без кастомної розробки, але з нормальною операційкою всередині.</h1>
 				<p class="landing-lead">
-					Каталог, checkout, замовлення, оплати, Нова пошта, WebApp-адмінка, аналітика,
-					кампанії та клієнти в одній платформі. Бот закриває швидкі дії, WebApp стає
-					вашим щоденним робочим хабом.
+					Це не просто бот і не ще один website builder. Платформа зводить у єдиний контур
+					каталог, checkout, замовлення, оплати, доставку, WebApp-адмінку, клієнтів,
+					кампанії та аналітику. Telegram лишається каналом продажу, а WebApp стає
+					робочим центром для власника.
 				</p>
 				<div class="landing-actions">
-					<a class="landing-button landing-button-primary" href="owner-guide/index.html">Подивитися сценарій власника</a>
-					<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/index.html">Оцінити запуск self-hosted</a>
+					<a class="landing-button landing-button-primary" href="owner-guide/">Подивитися сценарій власника</a>
+					<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/">Оцінити self-hosted запуск</a>
 				</div>
 				<div class="landing-proofstrip">
 					<span>Telegram-бот для швидких дій</span>
-					<span>WebApp для щоденної роботи</span>
-					<span>4 сценарії оплати</span>
-					<span>Nova Poshta та TTN</span>
+					<span>WebApp-хаб для щоденної роботи</span>
+					<span>4 підтверджені сценарії оплати</span>
+					<span>Нова пошта й ТТН за модулем</span>
+				</div>
+				<div class="landing-metric-grid">
+					<article>
+						<strong>4</strong>
+						<span>способи оплати вже в продукті</span>
+					</article>
+					<article>
+						<strong>5</strong>
+						<span>фото на товар без окремого CMS</span>
+					</article>
+					<article>
+						<strong>2</strong>
+						<span>робочі поверхні: бот і WebApp</span>
+					</article>
+					<article>
+						<strong>1</strong>
+						<span>контур керування магазином</span>
+					</article>
 				</div>
 			</div>
 
@@ -48,21 +66,21 @@ hide:
 				<span class="landing-panel-kicker">Що отримує власник магазину</span>
 				<div class="landing-panel-stack">
 					<article>
-						<strong>Швидкий запуск</strong>
-						<p>Додаєте категорії, товари, оплату й одразу приймаєте замовлення в Telegram.</p>
+						<strong>Запуск без технічного хвоста</strong>
+						<p>Додаєте категорії, товари, оплату і вже приймаєте замовлення в Telegram без окремого фронтенд-проєкту.</p>
 					</article>
 					<article>
 						<strong>Керування без коду</strong>
-						<p>Тексти, кнопки, каталог, команда, платіжні режими, доставка та модулі керуються з інтерфейсу.</p>
+						<p>Тексти, кнопки, каталог, команда, оплати, доставка, доступи і модулі керуються з інтерфейсу, а не через таски для розробника.</p>
 					</article>
 					<article>
 						<strong>Ріст без ручного хаосу</strong>
-						<p>Аналітика, кампанії, промокоди, база клієнтів і сегменти підключаються як робочі модулі.</p>
+						<p>Аналітика, кампанії, промокоди, база клієнтів, сегменти й cross-sell підключаються як робочі модулі, коли магазин до них доростає.</p>
 					</article>
 				</div>
 				<div class="landing-panel-note">
-					<strong>Ключова логіка продукту:</strong>
-					<span>це не website builder і не просто бот. Це Telegram-магазин з операційною панеллю для власника.</span>
+					<strong>Продуктова позиція:</strong>
+					<span>Telegram-магазин для власника, який хоче продавати, контролювати операційку і масштабуватися в межах одного продукту.</span>
 				</div>
 			</aside>
 		</div>
@@ -71,40 +89,40 @@ hide:
 	<section class="landing-section landing-signal" id="product">
 		<div class="landing-section-head">
 			<span class="landing-section-label">Для кого</span>
-			<h2>Для магазинів, яким потрібен продаж у Telegram, а не ще один технічний стек.</h2>
+			<h2>Для магазинів, яким потрібен продаж у Telegram, а не ще один стек, який треба підтримувати.</h2>
 		</div>
 		<div class="landing-three-up">
 			<article class="landing-card accent-sand">
-				<strong>Власник хоче запускатися швидко</strong>
-				<p>Без окремого сайту, без кастомної розробки, без перемикань між трьома системами заради одного замовлення.</p>
+				<strong>Швидкий старт</strong>
+				<p>Для брендів і магазинів, яким не потрібен довгий запуск через сайт, CRM, окремий checkout і кастомний кабінет.</p>
 			</article>
 			<article class="landing-card accent-blue">
-				<strong>Команді потрібен порядок</strong>
-				<p>Каталог, замовлення, платежі, доставка, тексти магазину й доступи зібрані в одному місці.</p>
+				<strong>Операційний порядок</strong>
+				<p>Каталог, замовлення, платежі, доставка, тексти магазину, доступи та підписка зібрані в одному робочому контурі.</p>
 			</article>
 			<article class="landing-card accent-coral">
-				<strong>Магазину потрібен контроль</strong>
-				<p>WebApp дає повний робочий хаб, а бот залишається каналом для швидких дій, повідомлень і адміністрування.</p>
+				<strong>Контроль для власника</strong>
+				<p>WebApp дає повний робочий хаб, а бот лишається місцем для швидких дій, повідомлень і оперативного адміністрування.</p>
 			</article>
 		</div>
 	</section>
 
-	<section class="landing-section" id="operations">
+	<section class="landing-section" id="workflow">
 		<div class="landing-section-head split">
 			<div>
 				<span class="landing-section-label">Як це працює</span>
-				<h2>Один продаж від каталогу до відправки.</h2>
+				<h2>Один продаж від каталогу до відправки без ручного шва між системами.</h2>
 			</div>
 			<p>
-				Платформа вже підтримує реальний Telegram sales flow: товар, кошик, checkout, вибір оплати,
-				підтвердження платежу, роботу із замовленням і доставкою.
+				Платформа вже покриває реальний Telegram sales flow: товар, кошик, checkout, вибір оплати,
+				підтвердження платежу, роботу із замовленням, резервами і доставкою.
 			</p>
 		</div>
 		<div class="landing-timeline">
 			<article class="landing-step">
 				<span>01</span>
 				<strong>Каталог і checkout</strong>
-				<p>Покупець проходить шлях усередині Telegram: дивиться каталог, додає товар у кошик і оформлює замовлення через WebApp checkout.</p>
+				<p>Покупець проходить шлях усередині Telegram: переглядає каталог, додає товари в кошик і оформлює замовлення у WebApp checkout.</p>
 			</article>
 			<article class="landing-step">
 				<span>02</span>
@@ -114,21 +132,21 @@ hide:
 			<article class="landing-step">
 				<span>03</span>
 				<strong>Замовлення і резерви</strong>
-				<p>Магазин бачить статуси, склад замовлення, клієнта, суму, тип оплати й може підтверджувати передплату або вести COD-сценарій.</p>
+				<p>Магазин бачить статуси, склад замовлення, клієнта, суму, тип оплати і може підтверджувати передплату або вести сценарій післяплати.</p>
 			</article>
 			<article class="landing-step">
 				<span>04</span>
 				<strong>Доставка Новою поштою</strong>
-				<p>Коли модуль активний, із картки замовлення можна створювати, оновлювати, скасовувати й перевипускати ТТН.</p>
+				<p>Коли модуль активний, із картки замовлення можна створювати, оновлювати, скасовувати і перевипускати ТТН.</p>
 			</article>
 		</div>
 	</section>
 
-	<section class="landing-section landing-feature-zone">
+	<section class="landing-section landing-feature-zone" id="control">
 		<div class="landing-section-head split">
 			<div>
 				<span class="landing-section-label">Що всередині</span>
-				<h2>Панель керування для щоденної роботи магазину.</h2>
+				<h2>Панель керування, у якій магазин реально живе щодня.</h2>
 			</div>
 			<p>
 				Базові можливості доступні для запуску магазину одразу. Частина модулів відкривається
@@ -144,7 +162,7 @@ hide:
 			<article class="landing-feature-card">
 				<span>WebApp hub</span>
 				<strong>Окремі робочі вкладки під щоденні задачі</strong>
-				<p>Товари, імпорт, промокоди, кампанії, аналітика, крос-продажі, клієнти, налаштування та блок платформи.</p>
+				<p>Товари, імпорт, промокоди, кампанії, аналітика, крос-продажі, клієнти, налаштування та платформний блок.</p>
 			</article>
 			<article class="landing-feature-card">
 				<span>Платежі</span>
@@ -171,12 +189,26 @@ hide:
 			<strong>Перевірені модулі росту:</strong>
 			<span>аналітика, промокоди, нагадування про кошик, кампанії, клієнти та сегменти, cross-sell, Nova Poshta automation.</span>
 		</div>
+		<div class="landing-proof-grid">
+			<article>
+				<strong>Каталог</strong>
+				<span>Товари, категорії, варіанти, склади, фото і статус активності.</span>
+			</article>
+			<article>
+				<strong>Білінг і доступ</strong>
+				<span>Плани, режими доступу магазину, підписка, договори й оплати у WebApp.</span>
+			</article>
+			<article>
+				<strong>Команда</strong>
+				<span>Керування адміністраторами магазину з лімітами залежно від плану.</span>
+			</article>
+		</div>
 	</section>
 
 	<section class="landing-section landing-growth" id="growth">
 		<div class="landing-section-head">
 			<span class="landing-section-label">Коли магазин росте</span>
-			<h2>Платформа допомагає не тільки приймати замовлення, а й працювати з повторними продажами.</h2>
+			<h2>Платформа допомагає не тільки приймати замовлення, а й будувати повторні продажі.</h2>
 		</div>
 		<div class="landing-growth-grid">
 			<article class="landing-growth-card">
@@ -206,8 +238,8 @@ hide:
 
 	<section class="landing-section landing-cta" id="launch">
 		<div>
-			<span class="landing-section-label">CTA</span>
-			<h2>Почніть з реального сценарію, а не з абстрактної презентації.</h2>
+			<span class="landing-section-label">Наступний крок</span>
+			<h2>Оцініть продукт через реальний сценарій власника, а не через абстрактний демо-екран.</h2>
 			<p>
 				Якщо ви власник магазину, відкрийте інструкцію й пройдіть мінімальний запуск: /admin,
 				каталог, оплата, доставка, тестове замовлення. Якщо ви оцінюєте платформу технічно,
@@ -215,9 +247,9 @@ hide:
 			</p>
 		</div>
 		<div class="landing-actions landing-actions-stack">
-			<a class="landing-button landing-button-primary" href="owner-guide/index.html">Відкрити owner guide</a>
-			<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/index.html">Переглянути технічний запуск</a>
-			<a class="landing-button landing-button-ghost" href="PRICING_NARRATIVE/index.html">Подивитися логіку тарифів</a>
+			<a class="landing-button landing-button-primary" href="owner-guide/">Відкрити owner guide</a>
+			<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/">Переглянути технічний запуск</a>
+			<a class="landing-button landing-button-ghost" href="PRICING_NARRATIVE/">Подивитися логіку тарифів</a>
 		</div>
 	</section>
 </div>

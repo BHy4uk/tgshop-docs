@@ -9,30 +9,30 @@ theme:
   favicon: assets/favicon.ico
   features:
     - navigation.sections
-    - navigation.expand
+    - navigation.prune
     - navigation.top
+    - header.autohide
     - navigation.instant
     - navigation.tracking
     - content.code.copy
     - content.tabs.link
     - search.highlight
     - search.share
-    - toc.integrate
   palette:
+    - scheme: default
+      primary: blue grey
+      accent: teal
+      toggle:
+        icon: material/weather-night
+        name: Темна тема
     - scheme: slate
       primary: black
       accent: cyan
       toggle:
         icon: material/weather-sunny
         name: Світла тема
-    - scheme: default
-      primary: blue
-      accent: cyan
-      toggle:
-        icon: material/weather-night
-        name: Темна тема
   font:
-    text: Inter
+    text: Manrope
     code: JetBrains Mono
 
 plugins:
