@@ -33,8 +33,8 @@ hide:
 					вашим щоденним робочим хабом.
 				</p>
 				<div class="landing-actions">
-					<a class="landing-button landing-button-primary" href="owner-guide/">Подивитися сценарій власника</a>
-					<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/">Оцінити запуск self-hosted</a>
+					<a class="landing-button landing-button-primary" href="owner-guide/index.html">Подивитися сценарій власника</a>
+					<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/index.html">Оцінити запуск self-hosted</a>
 				</div>
 				<div class="landing-proofstrip">
 					<span>Telegram-бот для швидких дій</span>
@@ -215,9 +215,9 @@ hide:
 			</p>
 		</div>
 		<div class="landing-actions landing-actions-stack">
-			<a class="landing-button landing-button-primary" href="owner-guide/">Відкрити owner guide</a>
-			<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/">Переглянути технічний запуск</a>
-			<a class="landing-button landing-button-ghost" href="PRICING_NARRATIVE/">Подивитися логіку тарифів</a>
+			<a class="landing-button landing-button-primary" href="owner-guide/index.html">Відкрити owner guide</a>
+			<a class="landing-button landing-button-secondary" href="README_SELF_HOSTED/index.html">Переглянути технічний запуск</a>
+			<a class="landing-button landing-button-ghost" href="PRICING_NARRATIVE/index.html">Подивитися логіку тарифів</a>
 		</div>
 	</section>
 </div>
