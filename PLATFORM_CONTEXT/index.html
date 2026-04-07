@@ -10,7 +10,7 @@
       
       
       
-        <link rel="canonical" href="https://bhy4uk.github.io/tgshop-docs/VPS_DEPLOYMENT_UBUNTU/">
+        <link rel="canonical" href="https://bhy4uk.github.io/tgshop-docs/PLATFORM_CONTEXT/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Деплой на VPS (Ubuntu Server 22 LTS) — production / staging / demo + backup - Telegram-магазин</title>
+        <title>Контекст платформи - Telegram-магазин</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#vps-ubuntu-server-22-lts-production-staging-demo-backup" class="md-skip">
+        <a href="#_1" class="md-skip">
           Перейти до змісту
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Деплой на VPS (Ubuntu Server 22 LTS) — production / staging / demo + backup
+              Контекст платформи
             
           </span>
         </div>
@@ -303,183 +303,60 @@
 
 
 
-<h1 id="vps-ubuntu-server-22-lts-production-staging-demo-backup">Деплой на VPS (Ubuntu Server 22 LTS) — production / staging / demo + backup</h1>
-<p>Нижче — покрокова інструкція для «чистого» VPS з Docker.</p>
-<hr />
-<h2 id="1-vps">1) Підключення до VPS</h2>
-<pre><code class="language-bash">ssh ubuntu@&lt;YOUR_VPS_IP&gt;
-</code></pre>
-<hr />
-<h2 id="2">2) Базові пакети</h2>
-<pre><code class="language-bash">sudo apt-get update -y
-sudo apt-get install -y git docker-compose-plugin
-</code></pre>
-<p>Перевірити:</p>
-<pre><code class="language-bash">docker --version
-docker compose version
-</code></pre>
-<p>Додати користувача в групу docker (щоб без sudo):</p>
-<pre><code class="language-bash">sudo usermod -aG docker $USER
-</code></pre>
-<p>Після цього вийдіть і зайдіть знову по SSH.</p>
-<hr />
-<h2 id="3">3) Клон репозиторію</h2>
-<pre><code class="language-bash">git clone &lt;YOUR_GITHUB_REPO_URL&gt;
-cd &lt;repo&gt;
-</code></pre>
-<hr />
-<h2 id="4-env-production-staging-demo">4) Підготовка env файлів для production / staging / demo</h2>
-<p>Створіть окремі env:</p>
-<pre><code class="language-bash">cp backend/.env.production.example backend/.env.production
-cp backend/.env.staging.example backend/.env.staging
-cp backend/.env.demo.example backend/.env.demo
-</code></pre>
-<p>Відкрийте кожен файл у редакторі (nano):</p>
-<pre><code class="language-bash">nano backend/.env.production
-nano backend/.env.staging
-nano backend/.env.demo
-</code></pre>
-<h3 id="41-production">4.1 production (приклад ключових значень)</h3>
-<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
-DB_NAME=telegram_shop_prod
-TENANT_ID=shop_prod
-ENVIRONMENT=production
-PLATFORM_ADMIN_IDS=123456789
-ADMIN_IDS=123456789
-BOT_TOKEN=YOUR_PROD_BOT_TOKEN
-MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
-MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
-TENANT_BACKFILL_ON_STARTUP=false
-ACCESS_MODE_OVERRIDE=
-</code></pre>
-<h3 id="42-staging">4.2 staging (приклад)</h3>
-<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
-DB_NAME=telegram_shop_staging
-TENANT_ID=shop_staging
-ENVIRONMENT=staging
-PLATFORM_ADMIN_IDS=123456789
-ADMIN_IDS=123456789
-BOT_TOKEN=YOUR_STAGING_BOT_TOKEN
-MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
-MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
-TENANT_BACKFILL_ON_STARTUP=false
-ACCESS_MODE_OVERRIDE=
-</code></pre>
-<h3 id="43-demo-safebydefault">4.3 demo (safe‑by‑default)</h3>
-<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
-DB_NAME=telegram_shop_demo
-TENANT_ID=shop_demo
-ENVIRONMENT=demo
-PLATFORM_ADMIN_IDS=
-ADMIN_IDS=
-BOT_TOKEN=YOUR_DEMO_BOT_TOKEN
-MONOBANK_BASE_URL=
-MONOBANK_WEBHOOK_SECRET=
-TENANT_BACKFILL_ON_STARTUP=false
-ACCESS_MODE_OVERRIDE=soft_freeze
-</code></pre>
-<p><strong>Важливо:</strong>
-- кожне середовище має <strong>унікальний DB_NAME</strong>
-- <strong>не використовуйте один BOT_TOKEN</strong> для кількох середовищ (Telegram дає 409 conflict)</p>
-<hr />
-<h2 id="5">5) Запуск усіх середовищ паралельно</h2>
-<pre><code class="language-bash">docker compose -f docker-compose.multi.yml up -d --build
-</code></pre>
-<p>Перевірити контейнери:</p>
-<pre><code class="language-bash">docker ps
-</code></pre>
-<p>Очікувані сервіси:
-- <code>telegram_shop_mongodb</code>
-- <code>telegram_shop_bot_prod</code>, <code>telegram_shop_bot_staging</code>, <code>telegram_shop_bot_demo</code>
-- <code>telegram_shop_backup_prod</code>, <code>telegram_shop_backup_staging</code>, <code>telegram_shop_backup_demo</code></p>
-<hr />
-<h2 id="6-smoke-api">6) Smoke‑тести API</h2>
-<pre><code class="language-bash">curl http://&lt;YOUR_VPS_IP&gt;:8001/api/health
-curl http://&lt;YOUR_VPS_IP&gt;:8002/api/health
-curl http://&lt;YOUR_VPS_IP&gt;:8003/api/health
-</code></pre>
-<p>Очікувана відповідь:</p>
-<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
-</code></pre>
-<hr />
-<h2 id="7-smoke-telegram">7) Smoke‑тести в Telegram</h2>
-<p>Для кожного бота (prod / staging / demo):
-- <code>/start</code>
-- <code>/catalog</code>
-- <code>/cart</code></p>
-<p>Для demo очікувано:
-- перегляд каталогу ✅
-- оформлення замовлення ❌ (через <code>ACCESS_MODE_OVERRIDE=soft_freeze</code>)</p>
-<hr />
-<h2 id="8-backup">8) Перевірка backup</h2>
-<p>Подивитися логи:</p>
-<pre><code class="language-bash">docker compose -f docker-compose.multi.yml logs -f mongo_backup_prod
-</code></pre>
-<p>Ручний запуск backup (швидка перевірка):</p>
-<pre><code class="language-bash">docker exec -it telegram_shop_backup_prod /usr/local/bin/backup.sh
-</code></pre>
-<p>Перевірити структуру:</p>
-<pre><code class="language-bash">docker exec -it telegram_shop_backup_prod ls -la /backups/production
-</code></pre>
-<p>Очікувана структура:</p>
-<pre><code>/backups/production/20250310-030000/&lt;DB_NAME&gt;/...
-</code></pre>
-<hr />
-<h2 id="9-firewall-ufw">9) Налаштування Firewall (UFW)</h2>
-<p>Якщо потрібен прямий доступ до API:</p>
-<pre><code class="language-bash">sudo ufw allow 8001/tcp
-sudo ufw allow 8002/tcp
-sudo ufw allow 8003/tcp
-sudo ufw enable
-sudo ufw status
-</code></pre>
-<hr />
-<h2 id="10-nginx-https">10) (Опційно) Проксі через Nginx + HTTPS</h2>
-<p>Якщо хочете мати окремі домени для prod/staging/demo:</p>
-<p>1) Встановити nginx:</p>
-<pre><code class="language-bash">sudo apt-get install -y nginx
-</code></pre>
-<p>2) Створити три серверні блоки (приклад):</p>
-<pre><code class="language-bash">sudo nano /etc/nginx/sites-available/shop-prod
-</code></pre>
-<p>Вміст (prod, порт 8001):</p>
-<pre><code>server {
-    listen 80;
-    server_name prod.example.com;
-
-    location / {
-        proxy_pass http://127.0.0.1:8001;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
-</code></pre>
-<p>Аналогічно для staging/demo (8002/8003).</p>
-<p>3) Увімкнути сайти:</p>
-<pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/shop-prod /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx
-</code></pre>
-<p>4) SSL (Let’s Encrypt):</p>
-<pre><code class="language-bash">sudo apt-get install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d prod.example.com
-</code></pre>
-<hr />
-<h2 id="11">11) Оновлення коду</h2>
-<pre><code class="language-bash">git pull
-docker compose -f docker-compose.multi.yml up -d --build
-</code></pre>
-<hr />
-<h2 id="12">12) Часті проблеми</h2>
-<ul>
-<li><strong>409 Conflict</strong>: один бот‑токен запущений у двох місцях → зупиніть зайвий інстанс.</li>
-<li><strong>Бот не відповідає</strong>: перевірте логи <code>docker compose logs -f bot_prod</code>.</li>
-<li><strong>Mongo недоступна</strong>: перевірте <code>docker ps</code> та <code>docker compose logs -f mongodb</code>.</li>
-</ul>
-<hr />
-<p>Якщо хочете, можу додати окремий чек‑лист для Monobank E2E (webhook + перевірка підпису).</p>
+<h1 id="_1">Контекст платформи</h1>
+<p>Цей файл потрібен як короткий product context для маркетингових сторінок і лендингів.
+Повний технічний source of truth знаходиться у sibling repo <code>insomnia.workshop</code>.</p>
+<h2 id="_2">Що це за продукт</h2>
+<p>Платформа дає змогу запускати й вести Telegram-магазин без окремої кастомної розробки під кожного продавця.</p>
+<p>Ядро продукту:
+- Telegram-бот для клієнтського сценарію покупки
+- Telegram WebApp для каталогу та checkout
+- WebApp-хаб для керування магазином
+- backend платформи для multi-tenant магазинів</p>
+<h2 id="_3">Для кого продукт</h2>
+<p>Основна аудиторія:
+- власники магазинів, які продають через Telegram
+- невеликі бренди та локальні продавці
+- магазини, яким потрібен швидкий запуск без окремого сайту або важкої адмінки</p>
+<h2 id="_4">Що вже є в продукті</h2>
+<p>Перевірені напрямки функціоналу:
+- каталог товарів
+- кошик і оформлення замовлення
+- ручні та автоматизовані сценарії оплат
+- накладений платіж
+- Нова пошта та робота з ТТН
+- WebApp-керування магазином
+- тексти, кнопки, модулі й налаштування магазину
+- клієнти, кампанії, аналітика, промокоди, крос-продажі залежно від тарифу
+- підписка, рахунки, історія оплат і режими доступу магазину</p>
+<h2 id="_5">Як правильно позиціонувати продукт</h2>
+<p>Рекомендовані формулювання:
+- Telegram-first commerce platform
+- платформа для запуску продажів через Telegram
+- магазин у Telegram з керуванням через WebApp
+- операційна система для Telegram-магазину</p>
+<h2 id="_6">Чого не треба обіцяти без перевірки</h2>
+<p>Не варто автоматично стверджувати:
+- що всі модулі доступні на будь-якому тарифі
+- що продукт повністю замінює будь-який e-commerce сайт у всіх сценаріях
+- що всі інтеграції повністю автоматичні без ручних дій
+- що платформа підтримує те, чого немає в <code>insomnia.workshop</code></p>
+<h2 id="_7">Які файли перевіряти перед лендингом</h2>
+<p>У repo <code>insomnia.workshop</code> насамперед перевіряйте:
+- <code>docs/owner-guide.md</code>
+- <code>docs/PROJECT_CONTEXT_FOR_AGENTS.md</code>
+- <code>README.md</code>
+- <code>backend/app/application/feature_registry.py</code>
+- <code>backend/webapp/admin_products/main.js</code>
+- <code>backend/app/bot/admin_ui.py</code></p>
+<h2 id="_8">Сенс лендингу</h2>
+<p>Лендинг має продавати не "бота", а повноцінну платформу для продажів через Telegram:
+- запуск
+- операційка
+- оплати
+- доставка
+- контроль замовлень
+- ріст через аналітику та кампанії</p>
 
 
 
