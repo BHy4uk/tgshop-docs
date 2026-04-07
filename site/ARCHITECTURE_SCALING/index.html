@@ -10,10 +10,8 @@
       
       
       
-        <link rel="canonical" href="https://bhy4uk.github.io/insomnia.workshop/owner-guide/">
+        <link rel="canonical" href="https://bhy4uk.github.io/insomnia.workshop/ARCHITECTURE_SCALING/">
       
-      
-        <link rel="prev" href="..">
       
       
       
@@ -25,7 +23,7 @@
     
     
       
-        <title>Інструкція для власника - Telegram-магазин</title>
+        <title>Архітектура Multi-Tenant Platform - Telegram-магазин</title>
       
     
     
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#telegram-" class="md-skip">
+        <a href="#multi-tenant-platform" class="md-skip">
           Перейти до змісту
         </a>
       
@@ -113,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Інструкція для власника
+              Архітектура Multi-Tenant Platform
             
           </span>
         </div>
@@ -265,37 +263,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Інструкція для власника
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../owner-guide/" class="md-nav__link">
         
   
   
@@ -311,48 +282,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Зміст">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Зміст
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Інструкція для власника магазину
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚀 Швидкий старт (5 кроків)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -374,190 +303,263 @@
 
 
 
-<h1 id="telegram-">Telegram-магазин</h1>
-<h2 id="_1">Інструкція для власника магазину</h2>
-<p>Цей гайд допоможе вам керувати магазином <strong>повністю через Telegram</strong> — без сайту, без окремих адмін-панелей і без коду.</p>
+<h1 id="multi-tenant-platform">Архітектура Multi-Tenant Platform</h1>
+<h2 id="mvp">Поточний стан (MVP)</h2>
+<pre><code>1 платформа = N ботів = 1 deploy = конфіг в БД
+</code></pre>
+<h2 id="scale">Цільова архітектура (Scale)</h2>
+<pre><code>1 платформа = N ботів = 1 deploy = конфіг в БД
+</code></pre>
 <hr />
-<h2 id="5">🚀 Швидкий старт (5 кроків)</h2>
-<p>Якщо хочете швидко запуститись — зробіть це:</p>
+<h2 id="_1">Схема бази даних для масштабування</h2>
+<h3 id="collection-tenants">Collection: <code>tenants</code></h3>
+<pre><code class="language-javascript">{
+  &quot;_id&quot;: ObjectId,
+  &quot;id&quot;: &quot;shop_clothing&quot;,           // Унікальний slug
+  &quot;name&quot;: &quot;Магазин модного одягу&quot;,
+  &quot;bot_token&quot;: &quot;111111:AAA...&quot;,    // Telegram Bot Token
+  &quot;bot_username&quot;: &quot;ClothingShopBot&quot;,
+
+  // Власник та адміни
+  &quot;owner_id&quot;: 123456789,           // Telegram ID власника
+  &quot;admin_ids&quot;: [123456789, 987654321],
+
+  // Платіжні налаштування
+  &quot;payment&quot;: {
+    &quot;link&quot;: {
+      &quot;enabled&quot;: true,
+      &quot;url&quot;: &quot;https://send.monobank.ua/jar/XXX&quot;
+    },
+    &quot;details&quot;: {
+      &quot;enabled&quot;: false,
+      &quot;text&quot;: &quot;...&quot;
+    },
+    &quot;cod&quot;: {
+      &quot;enabled&quot;: false
+    },
+    &quot;monobank_webhook_secret&quot;: &quot;secret_xxx&quot;
+  },
+
+  // Підписка
+  &quot;subscription&quot;: {
+    &quot;plan_id&quot;: &quot;pro&quot;,
+    &quot;status&quot;: &quot;active&quot;,            // active | grace | frozen
+    &quot;paid_until&quot;: &quot;2026-03-01&quot;
+  },
+
+  // Ліміти
+  &quot;limits&quot;: {
+    &quot;max_products&quot;: 100,
+    &quot;max_admins&quot;: 5
+  },
+
+  &quot;status&quot;: &quot;active&quot;,              // active | suspended | deleted
+  &quot;created_at&quot;: ISODate,
+  &quot;updated_at&quot;: ISODate
+}
+</code></pre>
+<h3 id="collection-platform_config">Collection: <code>platform_config</code></h3>
+<pre><code class="language-javascript">{
+  &quot;platform_admin_ids&quot;: [392160708, 322482780],
+  &quot;default_plan&quot;: &quot;starter&quot;,
+  &quot;webhook_base_url&quot;: &quot;https://platform.example.com&quot;
+}
+</code></pre>
+<hr />
+<h2 id="_2">Процес онбордингу нового магазину</h2>
+<h3 id="1">Крок 1: Власник створює бота</h3>
 <ol>
-<li>Відкрийте вашого бота</li>
-<li>Напишіть команду <code>/admin</code></li>
-<li>Додайте або відредагуйте товар</li>
-<li>Увімкніть потрібний спосіб оплати</li>
-<li>Зробіть тестове замовлення</li>
+<li>Відкриває @BotFather в Telegram</li>
+<li><code>/newbot</code> → вводить назву → отримує токен</li>
+<li>Надсилає токен платформному адміну</li>
 </ol>
-<p>Готово. Ви вже можете приймати замовлення.</p>
-<hr />
-<h1 id="1">1️⃣ Ролі та відповідальність</h1>
-<h2 id="_2">👤 Власник магазину (ви)</h2>
-<p>Ви працюєте <strong>виключно через Telegram</strong> та керуєте:</p>
-<ul>
-<li>товарами</li>
-<li>замовленнями</li>
-<li>текстами повідомлень</li>
-<li>кнопками меню</li>
-<li>способами оплати</li>
-<li>підтвердженням оплат</li>
-</ul>
-<h2 id="_3">🛠 Платформний адміністратор</h2>
-<p>Відповідає за:</p>
-<ul>
-<li>онбординг та технічний запуск</li>
-<li>надання/відкликання адмін-доступу</li>
-<li>підписку магазину</li>
-<li>технічну підтримку</li>
-</ul>
-<hr />
-<h1 id="2-">2️⃣ Вхід в адмін-меню</h1>
+<h3 id="2-platform-admin">Крок 2: Platform Admin реєструє магазин</h3>
+<pre><code>/platform_add
+</code></pre>
+<p>Бот запитує:
+- Tenant ID (slug): <code>fashion_store</code>
+- Bot Token: <code>123456:ABC...</code>
+- Owner Telegram ID: <code>987654321</code>
+- Payment link (Monobank jar/pay тощо): <code>https://send.monobank.ua/jar/...</code>
+- Payment requisites (IBAN/ПІБ тощо): текстом у налаштуваннях
+- Накладений платіж: вмикається як окремий метод оплати</p>
+<h3 id="3">Крок 3: Система автоматично</h3>
 <ol>
-<li>Відкрийте вашого бота</li>
-<li>Напишіть:</li>
+<li>Валідує bot token (getMe)</li>
+<li>Створює запис в <code>tenants</code></li>
+<li>Створює <code>tenant_settings</code> з дефолтами</li>
+<li>Створює <code>subscriptions</code> з trial періодом</li>
+<li>Запускає polling для нового бота</li>
 </ol>
-<p>/admin</p>
-<p>Ви побачите 3 основні розділи:</p>
+<h3 id="4">Крок 4: Власник налаштовує магазин</h3>
 <ul>
-<li>📦 Товари</li>
-<li>🧾 Замовлення</li>
-<li>⚙️ Налаштування</li>
-</ul>
-<p>!!! Якщо з’являється повідомлення «Немає доступу», зверніться до платформного адміністратора, щоб він додав ваш Telegram ID до списку адміністраторів.</p>
-<hr />
-<h1 id="3">3️⃣ Товари — керування каталогом</h1>
-<h2 id="_4">📋 Перегляд товарів</h2>
-<p><code>/admin</code> → <strong>Товари</strong></p>
-<p>У списку відображаються всі товари магазину.</p>
-<hr />
-<h2 id="_5">✏️ Редагування товару</h2>
-<p><code>/admin</code> → <strong>Товари</strong> → оберіть товар</p>
-<p>Ви можете:</p>
-<ul>
-<li>Увімкнути / вимкнути товар</li>
-<li>Змінити назву</li>
-<li>Змінити опис</li>
-<li>Змінити ціну</li>
-<li>Додати або видалити фото</li>
-<li>Налаштувати розміри та залишки</li>
+<li>Заходить у свого бота</li>
+<li><code>/admin</code> → додає товари, адмінів, тексти</li>
 </ul>
 <hr />
-<h2 id="_6">🖼 Фото товару</h2>
+<h2 id="env-multi-tenant-platform">.env для Multi-Tenant Platform</h2>
+<pre><code class="language-bash"># ===== PLATFORM CONFIG (не змінюється при додаванні магазинів) =====
+
+# MongoDB - одна база для всіх магазинів
+MONGO_URL=mongodb://mongodb:27017/telegram_shop_platform
+DB_NAME=telegram_shop_platform
+
+# Platform Admins - можуть керувати всіма магазинами
+PLATFORM_ADMIN_IDS=392160708,322482780
+
+# Environment
+ENVIRONMENT=production
+LOG_LEVEL=INFO
+
+# Webhook base URL (для Monobank callbacks)
+WEBHOOK_BASE_URL=https://shop-platform.example.com
+
+# ===== НЕ ПОТРІБНО (зберігається в БД) =====
+# BOT_TOKEN - кожен магазин має свій в БД
+# TENANT_ID - визначається динамічно
+# ADMIN_IDS - зберігаються в tenant_settings
+# MONOBANK_BASE_URL - зберігається в tenants
+</code></pre>
+<hr />
+<h2 id="_3">Порівняння підходів</h2>
+<table>
+<thead>
+<tr>
+<th>Критерій</th>
+<th>1 бот = 1 deploy</th>
+<th>Multi-bot platform</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Магазинів</td>
+<td>1-10</td>
+<td>10-1000+</td>
+</tr>
+<tr>
+<td>Контейнерів</td>
+<td>N</td>
+<td>1-3</td>
+</tr>
+<tr>
+<td>.env файлів</td>
+<td>N</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Додати магазин</td>
+<td>Deploy новий контейнер</td>
+<td>Команда в боті</td>
+</tr>
+<tr>
+<td>Час онбордингу</td>
+<td>30-60 хв</td>
+<td>2-5 хв</td>
+</tr>
+<tr>
+<td>Вартість хостингу</td>
+<td>Висока (N × $5-20)</td>
+<td>Низька ($20-50 total)</td>
+</tr>
+<tr>
+<td>Складність коду</td>
+<td>Проста</td>
+<td>Середня</td>
+</tr>
+<tr>
+<td>Ізоляція даних</td>
+<td>Повна</td>
+<td>Логічна (tenant_id)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">План міграції</h2>
+<h3 id="1_1">Фаза 1: Підготовка (поточний стан ✅)</h3>
 <ul>
-<li>Можна додати до <strong>5 фото</strong></li>
-<li>Натисніть <strong>Додати фото</strong></li>
-<li>Надішліть фото наступним повідомленням у чат</li>
+<li>[x] Multi-tenant data model (tenant_id в кожній колекції)</li>
+<li>[x] Tenant settings в БД</li>
+<li>[x] Admin management через UI</li>
+</ul>
+<h3 id="2-multi-bot-runner">Фаза 2: Multi-Bot Runner (поточний стан ✅)</h3>
+<ul>
+<li>[x] Bot Registry (in-memory) + керування ботами</li>
+<li>[x] Dynamic bot polling (запуск/зупинка ботів)</li>
+<li>[x] Platform Admin команди: <code>/platform_add</code>, <code>/platform_list</code>, <code>/platform_suspend</code>, <code>/platform_activate</code>, <code>/platform_restart_bot</code></li>
+<li>[ ] Webhook routing по tenant_id (частково/залежить від провайдера)</li>
+</ul>
+<h3 id="3-self-service-portal">Фаза 3: Self-Service Portal (опціонально)</h3>
+<ul>
+<li>[ ] Web UI для реєстрації магазинів</li>
+<li>[ ] Stripe інтеграція для оплати підписок</li>
+<li>[ ] Dashboard для власників магазинів</li>
 </ul>
 <hr />
-<h2 id="_7">📦 Розміри та склад</h2>
-<p><code>Товари</code> → товар → <strong>Розміри / склад</strong></p>
-<p>Тут ви можете:</p>
-<ul>
-<li>додати новий розмір</li>
-<li>змінити залишок (stock)</li>
-<li>переглянути резерви (reserved)</li>
-</ul>
-<p>!!! info
-    Резерв означає, що по цьому розміру є неоплачене замовлення.<br />
-    Деякі дії можуть бути тимчасово недоступні, щоб не порушити логіку замовлень.</p>
+<h2 id="3_1">Приклад: 3 магазини в БД</h2>
+<pre><code class="language-javascript">// tenants collection
+[
+  {
+    &quot;id&quot;: &quot;fashion_kyiv&quot;,
+    &quot;name&quot;: &quot;Мода Київ&quot;,
+    &quot;bot_token&quot;: &quot;111:AAA&quot;,
+    &quot;bot_username&quot;: &quot;FashionKyivBot&quot;,
+    &quot;owner_id&quot;: 100000001,
+    &quot;admin_ids&quot;: [100000001, 100000002],
+    &quot;payment&quot;: {
+      &quot;link&quot;: {&quot;enabled&quot;: true, &quot;url&quot;: &quot;https://send.monobank.ua/jar/ABC&quot;},
+      &quot;details&quot;: {&quot;enabled&quot;: false, &quot;text&quot;: &quot;&quot;},
+      &quot;cod&quot;: {&quot;enabled&quot;: false}
+    },
+    &quot;subscription&quot;: { &quot;status&quot;: &quot;active&quot;, &quot;paid_until&quot;: &quot;2026-06-01&quot; }
+  },
+  {
+    &quot;id&quot;: &quot;tech_store&quot;,
+    &quot;name&quot;: &quot;ТехноМаркет&quot;,
+    &quot;bot_token&quot;: &quot;222:BBB&quot;,
+    &quot;bot_username&quot;: &quot;TechStoreUaBot&quot;,
+    &quot;owner_id&quot;: 200000001,
+    &quot;admin_ids&quot;: [200000001],
+    &quot;payment&quot;: {
+      &quot;link&quot;: {&quot;enabled&quot;: true, &quot;url&quot;: &quot;https://send.monobank.ua/jar/DEF&quot;},
+      &quot;details&quot;: {&quot;enabled&quot;: false, &quot;text&quot;: &quot;&quot;},
+      &quot;cod&quot;: {&quot;enabled&quot;: false}
+    },
+    &quot;subscription&quot;: { &quot;status&quot;: &quot;active&quot;, &quot;paid_until&quot;: &quot;2026-04-15&quot; }
+  },
+  {
+    &quot;id&quot;: &quot;handmade_crafts&quot;,
+    &quot;name&quot;: &quot;Хендмейд&quot;,
+    &quot;bot_token&quot;: &quot;333:CCC&quot;,
+    &quot;bot_username&quot;: &quot;HandmadeCraftsBot&quot;,
+    &quot;owner_id&quot;: 300000001,
+    &quot;admin_ids&quot;: [300000001, 300000002, 300000003],
+    &quot;payment&quot;: {
+      &quot;link&quot;: {&quot;enabled&quot;: true, &quot;url&quot;: &quot;https://send.monobank.ua/jar/GHI&quot;},
+      &quot;details&quot;: {&quot;enabled&quot;: false, &quot;text&quot;: &quot;&quot;},
+      &quot;cod&quot;: {&quot;enabled&quot;: false}
+    },
+    &quot;subscription&quot;: { &quot;status&quot;: &quot;grace&quot;, &quot;paid_until&quot;: &quot;2026-01-20&quot; }
+  }
+]
+</code></pre>
 <hr />
-<h1 id="4">4️⃣ Замовлення — обробка продажів</h1>
-<h2 id="_8">Підтримувані способи оплати</h2>
+<h2 id="platform-admin">Команди Platform Admin</h2>
+<pre><code>/platform - головне меню платформи
+/platform_add - додати новий магазин
+/platform_list - список всіх магазинів
+/platform_tenant {id} - деталі магазину
+/platform_suspend {id} - призупинити магазин
+/platform_activate {id} - активувати магазин
+# /platform_delete {id} - видалити магазин (ще не реалізовано)
+</code></pre>
+<hr />
+<h2 id="_5">Наступні кроки</h2>
 <ol>
-<li>Оплата за посиланням (наприклад Monobank)</li>
-<li>Оплата за реквізитами</li>
-<li>Накладений платіж</li>
+<li><strong>Якщо магазинів &lt; 10:</strong> Залишайтесь на поточній архітектурі (1 bot = 1 deploy)</li>
+<li><strong>Якщо плануєте 10+:</strong> Потрібна розробка Multi-Bot Runner (~2-3 дні роботи)</li>
+<li><strong>Якщо плануєте 50+:</strong> Додатково потрібен Web Portal для self-service</li>
 </ol>
-<hr />
-<h2 id="_9">🛒 Як виглядає процес продажу</h2>
-<ol>
-<li>Клієнт оформлює замовлення</li>
-<li>Бот показує інструкцію з оплатою</li>
-<li>Клієнт натискає «Я оплатив(ла)» (якщо потрібно)</li>
-<li>Ви перевіряєте оплату</li>
-<li>Ви підтверджуєте оплату в адмінці</li>
-</ol>
-<hr />
-<h2 id="_10">📑 Перегляд замовлень</h2>
-<p><code>/admin</code> → <strong>Замовлення</strong></p>
-<p>Можливі фільтри:</p>
-<ul>
-<li>Очікують оплату</li>
-<li>Оплачені</li>
-<li>Усі</li>
-</ul>
-<p>У замовленні видно:</p>
-<ul>
-<li>список товарів</li>
-<li>розміри</li>
-<li>кількість</li>
-<li>суму</li>
-<li>дані доставки (Нова Пошта)</li>
-</ul>
-<hr />
-<h2 id="_11">✅ Підтвердження оплати</h2>
-<p>Відкрийте замовлення зі статусом <strong>PendingPayment</strong><br />
-Натисніть кнопку <strong>Підтвердити оплату</strong></p>
-<p>Після цього:</p>
-<ul>
-<li>статус стане <strong>Paid</strong></li>
-<li>резерви по складу будуть зафіксовані</li>
-</ul>
-<hr />
-<h2 id="_12">⏳ Якщо клієнт не оплатив</h2>
-<p>У розділі Замовлення може бути кнопка:</p>
-<p><strong>Очистити (30 хв)</strong></p>
-<p>Вона:</p>
-<ul>
-<li>переводить старі замовлення в статус Expired</li>
-<li>знімає резерви зі складу</li>
-</ul>
-<hr />
-<h1 id="5_1">5️⃣ Налаштування (без коду)</h1>
-<p><code>/admin</code> → <strong>Налаштування</strong></p>
-<hr />
-<h2 id="_13">📝 Тексти</h2>
-<p>Можна змінювати тексти повідомлень за ключами<br />
-(наприклад: <code>order.created</code>)</p>
-<hr />
-<h2 id="_14">🔘 Кнопки</h2>
-<p>Можна змінювати текст кнопок меню та дій.</p>
-<p>!!! tip
-    Якщо ви змінили назву кнопки — далі використовуйте новий текст кнопки.</p>
-<hr />
-<h2 id="_15">💳 Способи оплати</h2>
-<p>Ви можете вмикати/вимикати:</p>
-<ul>
-<li>Оплату за посиланням</li>
-<li>Оплату за реквізитами</li>
-<li>Накладений платіж</li>
-</ul>
-<p>Для оплат за посиланням і реквізитами потрібно вказати відповідні дані.</p>
-<hr />
-<h1 id="6">6️⃣ Часті питання</h1>
-<h2 id="_16">Магазин тимчасово недоступний</h2>
-<p>Це може означати:</p>
-<ul>
-<li>магазин вимкнений</li>
-<li>завершився trial</li>
-<li>є питання по підписці</li>
-</ul>
-<p>Зверніться до платформного адміністратора.</p>
-<hr />
-<h2 id="_17">Бот не відповідає</h2>
-<p>Перевірте:</p>
-<ul>
-<li>чи пишете саме вашому магазину</li>
-<li>чи немає технічних робіт</li>
-</ul>
-<p>Якщо проблема зберігається — зверніться до підтримки.</p>
-<hr />
-<h1 id="_18">💡 Рекомендація</h1>
-<p>Рекомендується:</p>
-<ul>
-<li>протестувати оформлення замовлення</li>
-<li>перевірити всі способи оплати</li>
-<li>переконатись, що товари увімкнені</li>
-</ul>
-<p>Після цього магазин повністю готовий до продажів.</p>
+<p>Хочете, щоб я розробив Multi-Bot Runner для масштабування?</p>
 
 
 

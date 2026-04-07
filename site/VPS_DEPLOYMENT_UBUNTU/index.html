@@ -10,10 +10,8 @@
       
       
       
-        <link rel="canonical" href="https://bhy4uk.github.io/insomnia.workshop/owner-guide/">
+        <link rel="canonical" href="https://bhy4uk.github.io/insomnia.workshop/VPS_DEPLOYMENT_UBUNTU/">
       
-      
-        <link rel="prev" href="..">
       
       
       
@@ -25,7 +23,7 @@
     
     
       
-        <title>Інструкція для власника - Telegram-магазин</title>
+        <title>Деплой на VPS (Ubuntu Server 22 LTS) — production / staging / demo + backup - Telegram-магазин</title>
       
     
     
@@ -78,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#telegram-" class="md-skip">
+        <a href="#vps-ubuntu-server-22-lts-production-staging-demo-backup" class="md-skip">
           Перейти до змісту
         </a>
       
@@ -113,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Інструкція для власника
+              Деплой на VPS (Ubuntu Server 22 LTS) — production / staging / demo + backup
             
           </span>
         </div>
@@ -265,37 +263,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Інструкція для власника
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../owner-guide/" class="md-nav__link">
         
   
   
@@ -311,48 +282,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Зміст">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Зміст
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Інструкція для власника магазину
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        🚀 Швидкий старт (5 кроків)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -374,190 +303,183 @@
 
 
 
-<h1 id="telegram-">Telegram-магазин</h1>
-<h2 id="_1">Інструкція для власника магазину</h2>
-<p>Цей гайд допоможе вам керувати магазином <strong>повністю через Telegram</strong> — без сайту, без окремих адмін-панелей і без коду.</p>
+<h1 id="vps-ubuntu-server-22-lts-production-staging-demo-backup">Деплой на VPS (Ubuntu Server 22 LTS) — production / staging / demo + backup</h1>
+<p>Нижче — покрокова інструкція для «чистого» VPS з Docker.</p>
 <hr />
-<h2 id="5">🚀 Швидкий старт (5 кроків)</h2>
-<p>Якщо хочете швидко запуститись — зробіть це:</p>
-<ol>
-<li>Відкрийте вашого бота</li>
-<li>Напишіть команду <code>/admin</code></li>
-<li>Додайте або відредагуйте товар</li>
-<li>Увімкніть потрібний спосіб оплати</li>
-<li>Зробіть тестове замовлення</li>
-</ol>
-<p>Готово. Ви вже можете приймати замовлення.</p>
+<h2 id="1-vps">1) Підключення до VPS</h2>
+<pre><code class="language-bash">ssh ubuntu@&lt;YOUR_VPS_IP&gt;
+</code></pre>
 <hr />
-<h1 id="1">1️⃣ Ролі та відповідальність</h1>
-<h2 id="_2">👤 Власник магазину (ви)</h2>
-<p>Ви працюєте <strong>виключно через Telegram</strong> та керуєте:</p>
+<h2 id="2">2) Базові пакети</h2>
+<pre><code class="language-bash">sudo apt-get update -y
+sudo apt-get install -y git docker-compose-plugin
+</code></pre>
+<p>Перевірити:</p>
+<pre><code class="language-bash">docker --version
+docker compose version
+</code></pre>
+<p>Додати користувача в групу docker (щоб без sudo):</p>
+<pre><code class="language-bash">sudo usermod -aG docker $USER
+</code></pre>
+<p>Після цього вийдіть і зайдіть знову по SSH.</p>
+<hr />
+<h2 id="3">3) Клон репозиторію</h2>
+<pre><code class="language-bash">git clone &lt;YOUR_GITHUB_REPO_URL&gt;
+cd &lt;repo&gt;
+</code></pre>
+<hr />
+<h2 id="4-env-production-staging-demo">4) Підготовка env файлів для production / staging / demo</h2>
+<p>Створіть окремі env:</p>
+<pre><code class="language-bash">cp backend/.env.production.example backend/.env.production
+cp backend/.env.staging.example backend/.env.staging
+cp backend/.env.demo.example backend/.env.demo
+</code></pre>
+<p>Відкрийте кожен файл у редакторі (nano):</p>
+<pre><code class="language-bash">nano backend/.env.production
+nano backend/.env.staging
+nano backend/.env.demo
+</code></pre>
+<h3 id="41-production">4.1 production (приклад ключових значень)</h3>
+<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
+DB_NAME=telegram_shop_prod
+TENANT_ID=shop_prod
+ENVIRONMENT=production
+PLATFORM_ADMIN_IDS=123456789
+ADMIN_IDS=123456789
+BOT_TOKEN=YOUR_PROD_BOT_TOKEN
+MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
+MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
+TENANT_BACKFILL_ON_STARTUP=false
+ACCESS_MODE_OVERRIDE=
+</code></pre>
+<h3 id="42-staging">4.2 staging (приклад)</h3>
+<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
+DB_NAME=telegram_shop_staging
+TENANT_ID=shop_staging
+ENVIRONMENT=staging
+PLATFORM_ADMIN_IDS=123456789
+ADMIN_IDS=123456789
+BOT_TOKEN=YOUR_STAGING_BOT_TOKEN
+MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
+MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
+TENANT_BACKFILL_ON_STARTUP=false
+ACCESS_MODE_OVERRIDE=
+</code></pre>
+<h3 id="43-demo-safebydefault">4.3 demo (safe‑by‑default)</h3>
+<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
+DB_NAME=telegram_shop_demo
+TENANT_ID=shop_demo
+ENVIRONMENT=demo
+PLATFORM_ADMIN_IDS=
+ADMIN_IDS=
+BOT_TOKEN=YOUR_DEMO_BOT_TOKEN
+MONOBANK_BASE_URL=
+MONOBANK_WEBHOOK_SECRET=
+TENANT_BACKFILL_ON_STARTUP=false
+ACCESS_MODE_OVERRIDE=soft_freeze
+</code></pre>
+<p><strong>Важливо:</strong>
+- кожне середовище має <strong>унікальний DB_NAME</strong>
+- <strong>не використовуйте один BOT_TOKEN</strong> для кількох середовищ (Telegram дає 409 conflict)</p>
+<hr />
+<h2 id="5">5) Запуск усіх середовищ паралельно</h2>
+<pre><code class="language-bash">docker compose -f docker-compose.multi.yml up -d --build
+</code></pre>
+<p>Перевірити контейнери:</p>
+<pre><code class="language-bash">docker ps
+</code></pre>
+<p>Очікувані сервіси:
+- <code>telegram_shop_mongodb</code>
+- <code>telegram_shop_bot_prod</code>, <code>telegram_shop_bot_staging</code>, <code>telegram_shop_bot_demo</code>
+- <code>telegram_shop_backup_prod</code>, <code>telegram_shop_backup_staging</code>, <code>telegram_shop_backup_demo</code></p>
+<hr />
+<h2 id="6-smoke-api">6) Smoke‑тести API</h2>
+<pre><code class="language-bash">curl http://&lt;YOUR_VPS_IP&gt;:8001/api/health
+curl http://&lt;YOUR_VPS_IP&gt;:8002/api/health
+curl http://&lt;YOUR_VPS_IP&gt;:8003/api/health
+</code></pre>
+<p>Очікувана відповідь:</p>
+<pre><code class="language-json">{&quot;status&quot;:&quot;ok&quot;}
+</code></pre>
+<hr />
+<h2 id="7-smoke-telegram">7) Smoke‑тести в Telegram</h2>
+<p>Для кожного бота (prod / staging / demo):
+- <code>/start</code>
+- <code>/catalog</code>
+- <code>/cart</code></p>
+<p>Для demo очікувано:
+- перегляд каталогу ✅
+- оформлення замовлення ❌ (через <code>ACCESS_MODE_OVERRIDE=soft_freeze</code>)</p>
+<hr />
+<h2 id="8-backup">8) Перевірка backup</h2>
+<p>Подивитися логи:</p>
+<pre><code class="language-bash">docker compose -f docker-compose.multi.yml logs -f mongo_backup_prod
+</code></pre>
+<p>Ручний запуск backup (швидка перевірка):</p>
+<pre><code class="language-bash">docker exec -it telegram_shop_backup_prod /usr/local/bin/backup.sh
+</code></pre>
+<p>Перевірити структуру:</p>
+<pre><code class="language-bash">docker exec -it telegram_shop_backup_prod ls -la /backups/production
+</code></pre>
+<p>Очікувана структура:</p>
+<pre><code>/backups/production/20250310-030000/&lt;DB_NAME&gt;/...
+</code></pre>
+<hr />
+<h2 id="9-firewall-ufw">9) Налаштування Firewall (UFW)</h2>
+<p>Якщо потрібен прямий доступ до API:</p>
+<pre><code class="language-bash">sudo ufw allow 8001/tcp
+sudo ufw allow 8002/tcp
+sudo ufw allow 8003/tcp
+sudo ufw enable
+sudo ufw status
+</code></pre>
+<hr />
+<h2 id="10-nginx-https">10) (Опційно) Проксі через Nginx + HTTPS</h2>
+<p>Якщо хочете мати окремі домени для prod/staging/demo:</p>
+<p>1) Встановити nginx:</p>
+<pre><code class="language-bash">sudo apt-get install -y nginx
+</code></pre>
+<p>2) Створити три серверні блоки (приклад):</p>
+<pre><code class="language-bash">sudo nano /etc/nginx/sites-available/shop-prod
+</code></pre>
+<p>Вміст (prod, порт 8001):</p>
+<pre><code>server {
+    listen 80;
+    server_name prod.example.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+</code></pre>
+<p>Аналогічно для staging/demo (8002/8003).</p>
+<p>3) Увімкнути сайти:</p>
+<pre><code class="language-bash">sudo ln -s /etc/nginx/sites-available/shop-prod /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+</code></pre>
+<p>4) SSL (Let’s Encrypt):</p>
+<pre><code class="language-bash">sudo apt-get install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d prod.example.com
+</code></pre>
+<hr />
+<h2 id="11">11) Оновлення коду</h2>
+<pre><code class="language-bash">git pull
+docker compose -f docker-compose.multi.yml up -d --build
+</code></pre>
+<hr />
+<h2 id="12">12) Часті проблеми</h2>
 <ul>
-<li>товарами</li>
-<li>замовленнями</li>
-<li>текстами повідомлень</li>
-<li>кнопками меню</li>
-<li>способами оплати</li>
-<li>підтвердженням оплат</li>
-</ul>
-<h2 id="_3">🛠 Платформний адміністратор</h2>
-<p>Відповідає за:</p>
-<ul>
-<li>онбординг та технічний запуск</li>
-<li>надання/відкликання адмін-доступу</li>
-<li>підписку магазину</li>
-<li>технічну підтримку</li>
+<li><strong>409 Conflict</strong>: один бот‑токен запущений у двох місцях → зупиніть зайвий інстанс.</li>
+<li><strong>Бот не відповідає</strong>: перевірте логи <code>docker compose logs -f bot_prod</code>.</li>
+<li><strong>Mongo недоступна</strong>: перевірте <code>docker ps</code> та <code>docker compose logs -f mongodb</code>.</li>
 </ul>
 <hr />
-<h1 id="2-">2️⃣ Вхід в адмін-меню</h1>
-<ol>
-<li>Відкрийте вашого бота</li>
-<li>Напишіть:</li>
-</ol>
-<p>/admin</p>
-<p>Ви побачите 3 основні розділи:</p>
-<ul>
-<li>📦 Товари</li>
-<li>🧾 Замовлення</li>
-<li>⚙️ Налаштування</li>
-</ul>
-<p>!!! Якщо з’являється повідомлення «Немає доступу», зверніться до платформного адміністратора, щоб він додав ваш Telegram ID до списку адміністраторів.</p>
-<hr />
-<h1 id="3">3️⃣ Товари — керування каталогом</h1>
-<h2 id="_4">📋 Перегляд товарів</h2>
-<p><code>/admin</code> → <strong>Товари</strong></p>
-<p>У списку відображаються всі товари магазину.</p>
-<hr />
-<h2 id="_5">✏️ Редагування товару</h2>
-<p><code>/admin</code> → <strong>Товари</strong> → оберіть товар</p>
-<p>Ви можете:</p>
-<ul>
-<li>Увімкнути / вимкнути товар</li>
-<li>Змінити назву</li>
-<li>Змінити опис</li>
-<li>Змінити ціну</li>
-<li>Додати або видалити фото</li>
-<li>Налаштувати розміри та залишки</li>
-</ul>
-<hr />
-<h2 id="_6">🖼 Фото товару</h2>
-<ul>
-<li>Можна додати до <strong>5 фото</strong></li>
-<li>Натисніть <strong>Додати фото</strong></li>
-<li>Надішліть фото наступним повідомленням у чат</li>
-</ul>
-<hr />
-<h2 id="_7">📦 Розміри та склад</h2>
-<p><code>Товари</code> → товар → <strong>Розміри / склад</strong></p>
-<p>Тут ви можете:</p>
-<ul>
-<li>додати новий розмір</li>
-<li>змінити залишок (stock)</li>
-<li>переглянути резерви (reserved)</li>
-</ul>
-<p>!!! info
-    Резерв означає, що по цьому розміру є неоплачене замовлення.<br />
-    Деякі дії можуть бути тимчасово недоступні, щоб не порушити логіку замовлень.</p>
-<hr />
-<h1 id="4">4️⃣ Замовлення — обробка продажів</h1>
-<h2 id="_8">Підтримувані способи оплати</h2>
-<ol>
-<li>Оплата за посиланням (наприклад Monobank)</li>
-<li>Оплата за реквізитами</li>
-<li>Накладений платіж</li>
-</ol>
-<hr />
-<h2 id="_9">🛒 Як виглядає процес продажу</h2>
-<ol>
-<li>Клієнт оформлює замовлення</li>
-<li>Бот показує інструкцію з оплатою</li>
-<li>Клієнт натискає «Я оплатив(ла)» (якщо потрібно)</li>
-<li>Ви перевіряєте оплату</li>
-<li>Ви підтверджуєте оплату в адмінці</li>
-</ol>
-<hr />
-<h2 id="_10">📑 Перегляд замовлень</h2>
-<p><code>/admin</code> → <strong>Замовлення</strong></p>
-<p>Можливі фільтри:</p>
-<ul>
-<li>Очікують оплату</li>
-<li>Оплачені</li>
-<li>Усі</li>
-</ul>
-<p>У замовленні видно:</p>
-<ul>
-<li>список товарів</li>
-<li>розміри</li>
-<li>кількість</li>
-<li>суму</li>
-<li>дані доставки (Нова Пошта)</li>
-</ul>
-<hr />
-<h2 id="_11">✅ Підтвердження оплати</h2>
-<p>Відкрийте замовлення зі статусом <strong>PendingPayment</strong><br />
-Натисніть кнопку <strong>Підтвердити оплату</strong></p>
-<p>Після цього:</p>
-<ul>
-<li>статус стане <strong>Paid</strong></li>
-<li>резерви по складу будуть зафіксовані</li>
-</ul>
-<hr />
-<h2 id="_12">⏳ Якщо клієнт не оплатив</h2>
-<p>У розділі Замовлення може бути кнопка:</p>
-<p><strong>Очистити (30 хв)</strong></p>
-<p>Вона:</p>
-<ul>
-<li>переводить старі замовлення в статус Expired</li>
-<li>знімає резерви зі складу</li>
-</ul>
-<hr />
-<h1 id="5_1">5️⃣ Налаштування (без коду)</h1>
-<p><code>/admin</code> → <strong>Налаштування</strong></p>
-<hr />
-<h2 id="_13">📝 Тексти</h2>
-<p>Можна змінювати тексти повідомлень за ключами<br />
-(наприклад: <code>order.created</code>)</p>
-<hr />
-<h2 id="_14">🔘 Кнопки</h2>
-<p>Можна змінювати текст кнопок меню та дій.</p>
-<p>!!! tip
-    Якщо ви змінили назву кнопки — далі використовуйте новий текст кнопки.</p>
-<hr />
-<h2 id="_15">💳 Способи оплати</h2>
-<p>Ви можете вмикати/вимикати:</p>
-<ul>
-<li>Оплату за посиланням</li>
-<li>Оплату за реквізитами</li>
-<li>Накладений платіж</li>
-</ul>
-<p>Для оплат за посиланням і реквізитами потрібно вказати відповідні дані.</p>
-<hr />
-<h1 id="6">6️⃣ Часті питання</h1>
-<h2 id="_16">Магазин тимчасово недоступний</h2>
-<p>Це може означати:</p>
-<ul>
-<li>магазин вимкнений</li>
-<li>завершився trial</li>
-<li>є питання по підписці</li>
-</ul>
-<p>Зверніться до платформного адміністратора.</p>
-<hr />
-<h2 id="_17">Бот не відповідає</h2>
-<p>Перевірте:</p>
-<ul>
-<li>чи пишете саме вашому магазину</li>
-<li>чи немає технічних робіт</li>
-</ul>
-<p>Якщо проблема зберігається — зверніться до підтримки.</p>
-<hr />
-<h1 id="_18">💡 Рекомендація</h1>
-<p>Рекомендується:</p>
-<ul>
-<li>протестувати оформлення замовлення</li>
-<li>перевірити всі способи оплати</li>
-<li>переконатись, що товари увімкнені</li>
-</ul>
-<p>Після цього магазин повністю готовий до продажів.</p>
+<p>Якщо хочете, можу додати окремий чек‑лист для Monobank E2E (webhook + перевірка підпису).</p>
 
 
 
