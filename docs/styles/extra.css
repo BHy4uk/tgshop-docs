@@ -1,0 +1,35 @@
+/* Повністю прибрати футер */
+.md-footer {
+    display: none;
+}
+
+/* Прибрати "Made with Material" */
+.md-footer-meta {
+    display: none;
+}
+
+/* Більше повітря */
+.md-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Красиві заголовки */
+.md-typeset h1 {
+    font-weight: 700;
+}
+
+.md-typeset h2 {
+    font-weight: 600;
+    margin-top: 2.5rem;
+}
+
+/* Стильні callout блоки */
+.md-typeset .admonition {
+    border-radius: 10px;
+}
+
+/* Код-блоки більш акуратні */
+.md-typeset pre code {
+    border-radius: 8px;
+}
