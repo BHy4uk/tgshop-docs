@@ -1,6 +1,6 @@
 site_name: Telegram-магазин
 site_description: Документація платформи
-site_url: https://bhy4uk.github.io/insomnia.workshop/
+site_url: https://bhy4uk.github.io/tgshop-docs/
 
 theme:
   name: material
