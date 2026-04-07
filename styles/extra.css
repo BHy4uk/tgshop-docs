@@ -12,6 +12,8 @@
     --landing-accent-soft: #d8edf0;
     --landing-sand: #f2e5d2;
     --landing-shadow: 0 28px 60px rgba(22, 35, 59, 0.12);
+    --site-shell: rgba(255, 255, 255, 0.72);
+    --site-shell-strong: rgba(255, 255, 255, 0.9);
 }
 
 html {
@@ -21,6 +23,37 @@ html {
 body,
 .md-typeset {
     font-family: "Manrope", "Segoe UI", sans-serif;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(239, 109, 88, 0.08), transparent 24%),
+        radial-gradient(circle at right top, rgba(29, 106, 120, 0.1), transparent 22%),
+        linear-gradient(180deg, #fffaf5 0%, #f7f8fb 100%);
+}
+
+.md-grid {
+    max-width: 1420px;
+}
+
+.md-header {
+    background: rgba(255, 250, 244, 0.78);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(22, 35, 59, 0.08);
+    box-shadow: none;
+}
+
+.md-header__topic,
+.md-header__title,
+.md-nav__title,
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+    font-family: "Fraunces", Georgia, serif;
+}
+
+.md-main {
+    background: transparent;
 }
 
 .md-footer,
@@ -38,7 +71,7 @@ body,
 
 .md-content__inner {
     margin: 0;
-    padding-top: 0;
+    padding-top: 0.8rem;
 }
 
 .md-typeset h1,
@@ -51,6 +84,132 @@ body,
 .md-typeset .admonition,
 .md-typeset details {
     border-radius: 16px;
+}
+
+.md-typeset h1 {
+    margin-bottom: 1.2rem;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+}
+
+.md-typeset h2 {
+    margin-top: 2.6rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.6rem, 2.4vw, 2.4rem);
+}
+
+.md-typeset h3 {
+    margin-top: 1.8rem;
+    font-size: clamp(1.15rem, 1.6vw, 1.45rem);
+}
+
+.md-typeset p,
+.md-typeset li {
+    color: var(--landing-ink);
+}
+
+.md-typeset a {
+    color: var(--landing-accent);
+}
+
+.md-typeset ul,
+.md-typeset ol {
+    line-height: 1.7;
+}
+
+.md-typeset hr {
+    border-bottom-color: rgba(22, 35, 59, 0.08);
+}
+
+.md-typeset blockquote {
+    border-inline-start-color: var(--landing-primary);
+}
+
+.md-sidebar--secondary {
+    display: none;
+}
+
+.md-sidebar__scrollwrap {
+    margin: 0;
+}
+
+.md-sidebar--primary .md-sidebar__inner {
+    padding-top: 1rem;
+}
+
+.md-sidebar--primary .md-nav {
+    padding: 0.7rem;
+    border: 1px solid rgba(22, 35, 59, 0.08);
+    border-radius: 24px;
+    background: var(--site-shell);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 18px 40px rgba(22, 35, 59, 0.08);
+}
+
+.md-nav--primary > .md-nav__title {
+    margin: 0 0 0.45rem;
+    padding: 0.85rem 0.9rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(29, 106, 120, 0.12), rgba(239, 109, 88, 0.12));
+    color: var(--landing-ink);
+    box-shadow: none;
+}
+
+.md-nav__item {
+    margin-top: 0.2rem;
+}
+
+.md-nav__link {
+    margin-top: 0;
+    padding: 0.62rem 0.9rem;
+    border-radius: 16px;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.md-nav__link:is(:hover, :focus-visible) {
+    background: rgba(29, 106, 120, 0.08);
+    color: var(--landing-ink);
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+    background: rgba(29, 106, 120, 0.12);
+    color: var(--landing-ink);
+    font-weight: 700;
+}
+
+.md-content article {
+    border: 1px solid rgba(22, 35, 59, 0.08);
+    border-radius: 28px;
+    background: var(--site-shell-strong);
+    box-shadow: 0 22px 50px rgba(22, 35, 59, 0.06);
+    backdrop-filter: blur(18px);
+    padding: 1.2rem;
+}
+
+@media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+        width: 13.6rem;
+    }
+
+    .md-content {
+        max-width: calc(100% - 14.6rem);
+        margin-inline: 0 0;
+    }
+}
+
+@media screen and (max-width: 76.234375em) {
+    .md-sidebar--primary .md-nav {
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+        background: transparent;
+        backdrop-filter: none;
+    }
+
+    .md-content article {
+        padding: 1rem;
+        border-radius: 24px;
+    }
 }
 
 .md-typeset pre code {
@@ -273,6 +432,42 @@ body,
     gap: 0.7rem;
 }
 
+.landing-metric-grid,
+.landing-proof-grid {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.landing-metric-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.landing-metric-grid article,
+.landing-proof-grid article {
+    padding: 1rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(22, 35, 59, 0.08);
+}
+
+.landing-metric-grid strong,
+.landing-proof-grid strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.landing-metric-grid strong {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1;
+}
+
+.landing-metric-grid span,
+.landing-proof-grid span {
+    color: var(--landing-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
 .landing-proofstrip span,
 .landing-inline-note,
 .landing-panel-note {
@@ -304,6 +499,18 @@ body,
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.82);
     border: 1px solid rgba(22, 35, 59, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.landing-panel-stack article:hover,
+.landing-card:hover,
+.landing-step:hover,
+.landing-feature-card:hover,
+.landing-growth-card:hover,
+.landing-metric-grid article:hover,
+.landing-proof-grid article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 36px rgba(22, 35, 59, 0.1);
 }
 
 .landing-panel-stack article strong,
@@ -369,6 +576,11 @@ body,
 
 .landing-growth-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.landing-proof-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 1rem;
 }
 
 .landing-card,
@@ -458,11 +670,16 @@ body,
     }
 
     .landing-three-up,
-    .landing-feature-grid {
+    .landing-feature-grid,
+    .landing-proof-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .landing-timeline {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .landing-metric-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
@@ -486,9 +703,11 @@ body,
     .landing-nav-links,
     .landing-actions,
     .landing-proofstrip,
+    .landing-metric-grid,
     .landing-growth-grid,
     .landing-three-up,
     .landing-feature-grid,
+    .landing-proof-grid,
     .landing-timeline {
         grid-template-columns: 1fr;
     }
