@@ -733,7 +733,7 @@
 
 
 
-<h1 id="telegram-shop-bot-fastapi-mongodb-self-hosted-windows-docker-compose">Telegram Shop Bot (FastAPI + MongoDB) — Self-hosted (Windows + Docker Compose)</h1>
+<h1 id="telegram-shop-bot-fastapi-mongodb-self-hosted-windows-docker-compose">Telegram Shop Bot (FastAPI + MongoDB) — Self-hosted (Windows + Docker Compose)<a class="headerlink" href="#telegram-shop-bot-fastapi-mongodb-self-hosted-windows-docker-compose" title="Permanent link">&para;</a></h1>
 <p>Це Telegram-магазин бот з каталогом, кошиком, збором даних доставки (Нова Пошта) та ручним підтвердженням оплати.</p>
 <blockquote>
 <p>Оплата: підтримуються 3 способи — <strong>за посиланням</strong>, <strong>за реквізитами</strong>, <strong>накладений платіж</strong>.
@@ -743,7 +743,7 @@
 - Для власника магазину (як керувати через Telegram): <strong>CLIENT_HANDOFF.md</strong>
 - Комерційний наратив/підписка (Manual MVP): <strong>PRICING_NARRATIVE.md</strong></p>
 <hr />
-<h2 id="0">0) Що саме запускаємо</h2>
+<h2 id="0">0) Що саме запускаємо<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
 <p>У цьому репозиторії <strong>backend</strong> (FastAPI) при старті:
 - підключається до MongoDB
 - створює індекси
@@ -754,13 +754,13 @@
 - <code>mongodb</code>
 - <code>bot</code> (FastAPI + Telegram polling для всіх магазинів)</p>
 <hr />
-<h2 id="1-windows">1) Передумови (Windows)</h2>
-<h3 id="11-docker-desktop">1.1 Встановити Docker Desktop</h3>
+<h2 id="1-windows">1) Передумови (Windows)<a class="headerlink" href="#1-windows" title="Permanent link">&para;</a></h2>
+<h3 id="11-docker-desktop">1.1 Встановити Docker Desktop<a class="headerlink" href="#11-docker-desktop" title="Permanent link">&para;</a></h3>
 <p>1) Встановіть <strong>Docker Desktop for Windows</strong>: https://www.docker.com/products/docker-desktop/
 2) Під час інсталяції увімкніть <strong>WSL 2</strong> (якщо попросить).
 3) Після інсталяції перезавантажте ПК (якщо Docker попросить).
 4) Переконайтесь, що Docker запущений: відкрийте Docker Desktop → статус “Running”.</p>
-<h3 id="12-git">1.2 Встановити Git (для клонування репозиторію)</h3>
+<h3 id="12-git">1.2 Встановити Git (для клонування репозиторію)<a class="headerlink" href="#12-git" title="Permanent link">&para;</a></h3>
 <ul>
 <li>https://git-scm.com/download/win</li>
 </ul>
@@ -768,19 +768,19 @@
 <p>Команди нижче можна виконувати в <strong>PowerShell</strong> або <strong>Git Bash</strong>.</p>
 </blockquote>
 <hr />
-<h2 id="2">2) Клон репозиторію</h2>
-<pre><code class="language-powershell">git clone &lt;YOUR_GITHUB_REPO_URL&gt;
-cd &lt;repo&gt;
-</code></pre>
+<h2 id="2">2) Клон репозиторію<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">git</span> <span class="n">clone</span> <span class="p">&lt;</span><span class="n">YOUR_GITHUB_REPO_URL</span><span class="p">&gt;</span>
+<span class="nb">cd </span><span class="p">&lt;</span><span class="n">repo</span><span class="p">&gt;</span>
+</code></pre></div>
 <hr />
-<h2 id="3-env">3) Налаштування середовища (.env)</h2>
-<h3 id="31-backendenv">3.1 Створити <code>backend/.env</code></h3>
-<p>У корені репо:</p>
-<pre><code class="language-powershell">copy backend\.env.example backend\.env
-</code></pre>
+<h2 id="3-env">3) Налаштування середовища (.env)<a class="headerlink" href="#3-env" title="Permanent link">&para;</a></h2>
+<h3 id="31-backendenv">3.1 Створити <code>backend/.env</code><a class="headerlink" href="#31-backendenv" title="Permanent link">&para;</a></h3>
+<p>У корені репо:
+<div class="highlight"><pre><span></span><code><span class="nb">copy </span><span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">example</span> <span class="n">backend</span><span class="p">\.</span><span class="n">env</span>
+</code></pre></div></p>
 <p>Відкрийте <code>backend/.env</code> у будь-якому редакторі (VS Code / Notepad++).</p>
-<h3 id="32">3.2 Які змінні обовʼязкові</h3>
-<pre><code class="language-env">MONGO_URL=mongodb://mongodb:27017
+<h3 id="32">3.2 Які змінні обовʼязкові<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>MONGO_URL=mongodb://mongodb:27017
 DB_NAME=telegram_shop
 TENANT_ID=my_shop
 ENVIRONMENT=production
@@ -789,36 +789,36 @@ ADMIN_IDS=123456789
 BOT_TOKEN=123456:ABC-your-token
 MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR
 ACCESS_MODE_OVERRIDE=
-</code></pre>
-<h3 id="33-telegram-id">3.3 Як дізнатись свій Telegram ID</h3>
+</code></pre></div>
+<h3 id="33-telegram-id">3.3 Як дізнатись свій Telegram ID<a class="headerlink" href="#33-telegram-id" title="Permanent link">&para;</a></h3>
 <p>1) Запустіть бота (крок 4)
 2) Дізнайтесь свій Telegram ID (наприклад, через @userinfobot)
 3) Скопіюйте ID у <code>ADMIN_IDS</code> та <code>PLATFORM_ADMIN_IDS</code></p>
 <hr />
-<h2 id="4-docker-compose">4) Запуск через Docker Compose</h2>
-<h3 id="41">4.1 Підняти сервіси</h3>
-<pre><code class="language-powershell">docker compose up -d --build
-</code></pre>
-<h3 id="42">4.2 Перевірка логів</h3>
-<pre><code class="language-powershell">docker compose logs -f bot
-</code></pre>
-<p>Очікуйте в логах:</p>
-<pre><code>Connected to MongoDB
+<h2 id="4-docker-compose">4) Запуск через Docker Compose<a class="headerlink" href="#4-docker-compose" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 Підняти сервіси<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-build</span>
+</code></pre></div>
+<h3 id="42">4.2 Перевірка логів<a class="headerlink" href="#42" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">logs</span> <span class="o">-f</span> <span class="n">bot</span>
+</code></pre></div>
+<p>Очікуйте в логах:
+<div class="highlight"><pre><span></span><code>Connected to MongoDB
 Multi-tenant mode: Loading bots from database...
 Started 1 tenant bots from database
 Bot for tenant my_shop polling started
-</code></pre>
-<h3 id="43-health-endpoint">4.3 Перевірка health endpoint</h3>
-<pre><code class="language-powershell">curl http://localhost:8001/api/health
-</code></pre>
-<p>Очікувана відповідь: <code>{"status":"ok"}</code></p>
+</code></pre></div></p>
+<h3 id="43-health-endpoint">4.3 Перевірка health endpoint<a class="headerlink" href="#43-health-endpoint" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="nb">curl </span><span class="n">http</span><span class="p">://</span><span class="n">localhost</span><span class="p">:</span><span class="n">8001</span><span class="p">/</span><span class="n">api</span><span class="p">/</span><span class="n">health</span>
+</code></pre></div>
+Очікувана відповідь: <code>{"status":"ok"}</code></p>
 <hr />
-<h2 id="5-multi-tenant">5) Додавання нових магазинів (Multi-tenant)</h2>
-<h3 id="telegram">Через Telegram (рекомендовано):</h3>
+<h2 id="5-multi-tenant">5) Додавання нових магазинів (Multi-tenant)<a class="headerlink" href="#5-multi-tenant" title="Permanent link">&para;</a></h2>
+<h3 id="telegram">Через Telegram (рекомендовано):<a class="headerlink" href="#telegram" title="Permanent link">&para;</a></h3>
 <p>1) Напишіть боту <code>/platform_add</code>
 2) Слідуйте інструкціям (введіть tenant_id, назву, токен нового бота, owner_id)
 3) Бот автоматично запуститься!</p>
-<h3 id="platform-admin">Команди Platform Admin:</h3>
+<h3 id="platform-admin">Команди Platform Admin:<a class="headerlink" href="#platform-admin" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>/platform_list</code> — список всіх магазинів</li>
 <li><code>/platform_add</code> — додати новий магазин</li>
@@ -828,26 +828,26 @@ Bot for tenant my_shop polling started
 <li><code>/cancel</code> — скасувати поточну операцію</li>
 </ul>
 <hr />
-<h2 id="6-mongodb">6) Робота з базою даних (MongoDB) — базові інструкції</h2>
-<h3 id="51-mongo">5.1 Підключитись до Mongo через контейнер (найпростіше)</h3>
-<p>Відкрити Mongo shell прямо всередині контейнера:</p>
-<pre><code class="language-powershell">docker exec -it telegram_shop_mongodb mongosh
-</code></pre>
-<p>Далі в <code>mongosh</code>:</p>
-<pre><code class="language-js">show dbs
-use telegram_shop
-show collections
+<h2 id="6-mongodb">6) Робота з базою даних (MongoDB) — базові інструкції<a class="headerlink" href="#6-mongodb" title="Permanent link">&para;</a></h2>
+<h3 id="51-mongo">5.1 Підключитись до Mongo через контейнер (найпростіше)<a class="headerlink" href="#51-mongo" title="Permanent link">&para;</a></h3>
+<p>Відкрити Mongo shell прямо всередині контейнера:
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">exec</span> <span class="n">-it</span> <span class="n">telegram_shop_mongodb</span> <span class="n">mongosh</span>
+</code></pre></div></p>
+<p>Далі в <code>mongosh</code>:
+<div class="highlight"><pre><span></span><code><span class="nx">show</span><span class="w"> </span><span class="nx">dbs</span>
+<span class="nx">use</span><span class="w"> </span><span class="nx">telegram_shop</span>
+<span class="nx">show</span><span class="w"> </span><span class="nx">collections</span>
 
-// Подивитися налаштування тенанта
-db.tenant_settings.find().pretty()
+<span class="c1">// Подивитися налаштування тенанта</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">tenant_settings</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">pretty</span><span class="p">()</span>
 
-// Подивитися продукти
-db.products.find().limit(5).pretty()
+<span class="c1">// Подивитися продукти</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">products</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">limit</span><span class="p">(</span><span class="mf">5</span><span class="p">).</span><span class="nx">pretty</span><span class="p">()</span>
 
-// Подивитися ордери
-db.orders.find().sort({created_at:-1}).limit(5).pretty()
-</code></pre>
-<h3 id="52-mongodb-compass-gui">5.2 Підключитись через MongoDB Compass (GUI)</h3>
+<span class="c1">// Подивитися ордери</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">sort</span><span class="p">({</span><span class="nx">created_at</span><span class="o">:-</span><span class="mf">1</span><span class="p">}).</span><span class="nx">limit</span><span class="p">(</span><span class="mf">5</span><span class="p">).</span><span class="nx">pretty</span><span class="p">()</span>
+</code></pre></div></p>
+<h3 id="52-mongodb-compass-gui">5.2 Підключитись через MongoDB Compass (GUI)<a class="headerlink" href="#52-mongodb-compass-gui" title="Permanent link">&para;</a></h3>
 <p>Якщо зручніше візуально:
 - Встановіть MongoDB Compass: https://www.mongodb.com/try/download/compass
 - Connection string (з Windows до контейнера):
@@ -856,46 +856,46 @@ db.orders.find().sort({created_at:-1}).limit(5).pretty()
 <blockquote>
 <p>Примітка: у docker-compose в нас відкритий порт <code>27017:27017</code>, тому Compass підʼєднається без додаткових налаштувань.</p>
 </blockquote>
-<h3 id="53">5.3 Як зробити “чистий старт” (очистити базу)</h3>
-<p><strong>Варіант A (рекомендовано для чистих тестів, видаляє всі дані):</strong></p>
-<pre><code class="language-powershell">docker compose down -v
-</code></pre>
-<p>Потім знову:</p>
-<pre><code class="language-powershell">docker compose up -d --build
-</code></pre>
-<p>Це видалить volume <code>mongo_data</code> і створить нову порожню БД, після чого бекенд знову засідує демо-товари.</p>
+<h3 id="53">5.3 Як зробити “чистий старт” (очистити базу)<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
+<p><strong>Варіант A (рекомендовано для чистих тестів, видаляє всі дані):</strong>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">down</span> <span class="n">-v</span>
+</code></pre></div>
+Потім знову:
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-build</span>
+</code></pre></div>
+Це видалить volume <code>mongo_data</code> і створить нову порожню БД, після чого бекенд знову засідує демо-товари.</p>
 <p><strong>Варіант B (обережніше — видалити тільки дані в конкретній БД):</strong>
 1) Зайдіть в <code>mongosh</code> (див. 5.1)
 2) Виконайте:</p>
-<h2 id="7-platform-admin-manual-mvp">7) Platform admin (підписки — Manual MVP)</h2>
+<h2 id="7-platform-admin-manual-mvp">7) Platform admin (підписки — Manual MVP)<a class="headerlink" href="#7-platform-admin-manual-mvp" title="Permanent link">&para;</a></h2>
 <p>Ці команди доступні <strong>тільки</strong> для <code>PLATFORM_ADMIN_IDS</code>:
 - <code>/platform</code> або <code>/sub_status</code> — показати status/paid_until/plan поточного tenant
 - <code>/sub_set_status active|grace|frozen</code>
 - <code>/sub_set_paid_until 2026-02-01T00:00:00+00:00</code></p>
-<pre><code class="language-js">use telegram_shop
-db.dropDatabase()
-</code></pre>
-<p>3) Перезапустіть bot контейнер:</p>
-<pre><code class="language-powershell">docker compose restart bot
-</code></pre>
+<p><div class="highlight"><pre><span></span><code><span class="nx">use</span><span class="w"> </span><span class="nx">telegram_shop</span>
+<span class="nx">db</span><span class="p">.</span><span class="nx">dropDatabase</span><span class="p">()</span>
+</code></pre></div>
+3) Перезапустіть bot контейнер:
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">restart</span> <span class="n">bot</span>
+</code></pre></div></p>
 <hr />
-<h2 id="8-mvp">8) Команди бота (MVP)</h2>
+<h2 id="8-mvp">8) Команди бота (MVP)<a class="headerlink" href="#8-mvp" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Підказки slash-команд у Telegram автоматично налаштовуються за ролями (клієнт / адмін магазину / platform-admin).</p>
 </blockquote>
-<h3 id="81">8.1 Для клієнта</h3>
+<h3 id="81">8.1 Для клієнта<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>/start</code> (коротке привітання + базові команди)</li>
 <li><code>/catalog</code> (каталог)</li>
 <li><code>/cart</code> (кошик)</li>
 </ul>
-<h3 id="82">8.2 Для адміна</h3>
+<h3 id="82">8.2 Для адміна<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>/admin</code> (UI)</li>
 <li><code>/guide</code> (інструкція для власника/адмінів)</li>
 <li><code>/orders</code> (швидкий доступ до останніх замовлень)</li>
 </ul>
-<h2 id="83">8.3 Як онбордимо нового клієнта (довідка)</h2>
+<h2 id="83">8.3 Як онбордимо нового клієнта (довідка)<a class="headerlink" href="#83" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Це довідка для платформи/технічної команди. Власник магазину працює через Telegram.</p>
 </blockquote>
@@ -903,35 +903,35 @@ db.dropDatabase()
 <li>Власнику: використовуйте <code>/guide</code> для інструкції в боті.</li>
 </ul>
 <hr />
-<h2 id="9">9) Оновлення коду</h2>
-<pre><code class="language-powershell">git pull
+<h2 id="9">9) Оновлення коду<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">git</span> <span class="n">pull</span>
 
-docker compose up -d --build
-</code></pre>
+<span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-build</span>
+</code></pre></div>
 <hr />
-<h2 id="10-troubleshooting">10) Типові проблеми (Troubleshooting)</h2>
-<h3 id="101-telegram-409-conflict">10.1 Telegram 409 Conflict (найчастіше)</h3>
+<h2 id="10-troubleshooting">10) Типові проблеми (Troubleshooting)<a class="headerlink" href="#10-troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="101-telegram-409-conflict">10.1 Telegram 409 Conflict (найчастіше)<a class="headerlink" href="#101-telegram-409-conflict" title="Permanent link">&para;</a></h3>
 <p><strong>Симптом:</strong> у логах <code>Conflict: terminated by other getUpdates request</code>.</p>
 <p><strong>Причина:</strong> Telegram дозволяє <strong>тільки один</strong> long-polling інстанс на один <code>BOT_TOKEN</code>.</p>
 <p><strong>Що робити:</strong>
 - Переконайтесь, що ви не запустили цього бота десь ще (на VPS / у другому Docker / локально).
 - Зупиніть зайвий інстанс.</p>
-<h3 id="102">10.2 Бот стартує, але “нічого не відповідає”</h3>
+<h3 id="102">10.2 Бот стартує, але “нічого не відповідає”<a class="headerlink" href="#102" title="Permanent link">&para;</a></h3>
 <p>Перевірте:</p>
-<h2 id="103-subscription-manual-mvp">10.3 Subscription (Manual MVP)</h2>
+<h2 id="103-subscription-manual-mvp">10.3 Subscription (Manual MVP)<a class="headerlink" href="#103-subscription-manual-mvp" title="Permanent link">&para;</a></h2>
 <p>На старті підписки керуються вручну platform-admin’ом (без платежів/Stripe).</p>
-<h3 id="_1">Статуси</h3>
+<h3 id="_1">Статуси<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>active</code> — все працює</li>
 <li><code>grace</code> — зарезервовано під майбутнє (в MVP можна трактувати як active)</li>
 <li><code>frozen</code> — магазин для клієнтів недоступний</li>
 </ul>
-<h3 id="soft-freeze-paid_until">Soft-freeze (paid_until минув)</h3>
+<h3 id="soft-freeze-paid_until">Soft-freeze (paid_until минув)<a class="headerlink" href="#soft-freeze-paid_until" title="Permanent link">&para;</a></h3>
 <ul>
 <li>каталог/перегляд товарів: ✅</li>
 <li>checkout/створення замовлення: ❌</li>
 </ul>
-<h3 id="platform-platform_admin_ids">Platform-команди (тільки PLATFORM_ADMIN_IDS)</h3>
+<h3 id="platform-platform_admin_ids">Platform-команди (тільки PLATFORM_ADMIN_IDS)<a class="headerlink" href="#platform-platform_admin_ids" title="Permanent link">&para;</a></h3>
 <ul>
 <li><code>/platform</code> або <code>/sub_status</code> — показати subscription поточного tenant</li>
 <li><code>/sub_set_status active|grace|frozen</code> — змінити статус</li>
@@ -944,16 +944,16 @@ docker compose up -d --build
 <li>контейнер <code>bot</code> не падає (див. логи)</li>
 <li>у вас немає 409 conflict</li>
 </ul>
-<h3 id="104-mongo">10.4 Mongo не доступний</h3>
-<p>Перевірте, що контейнер Mongo працює:</p>
-<pre><code class="language-powershell">docker ps
-</code></pre>
-<p>Має бути <code>telegram_shop_mongodb</code> зі статусом “Up”.</p>
+<h3 id="104-mongo">10.4 Mongo не доступний<a class="headerlink" href="#104-mongo" title="Permanent link">&para;</a></h3>
+<p>Перевірте, що контейнер Mongo працює:
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="nb">ps</span>
+</code></pre></div>
+Має бути <code>telegram_shop_mongodb</code> зі статусом “Up”.</p>
 <hr />
-<h2 id="11-smoke-test">11) Smoke test (повний сценарій)</h2>
+<h2 id="11-smoke-test">11) Smoke test (повний сценарій)<a class="headerlink" href="#11-smoke-test" title="Permanent link">&para;</a></h2>
 <p>1) В Telegram: <code>/start</code></p>
 <hr />
-<h1 id="owner-guide-telegram">Owner Guide (коротко): як керувати магазином через Telegram</h1>
+<h1 id="owner-guide-telegram">Owner Guide (коротко): як керувати магазином через Telegram<a class="headerlink" href="#owner-guide-telegram" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>Детальна інструкція для власника магазину винесена в окремий файл: <strong>CLIENT_HANDOFF.md</strong></p>
 </blockquote>
@@ -969,43 +969,41 @@ docker compose up -d --build
 5) Натисніть “Я оплатив(ла)”
 6) Адмін підтверджує: <code>/admin</code> → Замовлення → вибрати → ✅ Підтвердити оплату</p>
 <hr />
-<h2 id="12-production-staging-demo">12) Мульти‑середовища (production / staging / demo)</h2>
-<h3 id="121-env">12.1 Підготовка env файлів</h3>
+<h2 id="12-production-staging-demo">12) Мульти‑середовища (production / staging / demo)<a class="headerlink" href="#12-production-staging-demo" title="Permanent link">&para;</a></h2>
+<h3 id="121-env">12.1 Підготовка env файлів<a class="headerlink" href="#121-env" title="Permanent link">&para;</a></h3>
 <p>Створіть окремі env для кожного середовища (на основі прикладів):</p>
-<pre><code class="language-powershell">copy backend\.env.production.example backend\.env.production
-copy backend\.env.staging.example backend\.env.staging
-copy backend\.env.demo.example backend\.env.demo
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nb">copy </span><span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">production</span><span class="p">.</span><span class="n">example</span> <span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">production</span>
+<span class="nb">copy </span><span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">staging</span><span class="p">.</span><span class="n">example</span> <span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">staging</span>
+<span class="nb">copy </span><span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">demo</span><span class="p">.</span><span class="n">example</span> <span class="n">backend</span><span class="p">\.</span><span class="n">env</span><span class="p">.</span><span class="n">demo</span>
+</code></pre></div>
 <p><strong>Важливо:</strong>
 - для кожного середовища задайте <strong>унікальний <code>DB_NAME</code></strong>
 - для demo встановіть <code>ACCESS_MODE_OVERRIDE=soft_freeze</code> та залиште <code>ADMIN_IDS</code>/<code>PLATFORM_ADMIN_IDS</code> порожніми (safe‑by‑default)</p>
-<h3 id="122">12.2 Запуск усіх середовищ паралельно</h3>
-<pre><code class="language-powershell">docker compose -f docker-compose.multi.yml up -d --build
-</code></pre>
+<h3 id="122">12.2 Запуск усіх середовищ паралельно<a class="headerlink" href="#122" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="o">-f</span> <span class="n">docker-compose</span><span class="p">.</span><span class="n">multi</span><span class="p">.</span><span class="n">yml</span> <span class="n">up</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-build</span>
+</code></pre></div>
 <p>Порти за замовчуванням:
 - production: <code>http://localhost:8001</code>
 - staging: <code>http://localhost:8002</code>
 - demo: <code>http://localhost:8003</code></p>
-<h2 id="13-backup-mongodb-cron-mongodump">13) Backup MongoDB (cron + mongodump)</h2>
-<h3 id="131-env-docker-composeyml">13.1 Один env (docker-compose.yml)</h3>
-<pre><code class="language-powershell">docker compose up -d --build
-</code></pre>
+<h2 id="13-backup-mongodb-cron-mongodump">13) Backup MongoDB (cron + mongodump)<a class="headerlink" href="#13-backup-mongodb-cron-mongodump" title="Permanent link">&para;</a></h2>
+<h3 id="131-env-docker-composeyml">13.1 Один env (docker-compose.yml)<a class="headerlink" href="#131-env-docker-composeyml" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">up</span> <span class="n">-d</span> <span class="p">-</span><span class="n">-build</span>
+</code></pre></div>
 <p>Backups пишуться у <code>/backups/{ENVIRONMENT}/{YYYYMMDD-HHMMSS}/</code>.</p>
-<h3 id="132">13.2 Керування розкладом</h3>
+<h3 id="132">13.2 Керування розкладом<a class="headerlink" href="#132" title="Permanent link">&para;</a></h3>
 <p>В <code>docker-compose.yml</code> або <code>docker-compose.multi.yml</code> змініть:</p>
-<pre><code>BACKUP_SCHEDULE: &quot;0 3 * * *&quot;
-</code></pre>
-<h2 id="14">14) Де дивитись логи</h2>
+<div class="highlight"><pre><span></span><code>BACKUP_SCHEDULE: &quot;0 3 * * *&quot;
+</code></pre></div>
+<h2 id="14">14) Де дивитись логи<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Логи бота/бекенду:</li>
+<li>Логи бота/бекенду:
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">logs</span> <span class="o">-f</span> <span class="n">bot</span>
+</code></pre></div></li>
+<li>Логи Mongo:
+<div class="highlight"><pre><span></span><code><span class="n">docker</span> <span class="n">compose</span> <span class="n">logs</span> <span class="o">-f</span> <span class="n">mongodb</span>
+</code></pre></div></li>
 </ul>
-<pre><code class="language-powershell">docker compose logs -f bot
-</code></pre>
-<ul>
-<li>Логи Mongo:</li>
-</ul>
-<pre><code class="language-powershell">docker compose logs -f mongodb
-</code></pre>
 
 
 

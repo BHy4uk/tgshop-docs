@@ -483,45 +483,45 @@
 
 
 
-<h1 id="subscription-pricing-narrative-manual-mvp">Subscription / Pricing narrative (Manual MVP) — для продажу та пояснення логіки</h1>
+<h1 id="subscription-pricing-narrative-manual-mvp">Subscription / Pricing narrative (Manual MVP) — для продажу та пояснення логіки<a class="headerlink" href="#subscription-pricing-narrative-manual-mvp" title="Permanent link">&para;</a></h1>
 <p>Цей документ пояснює продуктову логіку підписки для Telegram-магазину (без білінгу та інтеграцій у P1).</p>
 <ul>
 <li>Мета: щоб <strong>сейлз / партнер / власник магазину</strong> швидко зрозуміли, <em>як працює доступ</em>.</li>
 <li>Важливо: це <strong>Manual MVP</strong> — статуси керуються вручну <strong>платформним адміністратором</strong>.</li>
 </ul>
 <hr />
-<h2 id="1-1">1) Що це за рішення (1 абзац)</h2>
+<h2 id="1-1">1) Що це за рішення (1 абзац)<a class="headerlink" href="#1-1" title="Permanent link">&para;</a></h2>
 <p>Це сервіс, який дозволяє запустити Telegram-магазин (каталог, кошик, замовлення, доставка, ручне підтвердження оплат) і керувати ним через Telegram-адмінку. Підписка задає доступність функцій магазину: у нормальному режимі все працює, при простроченні — магазин може тимчасово обмежувати оформлення замовлень, а при зупинці — магазин для клієнтів стає недоступним, але власник магазину зберігає доступ до адмінки.</p>
 <hr />
-<h2 id="2">2) Ролі (важливо для пояснення)</h2>
-<h3 id="_1">Власник магазину</h3>
+<h2 id="2">2) Ролі (важливо для пояснення)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="_1">Власник магазину<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>працює лише в Telegram</li>
 <li>керує товарами / замовленнями / текстами</li>
 <li>підтверджує оплату вручну (поки без webhooks)</li>
 </ul>
-<h3 id="_2">Платформний адміністратор</h3>
+<h3 id="_2">Платформний адміністратор<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
 <li>онбординг, деплой, доступи</li>
 <li>вручну керує статусом підписки магазину</li>
 </ul>
 <hr />
-<h2 id="3">3) Статуси підписки (продуктова логіка)</h2>
-<h3 id="active"><code>active</code></h3>
+<h2 id="3">3) Статуси підписки (продуктова логіка)<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="active"><code>active</code><a class="headerlink" href="#active" title="Permanent link">&para;</a></h3>
 <p><strong>Магазин працює повністю.</strong>
 - клієнти можуть переглядати каталог ✅
 - клієнти можуть оформлювати замовлення ✅
 - власник магазину має доступ до адмінки ✅</p>
-<h3 id="grace"><code>grace</code> (пільговий/перехідний період)</h3>
+<h3 id="grace"><code>grace</code> (пільговий/перехідний період)<a class="headerlink" href="#grace" title="Permanent link">&para;</a></h3>
 <p><strong>Магазин працює, але очікується продовження.</strong>
 - у Manual MVP можна трактувати як <code>active</code>
 - використовується як «м’яке попередження» перед зупинкою</p>
-<h3 id="frozen"><code>frozen</code></h3>
+<h3 id="frozen"><code>frozen</code><a class="headerlink" href="#frozen" title="Permanent link">&para;</a></h3>
 <p><strong>Магазин для клієнтів недоступний.</strong>
 - клієнти не можуть користуватись магазином ❌
 - власник магазину (адмін) все ще може зайти в <code>/admin</code> ✅</p>
 <hr />
-<h2 id="4-soft-freeze-paid_until">4) Soft-freeze (прострочення <code>paid_until</code>)</h2>
+<h2 id="4-soft-freeze-paid_until">4) Soft-freeze (прострочення <code>paid_until</code>)<a class="headerlink" href="#4-soft-freeze-paid_until" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>У UI адмінки дата <code>paid_until</code> відображається у форматі <strong>DD.MM.YYYY</strong> (наприклад, <code>12.03.2026</code>).</p>
 </blockquote>
@@ -534,7 +534,7 @@
 - магазин не «падає» різко
 - власник бачить проблему, але клієнти все ще можуть дивитися товари</p>
 <hr />
-<h2 id="5-manual-mvp">5) Manual процес продовження (як це виглядає у MVP)</h2>
+<h2 id="5-manual-mvp">5) Manual процес продовження (як це виглядає у MVP)<a class="headerlink" href="#5-manual-mvp" title="Permanent link">&para;</a></h2>
 <p>1) Платформний адміністратор бачить, що <code>paid_until</code> минув або отримує запит на продовження.
 2) Після підтвердження оплати/домовленості платформа вручну:
    - ставить <code>status=active</code> (або знімає <code>frozen</code>)
@@ -543,22 +543,22 @@
 <p>У наступних фазах це може бути автоматизовано (Stripe/webhooks), але в P1 це чесно описуємо як manual.</p>
 </blockquote>
 <hr />
-<h2 id="6-reusable">6) Reusable тексти (шаблони)</h2>
-<h3 id="61-frozen">6.1 Текст для клієнта магазину (коли магазин <code>frozen</code>)</h3>
+<h2 id="6-reusable">6) Reusable тексти (шаблони)<a class="headerlink" href="#6-reusable" title="Permanent link">&para;</a></h2>
+<h3 id="61-frozen">6.1 Текст для клієнта магазину (коли магазин <code>frozen</code>)<a class="headerlink" href="#61-frozen" title="Permanent link">&para;</a></h3>
 <p><strong>Варіант (нейтральний, короткий):</strong></p>
 <blockquote>
 <p>Магазин тимчасово не працює. Спробуйте, будь ласка, пізніше.</p>
 </blockquote>
-<h3 id="62">6.2 Текст для власника магазину (коли звертається у підтримку)</h3>
+<h3 id="62">6.2 Текст для власника магазину (коли звертається у підтримку)<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Бачу, що магазин тимчасово обмежений за підпискою. Напишіть, будь ласка, в підтримку платформи та вкажіть ваш Telegram ID і назву магазину — ми підкажемо статус і як відновити роботу.</p>
 </blockquote>
-<h3 id="63-1">6.3 Текст для сейлза / партнера (1 абзац)</h3>
+<h3 id="63-1">6.3 Текст для сейлза / партнера (1 абзац)<a class="headerlink" href="#63-1" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Підписка керує доступністю магазину: у активному режимі клієнти можуть оформлювати замовлення, при простроченні checkout тимчасово блокується (але каталог доступний), а при зупинці магазин повністю закривається для клієнтів. Власник магазину при цьому зберігає доступ до адмінки в Telegram. У P1 це працює як Manual MVP: статуси змінюються вручну платформним адміністратором.</p>
 </blockquote>
 <hr />
-<h2 id="7-gold">7) Як пояснити клієнту одним абзацом (gold)</h2>
+<h2 id="7-gold">7) Як пояснити клієнту одним абзацом (gold)<a class="headerlink" href="#7-gold" title="Permanent link">&para;</a></h2>
 <p>Ми запускаємо вам Telegram-магазин «під ключ». Ви керуєте товарами, замовленнями і текстами прямо в Telegram. Підписка — це доступ до сервісу: коли вона активна, покупці можуть оформлювати замовлення; якщо підписка прострочена, оформлення тимчасово зупиняється (каталог лишається доступним); якщо магазин заморожений, покупці не можуть користуватись магазином, але ви як власник все одно маєте доступ до адмінки.</p>
 
 

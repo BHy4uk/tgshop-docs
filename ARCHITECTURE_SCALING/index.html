@@ -527,87 +527,87 @@
 
 
 
-<h1 id="multi-tenant-platform">Архітектура Multi-Tenant Platform</h1>
-<h2 id="mvp">Поточний стан (MVP)</h2>
-<pre><code>1 платформа = N ботів = 1 deploy = конфіг в БД
-</code></pre>
-<h2 id="scale">Цільова архітектура (Scale)</h2>
-<pre><code>1 платформа = N ботів = 1 deploy = конфіг в БД
-</code></pre>
+<h1 id="multi-tenant-platform">Архітектура Multi-Tenant Platform<a class="headerlink" href="#multi-tenant-platform" title="Permanent link">&para;</a></h1>
+<h2 id="mvp">Поточний стан (MVP)<a class="headerlink" href="#mvp" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1 платформа = N ботів = 1 deploy = конфіг в БД
+</code></pre></div>
+<h2 id="scale">Цільова архітектура (Scale)<a class="headerlink" href="#scale" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1 платформа = N ботів = 1 deploy = конфіг в БД
+</code></pre></div>
 <hr />
-<h2 id="_1">Схема бази даних для масштабування</h2>
-<h3 id="collection-tenants">Collection: <code>tenants</code></h3>
-<pre><code class="language-javascript">{
-  &quot;_id&quot;: ObjectId,
-  &quot;id&quot;: &quot;shop_clothing&quot;,           // Унікальний slug
-  &quot;name&quot;: &quot;Магазин модного одягу&quot;,
-  &quot;bot_token&quot;: &quot;111111:AAA...&quot;,    // Telegram Bot Token
-  &quot;bot_username&quot;: &quot;ClothingShopBot&quot;,
+<h2 id="_1">Схема бази даних для масштабування<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="collection-tenants">Collection: <code>tenants</code><a class="headerlink" href="#collection-tenants" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">ObjectId</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;shop_clothing&quot;</span><span class="p">,</span><span class="w">           </span><span class="c1">// Унікальний slug</span>
+<span class="w">  </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Магазин модного одягу&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;bot_token&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;111111:AAA...&quot;</span><span class="p">,</span><span class="w">    </span><span class="c1">// Telegram Bot Token</span>
+<span class="w">  </span><span class="s2">&quot;bot_username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ClothingShopBot&quot;</span><span class="p">,</span>
 
-  // Власник та адміни
-  &quot;owner_id&quot;: 123456789,           // Telegram ID власника
-  &quot;admin_ids&quot;: [123456789, 987654321],
+<span class="w">  </span><span class="c1">// Власник та адміни</span>
+<span class="w">  </span><span class="s2">&quot;owner_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">123456789</span><span class="p">,</span><span class="w">           </span><span class="c1">// Telegram ID власника</span>
+<span class="w">  </span><span class="s2">&quot;admin_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">123456789</span><span class="p">,</span><span class="w"> </span><span class="mf">987654321</span><span class="p">],</span>
 
-  // Платіжні налаштування
-  &quot;payment&quot;: {
-    &quot;link&quot;: {
-      &quot;enabled&quot;: true,
-      &quot;url&quot;: &quot;https://send.monobank.ua/jar/XXX&quot;
-    },
-    &quot;details&quot;: {
-      &quot;enabled&quot;: false,
-      &quot;text&quot;: &quot;...&quot;
-    },
-    &quot;cod&quot;: {
-      &quot;enabled&quot;: false
-    },
-    &quot;monobank_webhook_secret&quot;: &quot;secret_xxx&quot;
-  },
+<span class="w">  </span><span class="c1">// Платіжні налаштування</span>
+<span class="w">  </span><span class="s2">&quot;payment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;link&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://send.monobank.ua/jar/XXX&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;details&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;cod&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;monobank_webhook_secret&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;secret_xxx&quot;</span>
+<span class="w">  </span><span class="p">},</span>
 
-  // Підписка
-  &quot;subscription&quot;: {
-    &quot;plan_id&quot;: &quot;pro&quot;,
-    &quot;status&quot;: &quot;active&quot;,            // active | grace | frozen
-    &quot;paid_until&quot;: &quot;2026-03-01&quot;
-  },
+<span class="w">  </span><span class="c1">// Підписка</span>
+<span class="w">  </span><span class="s2">&quot;subscription&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;plan_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pro&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span><span class="w">            </span><span class="c1">// active | grace | frozen</span>
+<span class="w">    </span><span class="s2">&quot;paid_until&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2026-03-01&quot;</span>
+<span class="w">  </span><span class="p">},</span>
 
-  // Ліміти
-  &quot;limits&quot;: {
-    &quot;max_products&quot;: 100,
-    &quot;max_admins&quot;: 5
-  },
+<span class="w">  </span><span class="c1">// Ліміти</span>
+<span class="w">  </span><span class="s2">&quot;limits&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;max_products&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">100</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;max_admins&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span>
+<span class="w">  </span><span class="p">},</span>
 
-  &quot;status&quot;: &quot;active&quot;,              // active | suspended | deleted
-  &quot;created_at&quot;: ISODate,
-  &quot;updated_at&quot;: ISODate
-}
-</code></pre>
-<h3 id="collection-platform_config">Collection: <code>platform_config</code></h3>
-<pre><code class="language-javascript">{
-  &quot;platform_admin_ids&quot;: [392160708, 322482780],
-  &quot;default_plan&quot;: &quot;starter&quot;,
-  &quot;webhook_base_url&quot;: &quot;https://platform.example.com&quot;
-}
-</code></pre>
+<span class="w">  </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span><span class="w">              </span><span class="c1">// active | suspended | deleted</span>
+<span class="w">  </span><span class="s2">&quot;created_at&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">ISODate</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;updated_at&quot;</span><span class="o">:</span><span class="w"> </span><span class="nx">ISODate</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="collection-platform_config">Collection: <code>platform_config</code><a class="headerlink" href="#collection-platform_config" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;platform_admin_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">392160708</span><span class="p">,</span><span class="w"> </span><span class="mf">322482780</span><span class="p">],</span>
+<span class="w">  </span><span class="s2">&quot;default_plan&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;starter&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s2">&quot;webhook_base_url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://platform.example.com&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
-<h2 id="_2">Процес онбордингу нового магазину</h2>
-<h3 id="1">Крок 1: Власник створює бота</h3>
+<h2 id="_2">Процес онбордингу нового магазину<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1">Крок 1: Власник створює бота<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Відкриває @BotFather в Telegram</li>
 <li><code>/newbot</code> → вводить назву → отримує токен</li>
 <li>Надсилає токен платформному адміну</li>
 </ol>
-<h3 id="2-platform-admin">Крок 2: Platform Admin реєструє магазин</h3>
-<pre><code>/platform_add
-</code></pre>
-<p>Бот запитує:
+<h3 id="2-platform-admin">Крок 2: Platform Admin реєструє магазин<a class="headerlink" href="#2-platform-admin" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/platform_add
+</code></pre></div>
+Бот запитує:
 - Tenant ID (slug): <code>fashion_store</code>
 - Bot Token: <code>123456:ABC...</code>
 - Owner Telegram ID: <code>987654321</code>
 - Payment link (Monobank jar/pay тощо): <code>https://send.monobank.ua/jar/...</code>
 - Payment requisites (IBAN/ПІБ тощо): текстом у налаштуваннях
 - Накладений платіж: вмикається як окремий метод оплати</p>
-<h3 id="3">Крок 3: Система автоматично</h3>
+<h3 id="3">Крок 3: Система автоматично<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Валідує bot token (getMe)</li>
 <li>Створює запис в <code>tenants</code></li>
@@ -615,37 +615,37 @@
 <li>Створює <code>subscriptions</code> з trial періодом</li>
 <li>Запускає polling для нового бота</li>
 </ol>
-<h3 id="4">Крок 4: Власник налаштовує магазин</h3>
+<h3 id="4">Крок 4: Власник налаштовує магазин<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Заходить у свого бота</li>
 <li><code>/admin</code> → додає товари, адмінів, тексти</li>
 </ul>
 <hr />
-<h2 id="env-multi-tenant-platform">.env для Multi-Tenant Platform</h2>
-<pre><code class="language-bash"># ===== PLATFORM CONFIG (не змінюється при додаванні магазинів) =====
+<h2 id="env-multi-tenant-platform">.env для Multi-Tenant Platform<a class="headerlink" href="#env-multi-tenant-platform" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># ===== PLATFORM CONFIG (не змінюється при додаванні магазинів) =====</span>
 
-# MongoDB - одна база для всіх магазинів
-MONGO_URL=mongodb://mongodb:27017/telegram_shop_platform
-DB_NAME=telegram_shop_platform
+<span class="c1"># MongoDB - одна база для всіх магазинів</span>
+<span class="nv">MONGO_URL</span><span class="o">=</span>mongodb://mongodb:27017/telegram_shop_platform
+<span class="nv">DB_NAME</span><span class="o">=</span>telegram_shop_platform
 
-# Platform Admins - можуть керувати всіма магазинами
-PLATFORM_ADMIN_IDS=392160708,322482780
+<span class="c1"># Platform Admins - можуть керувати всіма магазинами</span>
+<span class="nv">PLATFORM_ADMIN_IDS</span><span class="o">=</span><span class="m">392160708</span>,322482780
 
-# Environment
-ENVIRONMENT=production
-LOG_LEVEL=INFO
+<span class="c1"># Environment</span>
+<span class="nv">ENVIRONMENT</span><span class="o">=</span>production
+<span class="nv">LOG_LEVEL</span><span class="o">=</span>INFO
 
-# Webhook base URL (для Monobank callbacks)
-WEBHOOK_BASE_URL=https://shop-platform.example.com
+<span class="c1"># Webhook base URL (для Monobank callbacks)</span>
+<span class="nv">WEBHOOK_BASE_URL</span><span class="o">=</span>https://shop-platform.example.com
 
-# ===== НЕ ПОТРІБНО (зберігається в БД) =====
-# BOT_TOKEN - кожен магазин має свій в БД
-# TENANT_ID - визначається динамічно
-# ADMIN_IDS - зберігаються в tenant_settings
-# MONOBANK_BASE_URL - зберігається в tenants
-</code></pre>
+<span class="c1"># ===== НЕ ПОТРІБНО (зберігається в БД) =====</span>
+<span class="c1"># BOT_TOKEN - кожен магазин має свій в БД</span>
+<span class="c1"># TENANT_ID - визначається динамічно</span>
+<span class="c1"># ADMIN_IDS - зберігаються в tenant_settings</span>
+<span class="c1"># MONOBANK_BASE_URL - зберігається в tenants</span>
+</code></pre></div>
 <hr />
-<h2 id="_3">Порівняння підходів</h2>
+<h2 id="_3">Порівняння підходів<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -698,86 +698,86 @@ WEBHOOK_BASE_URL=https://shop-platform.example.com
 </tbody>
 </table>
 <hr />
-<h2 id="_4">План міграції</h2>
-<h3 id="1_1">Фаза 1: Підготовка (поточний стан ✅)</h3>
+<h2 id="_4">План міграції<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">Фаза 1: Підготовка (поточний стан ✅)<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[x] Multi-tenant data model (tenant_id в кожній колекції)</li>
 <li>[x] Tenant settings в БД</li>
 <li>[x] Admin management через UI</li>
 </ul>
-<h3 id="2-multi-bot-runner">Фаза 2: Multi-Bot Runner (поточний стан ✅)</h3>
+<h3 id="2-multi-bot-runner">Фаза 2: Multi-Bot Runner (поточний стан ✅)<a class="headerlink" href="#2-multi-bot-runner" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[x] Bot Registry (in-memory) + керування ботами</li>
 <li>[x] Dynamic bot polling (запуск/зупинка ботів)</li>
 <li>[x] Platform Admin команди: <code>/platform_add</code>, <code>/platform_list</code>, <code>/platform_suspend</code>, <code>/platform_activate</code>, <code>/platform_restart_bot</code></li>
 <li>[ ] Webhook routing по tenant_id (частково/залежить від провайдера)</li>
 </ul>
-<h3 id="3-self-service-portal">Фаза 3: Self-Service Portal (опціонально)</h3>
+<h3 id="3-self-service-portal">Фаза 3: Self-Service Portal (опціонально)<a class="headerlink" href="#3-self-service-portal" title="Permanent link">&para;</a></h3>
 <ul>
 <li>[ ] Web UI для реєстрації магазинів</li>
 <li>[ ] Stripe інтеграція для оплати підписок</li>
 <li>[ ] Dashboard для власників магазинів</li>
 </ul>
 <hr />
-<h2 id="3_1">Приклад: 3 магазини в БД</h2>
-<pre><code class="language-javascript">// tenants collection
-[
-  {
-    &quot;id&quot;: &quot;fashion_kyiv&quot;,
-    &quot;name&quot;: &quot;Мода Київ&quot;,
-    &quot;bot_token&quot;: &quot;111:AAA&quot;,
-    &quot;bot_username&quot;: &quot;FashionKyivBot&quot;,
-    &quot;owner_id&quot;: 100000001,
-    &quot;admin_ids&quot;: [100000001, 100000002],
-    &quot;payment&quot;: {
-      &quot;link&quot;: {&quot;enabled&quot;: true, &quot;url&quot;: &quot;https://send.monobank.ua/jar/ABC&quot;},
-      &quot;details&quot;: {&quot;enabled&quot;: false, &quot;text&quot;: &quot;&quot;},
-      &quot;cod&quot;: {&quot;enabled&quot;: false}
-    },
-    &quot;subscription&quot;: { &quot;status&quot;: &quot;active&quot;, &quot;paid_until&quot;: &quot;2026-06-01&quot; }
-  },
-  {
-    &quot;id&quot;: &quot;tech_store&quot;,
-    &quot;name&quot;: &quot;ТехноМаркет&quot;,
-    &quot;bot_token&quot;: &quot;222:BBB&quot;,
-    &quot;bot_username&quot;: &quot;TechStoreUaBot&quot;,
-    &quot;owner_id&quot;: 200000001,
-    &quot;admin_ids&quot;: [200000001],
-    &quot;payment&quot;: {
-      &quot;link&quot;: {&quot;enabled&quot;: true, &quot;url&quot;: &quot;https://send.monobank.ua/jar/DEF&quot;},
-      &quot;details&quot;: {&quot;enabled&quot;: false, &quot;text&quot;: &quot;&quot;},
-      &quot;cod&quot;: {&quot;enabled&quot;: false}
-    },
-    &quot;subscription&quot;: { &quot;status&quot;: &quot;active&quot;, &quot;paid_until&quot;: &quot;2026-04-15&quot; }
-  },
-  {
-    &quot;id&quot;: &quot;handmade_crafts&quot;,
-    &quot;name&quot;: &quot;Хендмейд&quot;,
-    &quot;bot_token&quot;: &quot;333:CCC&quot;,
-    &quot;bot_username&quot;: &quot;HandmadeCraftsBot&quot;,
-    &quot;owner_id&quot;: 300000001,
-    &quot;admin_ids&quot;: [300000001, 300000002, 300000003],
-    &quot;payment&quot;: {
-      &quot;link&quot;: {&quot;enabled&quot;: true, &quot;url&quot;: &quot;https://send.monobank.ua/jar/GHI&quot;},
-      &quot;details&quot;: {&quot;enabled&quot;: false, &quot;text&quot;: &quot;&quot;},
-      &quot;cod&quot;: {&quot;enabled&quot;: false}
-    },
-    &quot;subscription&quot;: { &quot;status&quot;: &quot;grace&quot;, &quot;paid_until&quot;: &quot;2026-01-20&quot; }
-  }
-]
-</code></pre>
+<h2 id="3_1">Приклад: 3 магазини в БД<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="c1">// tenants collection</span>
+<span class="p">[</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;fashion_kyiv&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Мода Київ&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bot_token&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;111:AAA&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bot_username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;FashionKyivBot&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;owner_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">100000001</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;admin_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">100000001</span><span class="p">,</span><span class="w"> </span><span class="mf">100000002</span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;payment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;link&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://send.monobank.ua/jar/ABC&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;details&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;cod&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;subscription&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;paid_until&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2026-06-01&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;tech_store&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;ТехноМаркет&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bot_token&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;222:BBB&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bot_username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;TechStoreUaBot&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;owner_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">200000001</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;admin_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">200000001</span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;payment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;link&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://send.monobank.ua/jar/DEF&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;details&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;cod&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;subscription&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;active&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;paid_until&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2026-04-15&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;id&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;handmade_crafts&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Хендмейд&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bot_token&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;333:CCC&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;bot_username&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;HandmadeCraftsBot&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;owner_id&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">300000001</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;admin_ids&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="mf">300000001</span><span class="p">,</span><span class="w"> </span><span class="mf">300000002</span><span class="p">,</span><span class="w"> </span><span class="mf">300000003</span><span class="p">],</span>
+<span class="w">    </span><span class="s2">&quot;payment&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s2">&quot;link&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;url&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;https://send.monobank.ua/jar/GHI&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;details&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;text&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">},</span>
+<span class="w">      </span><span class="s2">&quot;cod&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="s2">&quot;enabled&quot;</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="s2">&quot;subscription&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;status&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;grace&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;paid_until&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;2026-01-20&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
 <hr />
-<h2 id="platform-admin">Команди Platform Admin</h2>
-<pre><code>/platform - головне меню платформи
+<h2 id="platform-admin">Команди Platform Admin<a class="headerlink" href="#platform-admin" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>/platform - головне меню платформи
 /platform_add - додати новий магазин
 /platform_list - список всіх магазинів
 /platform_tenant {id} - деталі магазину
 /platform_suspend {id} - призупинити магазин
 /platform_activate {id} - активувати магазин
 # /platform_delete {id} - видалити магазин (ще не реалізовано)
-</code></pre>
+</code></pre></div>
 <hr />
-<h2 id="_5">Наступні кроки</h2>
+<h2 id="_5">Наступні кроки<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Якщо магазинів &lt; 10:</strong> Залишайтесь на поточній архітектурі (1 bot = 1 deploy)</li>
 <li><strong>Якщо плануєте 10+:</strong> Потрібна розробка Multi-Bot Runner (~2-3 дні роботи)</li>

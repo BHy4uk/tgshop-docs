@@ -830,34 +830,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="8.3 Налаштування способів оплати">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#831" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.3.1 Зміна посилання для оплати
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#832" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        8.3.2 Зміна реквізитів
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -943,35 +915,35 @@
 
 
 
-<h1 id="telegram-shop-bot">🧪 Повний гайд з тестування Telegram Shop Bot</h1>
-<h2 id="_1">Передумови</h2>
+<h1 id="telegram-shop-bot">🧪 Повний гайд з тестування Telegram Shop Bot<a class="headerlink" href="#telegram-shop-bot" title="Permanent link">&para;</a></h1>
+<h2 id="_1">Передумови<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Бот: <code>@YourNewBot</code> (токен: <code>8581520595:AAHh6kDtRZG6HqEX2g5eoFxDMOa5GXKueUo</code>)</li>
 <li>Адміни (з .env): <code>392160708</code>, <code>322482780</code></li>
 </ul>
 <hr />
-<h2 id="1">🔐 Частина 1: Перевірка доступу</h2>
-<h3 id="11-telegram-id">1.1 Дізнатися свій Telegram ID</h3>
+<h2 id="1">🔐 Частина 1: Перевірка доступу<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11-telegram-id">1.1 Дізнатися свій Telegram ID<a class="headerlink" href="#11-telegram-id" title="Permanent link">&para;</a></h3>
 <p>Використайте будь-якого бота типу <b>@userinfobot</b>.</p>
-<h3 id="12">1.2 Перевірка доступу адміна</h3>
-<pre><code>/admin
-</code></pre>
-<p><strong>Якщо ви в списку ADMIN_IDS:</strong> Відкриється адмін-меню
+<h3 id="12">1.2 Перевірка доступу адміна<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/admin
+</code></pre></div>
+<strong>Якщо ви в списку ADMIN_IDS:</strong> Відкриється адмін-меню
 <strong>Якщо ні:</strong> "Немає доступу до адмін-меню..."</p>
-<h3 id="13-edge-case">1.3 Edge Case: Неіснуюча команда</h3>
-<pre><code>/unknowncommand
-</code></pre>
-<p><strong>Очікувано:</strong> Бот ігнорує або показує меню</p>
+<h3 id="13-edge-case">1.3 Edge Case: Неіснуюча команда<a class="headerlink" href="#13-edge-case" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/unknowncommand
+</code></pre></div>
+<strong>Очікувано:</strong> Бот ігнорує або показує меню</p>
 <hr />
-<h2 id="2">👥 Частина 2: Управління адміністраторами</h2>
-<h3 id="21">2.1 Додати нового адміна</h3>
+<h2 id="2">👥 Частина 2: Управління адміністраторами<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 Додати нового адміна<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>/admin</code> → <code>⚙️ Налаштування</code> → <code>👥 Адміни</code></li>
 <li>Натисніть <code>➕ Додати адміна</code></li>
 <li>Введіть Telegram ID нового адміна (наприклад: <code>123456789</code>)</li>
 </ol>
 <p><strong>Очікувано:</strong> "✅ Адміністратора 123456789 додано!"</p>
-<h3 id="22-edge-cases">2.2 Edge Cases для додавання адміна:</h3>
+<h3 id="22-edge-cases">2.2 Edge Cases для додавання адміна:<a class="headerlink" href="#22-edge-cases" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Текст замість числа:</strong> Введіть <code>hello</code></li>
 <li>
@@ -988,17 +960,17 @@
 </li>
 <li>Очікувано: "ℹ️ Адміністратор ... вже є в списку."</li>
 </ul>
-<h3 id="23">2.3 Видалити адміна</h3>
+<h3 id="23">2.3 Видалити адміна<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>👥 Адміни</code> → <code>🗑 Видалити {ID}</code></li>
 </ol>
 <p><strong>Очікувано:</strong> "✅ Адміністратора ... видалено."</p>
-<h3 id="24-edge-case">2.4 Edge Case: Видалення останнього адміна</h3>
+<h3 id="24-edge-case">2.4 Edge Case: Видалення останнього адміна<a class="headerlink" href="#24-edge-case" title="Permanent link">&para;</a></h3>
 <p>Спробуйте видалити всіх адмінів по черзі.</p>
 <p><strong>Очікувано:</strong> "⚠️ Не можна видалити останнього адміністратора!"</p>
 <hr />
-<h2 id="3">📦 Частина 3: Управління товарами</h2>
-<h3 id="31">3.1 Створення товару</h3>
+<h2 id="3">📦 Частина 3: Управління товарами<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 Створення товару<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>/admin</code> → <code>📦 Товари</code> → <code>➕ Додати товар</code></li>
 <li>Введіть назву: <code>Тестова футболка</code></li>
@@ -1007,7 +979,7 @@
 <li>Введіть розміри: <code>S:5,M:10,L:3</code></li>
 </ol>
 <p><strong>Очікувано:</strong> "Товар створено ✅"</p>
-<h3 id="32-edge-cases">3.2 Edge Cases для створення товару:</h3>
+<h3 id="32-edge-cases">3.2 Edge Cases для створення товару:<a class="headerlink" href="#32-edge-cases" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Порожня назва:</strong> Просто Enter</li>
 <li>
@@ -1030,18 +1002,18 @@
 </li>
 <li>Очікувано: "Не вдалося розпарсити. Спробуйте ще раз."</li>
 </ul>
-<h3 id="33">3.3 Редагування товару</h3>
+<h3 id="33">3.3 Редагування товару<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>📦 Товари</code> → Виберіть товар → <code>✏️ Назва</code></li>
 <li>Введіть нову назву</li>
 </ol>
-<h3 id="34">3.4 Вимкнення/увімкнення товару</h3>
+<h3 id="34">3.4 Вимкнення/увімкнення товару<a class="headerlink" href="#34" title="Permanent link">&para;</a></h3>
 <ol>
 <li>У картці товару натисніть <code>Вимкнути</code></li>
 <li>Перевірте каталог — товар не повинен відображатися</li>
 <li>Увімкніть назад</li>
 </ol>
-<h3 id="35">3.5 Управління фото</h3>
+<h3 id="35">3.5 Управління фото<a class="headerlink" href="#35" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>🖼 Фото</code> → <code>➕ Додати фото</code></li>
 <li>Надішліть фото</li>
@@ -1049,7 +1021,7 @@
 </ol>
 <p><strong>Edge Case:</strong> Надіслати не фото (текст, стікер)
 - Очікувано: "Це не фото. Надішліть фото ще раз."</p>
-<h3 id="36">3.6 Управління розмірами/складом</h3>
+<h3 id="36">3.6 Управління розмірами/складом<a class="headerlink" href="#36" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>📐 Розміри / склад</code> → Виберіть розмір</li>
 <li>Введіть новий stock: <code>20</code></li>
@@ -1068,39 +1040,39 @@
 <li>Очікувано: "Не можна видалити розмір: є активні бронювання..."</li>
 </ul>
 <hr />
-<h2 id="4">🛒 Частина 4: Покупки (як клієнт)</h2>
-<h3 id="41">4.1 Перегляд каталогу</h3>
-<pre><code>/catalog
-</code></pre>
-<p><strong>Очікувано:</strong> Список товарів з номерами [1] [2] ...</p>
-<h3 id="42-edge-case">4.2 Edge Case: Порожній каталог</h3>
+<h2 id="4">🛒 Частина 4: Покупки (як клієнт)<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 Перегляд каталогу<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/catalog
+</code></pre></div>
+<strong>Очікувано:</strong> Список товарів з номерами [1] [2] ...</p>
+<h3 id="42-edge-case">4.2 Edge Case: Порожній каталог<a class="headerlink" href="#42-edge-case" title="Permanent link">&para;</a></h3>
 <p>Вимкніть всі товари в адмін-панелі, потім <code>/catalog</code></p>
 <p><strong>Очікувано:</strong> "Наразі немає активних товарів."</p>
-<h3 id="43">4.3 Перегляд товару</h3>
+<h3 id="43">4.3 Перегляд товару<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
 <p>Натисніть номер товару в каталозі</p>
 <p><strong>Очікувано:</strong> Картка товару з фото та кнопками розмірів</p>
-<h3 id="44">4.4 Каруселька фото</h3>
+<h3 id="44">4.4 Каруселька фото<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
 <p>Якщо у товару кілька фото, натискайте <code>◀️</code> / <code>▶️</code></p>
-<h3 id="45">4.5 Додавання в кошик</h3>
+<h3 id="45">4.5 Додавання в кошик<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Натисніть розмір (напр. <code>M</code>)</li>
 <li>Перевірте повідомлення "Додано в кошик"</li>
 </ol>
-<h3 id="46-edge-case-out-of-stock">4.6 Edge Case: Розмір out of stock</h3>
+<h3 id="46-edge-case-out-of-stock">4.6 Edge Case: Розмір out of stock<a class="headerlink" href="#46-edge-case-out-of-stock" title="Permanent link">&para;</a></h3>
 <p>Якщо stock = 0 для розміру, натисніть його</p>
 <p><strong>Очікувано:</strong> "На жаль, цього розміру вже немає в наявності."</p>
-<h3 id="47">4.7 Перегляд кошика</h3>
-<pre><code>/cart
-</code></pre>
-<p><strong>Очікувано:</strong> Список товарів у кошику з цінами</p>
-<h3 id="48-edge-case">4.8 Edge Case: Порожній кошик</h3>
-<pre><code>/cart
-</code></pre>
-<p>без додавання товарів</p>
+<h3 id="47">4.7 Перегляд кошика<a class="headerlink" href="#47" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/cart
+</code></pre></div>
+<strong>Очікувано:</strong> Список товарів у кошику з цінами</p>
+<h3 id="48-edge-case">4.8 Edge Case: Порожній кошик<a class="headerlink" href="#48-edge-case" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/cart
+</code></pre></div>
+без додавання товарів</p>
 <p><strong>Очікувано:</strong> "Кошик порожній."</p>
 <hr />
-<h2 id="5">🚚 Частина 5: Оформлення замовлення</h2>
-<h3 id="51-happy-path">5.1 Happy Path</h3>
+<h2 id="5">🚚 Частина 5: Оформлення замовлення<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="51-happy-path">5.1 Happy Path<a class="headerlink" href="#51-happy-path" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>/cart</code> → <code>Оформити замовлення</code></li>
 <li>Введіть місто: <code>Київ</code></li>
@@ -1109,7 +1081,7 @@
 <li>Введіть телефон: <code>+380501234567</code></li>
 </ol>
 <p><strong>Очікувано:</strong> Замовлення створено з посиланням на оплату</p>
-<h3 id="52-edge-cases">5.2 Edge Cases для доставки:</h3>
+<h3 id="52-edge-cases">5.2 Edge Cases для доставки:<a class="headerlink" href="#52-edge-cases" title="Permanent link">&para;</a></h3>
 <p><strong>Порожнє місто:</strong>
 - Просто Enter
 - Очікувано: "Будь ласка, введіть місто (не порожньо)."</p>
@@ -1122,29 +1094,29 @@
 <p><strong>Невірний телефон:</strong>
 - <code>123</code> або <code>телефон</code>
 - Очікувано: "Невірний формат телефону..."</p>
-<h3 id="53">5.3 Скасування оформлення</h3>
+<h3 id="53">5.3 Скасування оформлення<a class="headerlink" href="#53" title="Permanent link">&para;</a></h3>
 <p>Під час оформлення натисніть <code>❌ Скасувати</code></p>
 <p><strong>Очікувано:</strong> "Оформлення доставки скасовано. Товари залишилися в кошику."</p>
-<h3 id="54">5.4 Переривання оформлення</h3>
+<h3 id="54">5.4 Переривання оформлення<a class="headerlink" href="#54" title="Permanent link">&para;</a></h3>
 <p>Під час оформлення напишіть <code>/catalog</code> або <code>/cart</code></p>
 <p><strong>Очікувано:</strong> Доставка призупиняється, можна продовжити пізніше</p>
-<h3 id="55">5.5 Відновлення оформлення</h3>
+<h3 id="55">5.5 Відновлення оформлення<a class="headerlink" href="#55" title="Permanent link">&para;</a></h3>
 <p>Після переривання йдіть у <code>/cart</code></p>
 <p><strong>Очікувано:</strong> Кнопки "▶️ Продовжити оформлення" та "❌ Скасувати"</p>
-<h3 id="56-15">5.6 Таймаут оформлення (15 хв)</h3>
+<h3 id="56-15">5.6 Таймаут оформлення (15 хв)<a class="headerlink" href="#56-15" title="Permanent link">&para;</a></h3>
 <p>Почніть оформлення і зачекайте 15+ хвилин, потім продовжіть</p>
 <p><strong>Очікувано:</strong> Стан скидається, потрібно почати знову</p>
 <hr />
-<h2 id="6">💳 Частина 6: Оплата</h2>
-<h3 id="61">6.1 Повідомлення про оплату</h3>
+<h2 id="6">💳 Частина 6: Оплата<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<h3 id="61">6.1 Повідомлення про оплату<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
 <p>Після створення замовлення натисніть <code>Я оплатив(ла)</code></p>
 <p><strong>Очікувано:</strong>
 - Клієнт: "Дякуємо! Ми отримали повідомлення про оплату..."
 - Адміни: Повідомлення з деталями замовлення</p>
-<h3 id="62">6.2 Перевірка статусу</h3>
+<h3 id="62">6.2 Перевірка статусу<a class="headerlink" href="#62" title="Permanent link">&para;</a></h3>
 <p>Натисніть <code>Статус замовлення</code></p>
 <p><strong>Очікувано:</strong> Інформація про статус (PendingPayment)</p>
-<h3 id="63">6.3 Підтвердження оплати (адмін)</h3>
+<h3 id="63">6.3 Підтвердження оплати (адмін)<a class="headerlink" href="#63" title="Permanent link">&para;</a></h3>
 <ol>
 <li><code>/admin</code> → <code>📋 Замовлення</code> → <code>🕒 Очікують</code></li>
 <li>Виберіть замовлення → <code>✅ Mark Paid</code></li>
@@ -1153,22 +1125,22 @@
 - "Оплату підтверджено ✅"
 - Клієнту: "Оплату підтверджено!"
 - Stock зменшується</p>
-<h3 id="64-edge-case">6.4 Edge Case: Повторне підтвердження</h3>
+<h3 id="64-edge-case">6.4 Edge Case: Повторне підтвердження<a class="headerlink" href="#64-edge-case" title="Permanent link">&para;</a></h3>
 <p>Натисніть <code>✅ Mark Paid</code> ще раз</p>
 <p><strong>Очікувано:</strong> "Замовлення вже було Paid ✅"</p>
 <hr />
-<h2 id="7-cleanup-edge-cases">🧹 Частина 7: Cleanup та edge cases</h2>
-<h3 id="71-cleanup">7.1 Cleanup старих замовлень</h3>
+<h2 id="7-cleanup-edge-cases">🧹 Частина 7: Cleanup та edge cases<a class="headerlink" href="#7-cleanup-edge-cases" title="Permanent link">&para;</a></h2>
+<h3 id="71-cleanup">7.1 Cleanup старих замовлень<a class="headerlink" href="#71-cleanup" title="Permanent link">&para;</a></h3>
 <p><code>📋 Замовлення</code> → <code>🧹 Очистити (30 хв)</code></p>
 <p><strong>Очікувано:</strong> Старі PendingPayment замовлення стають Expired, stock повертається</p>
-<h3 id="72-edge-case">7.2 Edge Case: Товар видалено після додавання в кошик</h3>
+<h3 id="72-edge-case">7.2 Edge Case: Товар видалено після додавання в кошик<a class="headerlink" href="#72-edge-case" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Додайте товар у кошик</li>
 <li>Вимкніть товар в адмін-панелі</li>
 <li>Спробуйте оформити замовлення</li>
 </ol>
 <p><strong>Очікувано:</strong> Помилка або пропуск неактивного товару</p>
-<h3 id="73-edge-case-stock">7.3 Edge Case: Stock закінчився</h3>
+<h3 id="73-edge-case-stock">7.3 Edge Case: Stock закінчився<a class="headerlink" href="#73-edge-case-stock" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Встановіть stock = 1 для розміру</li>
 <li>Клієнт A додає в кошик</li>
@@ -1176,32 +1148,32 @@
 </ol>
 <p><strong>Очікувано для B:</strong> "На жаль, цього розміру вже немає в наявності."</p>
 <hr />
-<h2 id="8">⚙️ Частина 8: Налаштування магазину</h2>
-<h3 id="81">8.1 Редагування текстів</h3>
+<h2 id="8">⚙️ Частина 8: Налаштування магазину<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="81">8.1 Редагування текстів<a class="headerlink" href="#81" title="Permanent link">&para;</a></h3>
 <p><code>⚙️ Налаштування</code> → <code>📝 Тексти магазину</code> → Виберіть текст → Введіть новий</p>
 <p><strong>Тест:</strong> Змініть "Привітання при /start", потім <code>/start</code></p>
-<h3 id="82">8.2 Редагування кнопок</h3>
+<h3 id="82">8.2 Редагування кнопок<a class="headerlink" href="#82" title="Permanent link">&para;</a></h3>
 <p><code>⚙️ Налаштування</code> → <code>🔘 Кнопки / назви кнопок</code></p>
-<h3 id="83">8.3 Налаштування способів оплати</h3>
+<h3 id="83">8.3 Налаштування способів оплати<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
 <p><code>💳 Оплата</code> → увімкніть/вимкніть потрібні способи:
 - За посиланням
 - За реквізитами
 - Накладений платіж</p>
-<h4 id="831">8.3.1 Зміна посилання для оплати</h4>
+<h4 id="831">8.3.1 Зміна посилання для оплати<a class="headerlink" href="#831" title="Permanent link">&para;</a></h4>
 <p><code>💳 Оплата</code> → <code>✏️ Змінити посилання</code></p>
-<h4 id="832">8.3.2 Зміна реквізитів</h4>
+<h4 id="832">8.3.2 Зміна реквізитів<a class="headerlink" href="#832" title="Permanent link">&para;</a></h4>
 <p><code>💳 Оплата</code> → <code>✏️ Змінити реквізити</code></p>
-<h3 id="84">8.4 Перегляд підписки</h3>
+<h3 id="84">8.4 Перегляд підписки<a class="headerlink" href="#84" title="Permanent link">&para;</a></h3>
 <p><code>📋 Підписка магазину</code></p>
 <p><strong>Очікувано:</strong> Статус, дата оплати, план (read-only)</p>
 <hr />
-<h2 id="9">🔄 Частина 9: Скидання стану</h2>
-<h3 id="91-reset">9.1 Повний reset</h3>
-<pre><code>/reset
-</code></pre>
-<p><strong>Очікувано:</strong> "Стан скинуто ✅"</p>
+<h2 id="9">🔄 Частина 9: Скидання стану<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<h3 id="91-reset">9.1 Повний reset<a class="headerlink" href="#91-reset" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code>/reset
+</code></pre></div>
+<strong>Очікувано:</strong> "Стан скинуто ✅"</p>
 <hr />
-<h2 id="-">📋 Чек-лист швидкого тесту</h2>
+<h2 id="-">📋 Чек-лист швидкого тесту<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
 <ul>
 <li>[ ] <code>/start</code> показує привітання</li>
 <li>[ ] <code>/admin</code> відкриває меню (для адміна)</li>
@@ -1217,7 +1189,7 @@
 <li>[ ] Перемикання методів оплати працює (посилання/реквізити/накладений)</li>
 </ul>
 <hr />
-<h2 id="_2">⚠️ Відомі обмеження</h2>
+<h2 id="_2">⚠️ Відомі обмеження<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ol>
 <li><strong>Підписка:</strong> Система ручна — автоматичних платежів немає</li>
 <li><strong>Monobank webhook:</strong> Потребує E2E тесту з реальним платежем</li>
