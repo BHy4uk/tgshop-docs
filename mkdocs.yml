@@ -45,5 +45,4 @@ extra_css:
   - styles/extra.css
 
 nav:
-  - Головна: index.md
   - Інструкція для власника: owner-guide.md

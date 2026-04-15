@@ -121,6 +121,10 @@ docker ps
 - `telegram_shop_bot_prod`, `telegram_shop_bot_staging`, `telegram_shop_bot_demo`
 - `telegram_shop_backup_prod`, `telegram_shop_backup_staging`, `telegram_shop_backup_demo`
 
+Важливо:
+- каталогові зображення зберігаються як локальні файли в `backend/app/assets/catalog_images`
+- якщо цей каталог не винесений у persistent volume або не відновлюється з backup, після `docker compose up -d --build` товари можуть лишитися в Mongo, але картинки почнуть віддавати `404 /assets/catalog_images/...`
+
 ---
 
 ## 6) Smoke‑тести API
@@ -242,6 +246,7 @@ docker compose -f docker-compose.multi.yml up -d --build
 - **409 Conflict**: один бот‑токен запущений у двох місцях → зупиніть зайвий інстанс.
 - **Бот не відповідає**: перевірте логи `docker compose logs -f bot_prod`.
 - **Mongo недоступна**: перевірте `docker ps` та `docker compose logs -f mongodb`.
+- **Товари є, але зображення 404**: перевірте, чи існують файли в `backend/app/assets/catalog_images` усередині контейнера. Якщо БД збереглась, а каталог порожній, відновіть його з backup або перегенеруйте картинки з джерел товарів.
 
 ---
 
