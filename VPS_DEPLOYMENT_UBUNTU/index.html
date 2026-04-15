@@ -237,33 +237,6 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Головна
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../owner-guide/" class="md-nav__link">
         
   
@@ -587,6 +560,9 @@ ACCESS_MODE_OVERRIDE=soft_freeze
 - <code>telegram_shop_mongodb</code>
 - <code>telegram_shop_bot_prod</code>, <code>telegram_shop_bot_staging</code>, <code>telegram_shop_bot_demo</code>
 - <code>telegram_shop_backup_prod</code>, <code>telegram_shop_backup_staging</code>, <code>telegram_shop_backup_demo</code></p>
+<p>Важливо:
+- каталогові зображення зберігаються як локальні файли в <code>backend/app/assets/catalog_images</code>
+- якщо цей каталог не винесений у persistent volume або не відновлюється з backup, після <code>docker compose up -d --build</code> товари можуть лишитися в Mongo, але картинки почнуть віддавати <code>404 /assets/catalog_images/...</code></p>
 <hr />
 <h2 id="6-smoke-api">6) Smoke‑тести API</h2>
 <pre><code class="language-bash">curl http://&lt;YOUR_VPS_IP&gt;:8001/api/health
@@ -672,6 +648,7 @@ docker compose -f docker-compose.multi.yml up -d --build
 <li><strong>409 Conflict</strong>: один бот‑токен запущений у двох місцях → зупиніть зайвий інстанс.</li>
 <li><strong>Бот не відповідає</strong>: перевірте логи <code>docker compose logs -f bot_prod</code>.</li>
 <li><strong>Mongo недоступна</strong>: перевірте <code>docker ps</code> та <code>docker compose logs -f mongodb</code>.</li>
+<li><strong>Товари є, але зображення 404</strong>: перевірте, чи існують файли в <code>backend/app/assets/catalog_images</code> усередині контейнера. Якщо БД збереглась, а каталог порожній, відновіть його з backup або перегенеруйте картинки з джерел товарів.</li>
 </ul>
 <hr />
 <p>Якщо хочете, можу додати окремий чек‑лист для Monobank E2E (webhook + перевірка підпису).</p>
