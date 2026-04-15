@@ -475,86 +475,86 @@
 <p>Нижче — покрокова інструкція для «чистого» VPS з Docker.</p>
 <hr />
 <h2 id="1-vps">1) Підключення до VPS<a class="headerlink" href="#1-vps" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>ubuntu@&lt;YOUR_VPS_IP&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh<span class="w"> </span>ubuntu@&lt;YOUR_VPS_IP&gt;
 </code></pre></div>
 <hr />
 <h2 id="2">2) Базові пакети<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span>-y
-sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>docker-compose-plugin
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span>-y
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>git<span class="w"> </span>docker-compose-plugin
 </code></pre></div>
 <p>Перевірити:
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>--version
-docker<span class="w"> </span>compose<span class="w"> </span>version
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>--version
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>version
 </code></pre></div></p>
 <p>Додати користувача в групу docker (щоб без sudo):
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> </span>docker<span class="w"> </span><span class="nv">$USER</span>
 </code></pre></div>
 Після цього вийдіть і зайдіть знову по SSH.</p>
 <hr />
 <h2 id="3">3) Клон репозиторію<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>&lt;YOUR_GITHUB_REPO_URL&gt;
-<span class="nb">cd</span><span class="w"> </span>&lt;repo&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>clone<span class="w"> </span>&lt;YOUR_GITHUB_REPO_URL&gt;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>&lt;repo&gt;
 </code></pre></div>
 <hr />
 <h2 id="4-env-production-staging-demo">4) Підготовка env файлів для production / staging / demo<a class="headerlink" href="#4-env-production-staging-demo" title="Permanent link">&para;</a></h2>
 <p>Створіть окремі env:
-<div class="highlight"><pre><span></span><code>cp<span class="w"> </span>backend/.env.production.example<span class="w"> </span>backend/.env.production
-cp<span class="w"> </span>backend/.env.staging.example<span class="w"> </span>backend/.env.staging
-cp<span class="w"> </span>backend/.env.demo.example<span class="w"> </span>backend/.env.demo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cp<span class="w"> </span>backend/.env.production.example<span class="w"> </span>backend/.env.production
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cp<span class="w"> </span>backend/.env.staging.example<span class="w"> </span>backend/.env.staging
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>cp<span class="w"> </span>backend/.env.demo.example<span class="w"> </span>backend/.env.demo
 </code></pre></div></p>
 <p>Відкрийте кожен файл у редакторі (nano):
-<div class="highlight"><pre><span></span><code>nano<span class="w"> </span>backend/.env.production
-nano<span class="w"> </span>backend/.env.staging
-nano<span class="w"> </span>backend/.env.demo
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>nano<span class="w"> </span>backend/.env.production
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>nano<span class="w"> </span>backend/.env.staging
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>nano<span class="w"> </span>backend/.env.demo
 </code></pre></div></p>
 <h3 id="41-production">4.1 production (приклад ключових значень)<a class="headerlink" href="#41-production" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>MONGO_URL=mongodb://mongodb:27017
-DB_NAME=telegram_shop_prod
-TENANT_ID=shop_prod
-ENVIRONMENT=production
-PLATFORM_ADMIN_IDS=123456789
-ADMIN_IDS=123456789
-BOT_TOKEN=YOUR_PROD_BOT_TOKEN
-MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
-MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
-TENANT_BACKFILL_ON_STARTUP=false
-ACCESS_MODE_OVERRIDE=
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>MONGO_URL=mongodb://mongodb:27017
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>DB_NAME=telegram_shop_prod
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>TENANT_ID=shop_prod
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>ENVIRONMENT=production
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>PLATFORM_ADMIN_IDS=123456789
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>ADMIN_IDS=123456789
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>BOT_TOKEN=YOUR_PROD_BOT_TOKEN
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>TENANT_BACKFILL_ON_STARTUP=false
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>ACCESS_MODE_OVERRIDE=
 </code></pre></div>
 <h3 id="42-staging">4.2 staging (приклад)<a class="headerlink" href="#42-staging" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>MONGO_URL=mongodb://mongodb:27017
-DB_NAME=telegram_shop_staging
-TENANT_ID=shop_staging
-ENVIRONMENT=staging
-PLATFORM_ADMIN_IDS=123456789
-ADMIN_IDS=123456789
-BOT_TOKEN=YOUR_STAGING_BOT_TOKEN
-MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
-MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
-TENANT_BACKFILL_ON_STARTUP=false
-ACCESS_MODE_OVERRIDE=
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>MONGO_URL=mongodb://mongodb:27017
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>DB_NAME=telegram_shop_staging
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>TENANT_ID=shop_staging
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>ENVIRONMENT=staging
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>PLATFORM_ADMIN_IDS=123456789
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>ADMIN_IDS=123456789
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>BOT_TOKEN=YOUR_STAGING_BOT_TOKEN
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>MONOBANK_BASE_URL=https://send.monobank.ua/jar/YOUR_JAR_ID
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>MONOBANK_WEBHOOK_SECRET=YOUR_SECRET
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>TENANT_BACKFILL_ON_STARTUP=false
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>ACCESS_MODE_OVERRIDE=
 </code></pre></div>
 <h3 id="43-demo-safebydefault">4.3 demo (safe‑by‑default)<a class="headerlink" href="#43-demo-safebydefault" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code>MONGO_URL=mongodb://mongodb:27017
-DB_NAME=telegram_shop_demo
-TENANT_ID=shop_demo
-ENVIRONMENT=demo
-PLATFORM_ADMIN_IDS=
-ADMIN_IDS=
-BOT_TOKEN=YOUR_DEMO_BOT_TOKEN
-MONOBANK_BASE_URL=
-MONOBANK_WEBHOOK_SECRET=
-TENANT_BACKFILL_ON_STARTUP=false
-ACCESS_MODE_OVERRIDE=soft_freeze
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>MONGO_URL=mongodb://mongodb:27017
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>DB_NAME=telegram_shop_demo
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>TENANT_ID=shop_demo
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>ENVIRONMENT=demo
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>PLATFORM_ADMIN_IDS=
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>ADMIN_IDS=
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>BOT_TOKEN=YOUR_DEMO_BOT_TOKEN
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>MONOBANK_BASE_URL=
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>MONOBANK_WEBHOOK_SECRET=
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>TENANT_BACKFILL_ON_STARTUP=false
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>ACCESS_MODE_OVERRIDE=soft_freeze
 </code></pre></div>
 <p><strong>Важливо:</strong>
 - кожне середовище має <strong>унікальний DB_NAME</strong>
 - <strong>не використовуйте один BOT_TOKEN</strong> для кількох середовищ (Telegram дає 409 conflict)</p>
 <hr />
 <h2 id="5">5) Запуск усіх середовищ паралельно<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.multi.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.multi.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
 </code></pre></div>
 <p>Перевірити контейнери:
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>docker<span class="w"> </span>ps
 </code></pre></div></p>
 <p>Очікувані сервіси:
 - <code>telegram_shop_mongodb</code>
@@ -565,12 +565,12 @@ ACCESS_MODE_OVERRIDE=soft_freeze
 - якщо цей каталог не винесений у persistent volume або не відновлюється з backup, після <code>docker compose up -d --build</code> товари можуть лишитися в Mongo, але картинки почнуть віддавати <code>404 /assets/catalog_images/...</code></p>
 <hr />
 <h2 id="6-smoke-api">6) Smoke‑тести API<a class="headerlink" href="#6-smoke-api" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8001/api/health
-curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8002/api/health
-curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8003/api/health
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8001/api/health
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8002/api/health
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8003/api/health
 </code></pre></div>
 <p>Очікувана відповідь:
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;ok&quot;</span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">{</span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="s2">&quot;ok&quot;</span><span class="p">}</span>
 </code></pre></div></p>
 <hr />
 <h2 id="7-smoke-telegram">7) Smoke‑тести в Telegram<a class="headerlink" href="#7-smoke-telegram" title="Permanent link">&para;</a></h2>
@@ -584,63 +584,63 @@ curl<span class="w"> </span>http://&lt;YOUR_VPS_IP&gt;:8003/api/health
 <hr />
 <h2 id="8-backup">8) Перевірка backup<a class="headerlink" href="#8-backup" title="Permanent link">&para;</a></h2>
 <p>Подивитися логи:
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.multi.yml<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>mongo_backup_prod
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.multi.yml<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>mongo_backup_prod
 </code></pre></div></p>
 <p>Ручний запуск backup (швидка перевірка):
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>telegram_shop_backup_prod<span class="w"> </span>/usr/local/bin/backup.sh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>telegram_shop_backup_prod<span class="w"> </span>/usr/local/bin/backup.sh
 </code></pre></div></p>
 <p>Перевірити структуру:
-<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>telegram_shop_backup_prod<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/backups/production
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>telegram_shop_backup_prod<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/backups/production
 </code></pre></div></p>
 <p>Очікувана структура:
-<div class="highlight"><pre><span></span><code>/backups/production/20250310-030000/&lt;DB_NAME&gt;/...
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>/backups/production/20250310-030000/&lt;DB_NAME&gt;/...
 </code></pre></div></p>
 <hr />
 <h2 id="9-firewall-ufw">9) Налаштування Firewall (UFW)<a class="headerlink" href="#9-firewall-ufw" title="Permanent link">&para;</a></h2>
 <p>Якщо потрібен прямий доступ до API:
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">8001</span>/tcp
-sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">8002</span>/tcp
-sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">8003</span>/tcp
-sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
-sudo<span class="w"> </span>ufw<span class="w"> </span>status
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">8001</span>/tcp
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">8002</span>/tcp
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">8003</span>/tcp
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>status
 </code></pre></div></p>
 <hr />
 <h2 id="10-nginx-https">10) (Опційно) Проксі через Nginx + HTTPS<a class="headerlink" href="#10-nginx-https" title="Permanent link">&para;</a></h2>
 <p>Якщо хочете мати окремі домени для prod/staging/demo:</p>
 <p>1) Встановити nginx:
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>nginx
 </code></pre></div></p>
 <p>2) Створити три серверні блоки (приклад):
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/shop-prod
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/nginx/sites-available/shop-prod
 </code></pre></div></p>
 <p>Вміст (prod, порт 8001):
-<div class="highlight"><pre><span></span><code>server {
-    listen 80;
-    server_name prod.example.com;
-
-    location / {
-        proxy_pass http://127.0.0.1:8001;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-    }
-}
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>server {
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    listen 80;
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    server_name prod.example.com;
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>    location / {
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>        proxy_pass http://127.0.0.1:8001;
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>        proxy_set_header Host $host;
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>        proxy_set_header X-Real-IP $remote_addr;
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>        proxy_set_header X-Forwarded-Proto $scheme;
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>    }
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>}
 </code></pre></div></p>
 <p>Аналогічно для staging/demo (8002/8003).</p>
 <p>3) Увімкнути сайти:
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/shop-prod<span class="w"> </span>/etc/nginx/sites-enabled/
-sudo<span class="w"> </span>nginx<span class="w"> </span>-t
-sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span>/etc/nginx/sites-available/shop-prod<span class="w"> </span>/etc/nginx/sites-enabled/
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>sudo<span class="w"> </span>nginx<span class="w"> </span>-t
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>nginx
 </code></pre></div></p>
 <p>4) SSL (Let’s Encrypt):
-<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>certbot<span class="w"> </span>python3-certbot-nginx
-sudo<span class="w"> </span>certbot<span class="w"> </span>--nginx<span class="w"> </span>-d<span class="w"> </span>prod.example.com
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>certbot<span class="w"> </span>python3-certbot-nginx
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>sudo<span class="w"> </span>certbot<span class="w"> </span>--nginx<span class="w"> </span>-d<span class="w"> </span>prod.example.com
 </code></pre></div></p>
 <hr />
 <h2 id="11">11) Оновлення коду<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>pull
-docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.multi.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>git<span class="w"> </span>pull
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>docker-compose.multi.yml<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
 </code></pre></div>
 <hr />
 <h2 id="12">12) Часті проблеми<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>

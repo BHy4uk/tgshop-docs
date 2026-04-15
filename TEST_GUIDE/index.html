@@ -830,6 +830,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="8.3 Налаштування способів оплати">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.1 Зміна посилання для оплати
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#832" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.2 Зміна реквізитів
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -926,12 +954,12 @@
 <h3 id="11-telegram-id">1.1 Дізнатися свій Telegram ID<a class="headerlink" href="#11-telegram-id" title="Permanent link">&para;</a></h3>
 <p>Використайте будь-якого бота типу <b>@userinfobot</b>.</p>
 <h3 id="12">1.2 Перевірка доступу адміна<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>/admin
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/admin
 </code></pre></div>
 <strong>Якщо ви в списку ADMIN_IDS:</strong> Відкриється адмін-меню
 <strong>Якщо ні:</strong> "Немає доступу до адмін-меню..."</p>
 <h3 id="13-edge-case">1.3 Edge Case: Неіснуюча команда<a class="headerlink" href="#13-edge-case" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>/unknowncommand
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/unknowncommand
 </code></pre></div>
 <strong>Очікувано:</strong> Бот ігнорує або показує меню</p>
 <hr />
@@ -1042,7 +1070,7 @@
 <hr />
 <h2 id="4">🛒 Частина 4: Покупки (як клієнт)<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <h3 id="41">4.1 Перегляд каталогу<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>/catalog
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/catalog
 </code></pre></div>
 <strong>Очікувано:</strong> Список товарів з номерами [1] [2] ...</p>
 <h3 id="42-edge-case">4.2 Edge Case: Порожній каталог<a class="headerlink" href="#42-edge-case" title="Permanent link">&para;</a></h3>
@@ -1062,11 +1090,11 @@
 <p>Якщо stock = 0 для розміру, натисніть його</p>
 <p><strong>Очікувано:</strong> "На жаль, цього розміру вже немає в наявності."</p>
 <h3 id="47">4.7 Перегляд кошика<a class="headerlink" href="#47" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>/cart
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/cart
 </code></pre></div>
 <strong>Очікувано:</strong> Список товарів у кошику з цінами</p>
 <h3 id="48-edge-case">4.8 Edge Case: Порожній кошик<a class="headerlink" href="#48-edge-case" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>/cart
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/cart
 </code></pre></div>
 без додавання товарів</p>
 <p><strong>Очікувано:</strong> "Кошик порожній."</p>
@@ -1169,7 +1197,7 @@
 <hr />
 <h2 id="9">🔄 Частина 9: Скидання стану<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
 <h3 id="91-reset">9.1 Повний reset<a class="headerlink" href="#91-reset" title="Permanent link">&para;</a></h3>
-<p><div class="highlight"><pre><span></span><code>/reset
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/reset
 </code></pre></div>
 <strong>Очікувано:</strong> "Стан скинуто ✅"</p>
 <hr />
