@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://bhy4uk.github.io/tgshop-docs/TEST_GUIDE/">
       
       
+        <link rel="prev" href="../README_SELF_HOSTED/">
+      
+      
+        <link rel="next" href="../VPS_DEPLOYMENT_UBUNTU/">
       
       
         
@@ -23,7 +27,7 @@
     
     
       
-        <title>🧪 Повний гайд з тестування Telegram Shop Bot - Telegram-магазин</title>
+        <title>Гайд з тестування - Telegram-магазин</title>
       
     
     
@@ -111,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🧪 Повний гайд з тестування Telegram Shop Bot
+              Гайд з тестування
             
           </span>
         </div>
@@ -237,6 +241,33 @@
   
   
     <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Старт
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../owner-guide/" class="md-nav__link">
         
   
@@ -245,6 +276,939 @@
     
   
     Інструкція для власника
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Запуск магазину
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Оплати
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nova-poshta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Нова пошта
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PLATFORM_CONTEXT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Контекст платформи
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ARCHITECTURE_SCALING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Архітектура Multi-Tenant Platform
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRICING_NARRATIVE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Підписка і ціни
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../README_SELF_HOSTED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Self-hosted (Windows + Docker)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Гайд з тестування
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Гайд з тестування
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Передумови
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔐 Частина 1: Перевірка доступу
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Частина 1: Перевірка доступу">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-telegram-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 Дізнатися свій Telegram ID
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 Перевірка доступу адміна
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-edge-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 Edge Case: Неіснуюча команда
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        👥 Частина 2: Управління адміністраторами
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="👥 Частина 2: Управління адміністраторами">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Додати нового адміна
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Edge Cases для додавання адміна:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Видалити адміна
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-edge-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Edge Case: Видалення останнього адміна
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📦 Частина 3: Управління товарами
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Частина 3: Управління товарами">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Створення товару
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 Edge Cases для створення товару:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Редагування товару
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Вимкнення/увімкнення товару
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5 Управління фото
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6 Управління розмірами/складом
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🛒 Частина 4: Покупки (як клієнт)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛒 Частина 4: Покупки (як клієнт)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Перегляд каталогу
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-edge-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Edge Case: Порожній каталог
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Перегляд товару
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Каруселька фото
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Додавання в кошик
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-edge-case-out-of-stock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Edge Case: Розмір out of stock
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#47" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.7 Перегляд кошика
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-edge-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.8 Edge Case: Порожній кошик
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚚 Частина 5: Оформлення замовлення
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚚 Частина 5: Оформлення замовлення">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-happy-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Happy Path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Edge Cases для доставки:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Скасування оформлення
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 Переривання оформлення
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5 Відновлення оформлення
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6 Таймаут оформлення (15 хв)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💳 Частина 6: Оплата
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💳 Частина 6: Оплата">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Повідомлення про оплату
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Перевірка статусу
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Підтвердження оплати (адмін)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-edge-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Edge Case: Повторне підтвердження
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-cleanup-edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🧹 Частина 7: Cleanup та edge cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧹 Частина 7: Cleanup та edge cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 Cleanup старих замовлень
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-edge-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 Edge Case: Товар видалено після додавання в кошик
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-edge-case-stock" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 Edge Case: Stock закінчився
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚙️ Частина 8: Налаштування магазину
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ Частина 8: Налаштування магазину">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Редагування текстів
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Редагування кнопок
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 Налаштування способів оплати
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3 Налаштування способів оплати">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.1 Зміна посилання для оплати
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#832" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3.2 Зміна реквізитів
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.4 Перегляд підписки
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 Частина 9: Скидання стану
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 Частина 9: Скидання стану">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-reset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Повний reset
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📋 Чек-лист швидкого тесту
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Відомі обмеження
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VPS_DEPLOYMENT_UBUNTU/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Деплой на VPS Ubuntu
   
 
     
