@@ -8,7 +8,6 @@ theme:
   logo: assets/logo.svg
   favicon: assets/favicon.ico
   features:
-    - toc.integrate
     - navigation.sections
     - navigation.prune
     - navigation.top
@@ -69,8 +68,9 @@ exclude_docs: |
   VPS_DEPLOYMENT_UBUNTU.md
 
 nav:
-  - Старт: index.md
-  - Інструкція для власника: owner-guide.md
-  - Запуск магазину: launch.md
-  - Оплати: payments.md
-  - Нова пошта: nova-poshta.md
+  - Початок: index.md
+  - Для власника магазину:
+    - Інструкція для власника: owner-guide.md
+    - Запуск магазину: launch.md
+    - Оплати: payments.md
+    - Нова пошта: nova-poshta.md
