@@ -8,6 +8,7 @@ theme:
   logo: assets/logo.svg
   favicon: assets/favicon.ico
   features:
+    - toc.integrate
     - navigation.sections
     - navigation.prune
     - navigation.top
@@ -59,15 +60,17 @@ extra:
 extra_css:
   - styles/extra.css
 
+exclude_docs: |
+  ARCHITECTURE_SCALING.md
+  PLATFORM_CONTEXT.md
+  PRICING_NARRATIVE.md
+  README_SELF_HOSTED.md
+  TEST_GUIDE.md
+  VPS_DEPLOYMENT_UBUNTU.md
+
 nav:
   - Старт: index.md
   - Інструкція для власника: owner-guide.md
   - Запуск магазину: launch.md
   - Оплати: payments.md
   - Нова пошта: nova-poshta.md
-  - Контекст платформи: PLATFORM_CONTEXT.md
-  - Архітектура Multi-Tenant Platform: ARCHITECTURE_SCALING.md
-  - Підписка і ціни: PRICING_NARRATIVE.md
-  - Self-hosted (Windows + Docker): README_SELF_HOSTED.md
-  - Гайд з тестування: TEST_GUIDE.md
-  - Деплой на VPS Ubuntu: VPS_DEPLOYMENT_UBUNTU.md

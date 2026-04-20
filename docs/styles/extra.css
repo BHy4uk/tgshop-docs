@@ -208,13 +208,14 @@ body {
 }
 
 /* -- Right sidebar (TOC) ---------------------------------- */
-.md-sidebar--secondary .md-nav {
-    font-size: 0.78rem;
+.md-sidebar--secondary {
+    display: none;
 }
 
-.md-sidebar--secondary .md-nav__link {
-    padding: 0.35rem 0.6rem;
-    border-radius: 8px;
+@media screen and (min-width: 76.25em) {
+    .md-content {
+        margin-inline-end: 0;
+    }
 }
 
 /* -- Content card ----------------------------------------- */
