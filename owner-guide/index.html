@@ -1900,7 +1900,7 @@
 </tr>
 <tr>
 <td>Оплати</td>
-<td>Monobank Merchant, оплата за посиланням, оплата за реквізитами, накладений платіж</td>
+<td>LiqPay, Monobank Merchant, оплата за посиланням, оплата за реквізитами, накладений платіж</td>
 </tr>
 <tr>
 <td>Доставка</td>
@@ -2075,7 +2075,7 @@
 </table>
 <div class="admonition warning">
 <p class="admonition-title">Важливе правило для <code>untracked</code></p>
-<p>Якщо товар продається як <code>untracked</code>, для нього потрібна хоча б одна онлайн-оплата: <code>Monobank Merchant</code>, <code>Оплата за посиланням</code> або <code>Оплата за реквізитами</code>. Якщо залишити тільки накладений платіж, checkout для такого товару буде заблокований.</p>
+<p>Якщо товар продається як <code>untracked</code>, для нього потрібна хоча б одна онлайн-оплата: <code>LiqPay</code>, <code>Monobank Merchant</code>, <code>Оплата за посиланням</code> або <code>Оплата за реквізитами</code>. Якщо залишити тільки накладений платіж, checkout для такого товару буде заблокований.</p>
 </div>
 <h3 id="_15">Імпорт каталогу<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
 <p>Вкладка <code>Імпорт</code> з’являється, якщо модуль імпорту увімкнений. Там можна:</p>
@@ -2179,6 +2179,7 @@
 <h2 id="6">6. Оплати<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <p>Поточна платформа підтримує чотири основні способи оплати:</p>
 <ul>
+<li><code>LiqPay</code></li>
 <li><code>Monobank Merchant</code></li>
 <li><code>Оплата за посиланням</code></li>
 <li><code>Оплата за реквізитами</code></li>
@@ -2187,23 +2188,35 @@
 <p>Усі вони налаштовуються у WebApp в секції <code>Оплати</code> в картці <strong>Оплати клієнтів</strong>.</p>
 <p>У цій картці ви бачите саме такі поля й перемикачі:</p>
 <ul>
-<li><code>Monobank Merchant увімкнено</code></li>
+<li><code>LiqPay</code></li>
+<li><code>Public key</code></li>
+<li><code>Private key</code></li>
+<li><code>plata by mono</code></li>
+<li><code>Merchant Token</code></li>
 <li><code>Оплата за посиланням</code></li>
 <li><code>Оплата за реквізитами</code></li>
 <li><code>Післяплата</code></li>
 <li><code>Посилання для оплати</code></li>
-<li><code>Merchant Token Monobank</code></li>
 <li><code>Текст реквізитів</code></li>
 <li>кнопку <code>Зберегти оплату</code></li>
 </ul>
+<p>Інтерфейс спеціально розділений на окремі блоки по кожному способу оплати, щоб не плутати чекбокси і поля.</p>
 <h3 id="_21">Як виглядають способи оплати для покупця<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
 <p>У клієнтському сценарії можуть з’являтися такі назви:</p>
 <ul>
-<li><code>💳 Оплатити онлайн (Monobank)</code></li>
+<li><code>💳 Оплатити онлайн через LiqPay</code></li>
+<li><code>💳 Оплатити онлайн через Monobank</code></li>
 <li><code>💳 Онлайн оплата</code></li>
 <li><code>🏦 Банківські реквізити</code></li>
 <li><code>📦 Накладений платіж</code></li>
 <li>кнопка <code>Я оплатив(ла)</code></li>
+</ul>
+<p>Поточна логіка така:</p>
+<ul>
+<li><code>LiqPay</code> показується як онлайн-оплата через LiqPay з Apple Pay, Google Pay або карткою</li>
+<li><code>Monobank</code> показується як онлайн-оплата через Monobank, але фактично це еквайринг <code>plata by mono</code> з оплатою карткою будь-якого банку, Apple Pay або Google Pay</li>
+<li><code>Банківські реквізити</code> маркуються як <code>IBAN</code></li>
+<li>для LiqPay і Monobank після успішної оплати замовлення зазвичай підтверджується автоматично</li>
 </ul>
 <h3 id="_22">Окремий гайд по оплатах<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
 <p>Детальний гайд по Monobank Merchant винесено в окрему сторінку:</p>
