@@ -461,3 +461,263 @@ body {
         border-radius: 24px;
     }
 }
+
+/* =========================================================
+   Компоненти документації
+   Додано разом з переробкою гайдів.
+   ========================================================= */
+
+/* -- Ліда (вступний абзац сторінки) ------------------------ */
+.md-typeset .lede {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--guide-muted);
+    max-width: 62ch;
+    margin: -0.4rem 0 1.6rem;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .lede {
+    color: #b6c0d2;
+}
+
+/* -- Сітка карток на головній ----------------------------- */
+.md-typeset .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+    margin: 1.6rem 0 2rem;
+}
+
+.md-typeset .card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.35rem 1.1rem;
+    border: 1px solid var(--guide-line);
+    border-radius: 18px;
+    background: var(--guide-card);
+    box-shadow: 0 6px 20px rgba(22, 35, 59, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.md-typeset .card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(29, 106, 120, 0.28);
+    box-shadow: 0 18px 36px rgba(22, 35, 59, 0.1);
+}
+
+.md-typeset .card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.06rem;
+    line-height: 1.35;
+}
+
+.md-typeset .card h3 .twemoji,
+.md-typeset .card h3 svg {
+    width: 1.15em;
+    height: 1.15em;
+    vertical-align: -0.2em;
+    margin-inline-end: 0.35em;
+    fill: var(--guide-accent);
+}
+
+.md-typeset .card p {
+    margin: 0 0 0.9rem;
+    font-size: 0.86rem;
+    line-height: 1.62;
+    color: var(--guide-muted);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .card p {
+    color: #b6c0d2;
+}
+
+.md-typeset .card-link {
+    margin-top: auto;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.md-typeset .card-link svg,
+.md-typeset .btn-link svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.14em;
+    margin-inline-start: 0.3em;
+    fill: currentcolor;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .card {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -- Кнопка-посилання в кінці розділу --------------------- */
+.md-typeset .btn-link {
+    display: inline-block;
+    margin-top: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid rgba(29, 106, 120, 0.28);
+    border-radius: 999px;
+    background: rgba(29, 106, 120, 0.07);
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.md-typeset .btn-link:hover {
+    background: rgba(29, 106, 120, 0.14);
+    border-color: var(--guide-accent);
+}
+
+/* -- Дві колонки ------------------------------------------ */
+.md-typeset .split {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 0.9rem;
+    margin: 1.3rem 0 1.8rem;
+}
+
+.md-typeset .split-item {
+    padding: 1.05rem 1.2rem;
+    border: 1px solid var(--guide-line);
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.55);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .split-item {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.md-typeset .split-item h4 {
+    margin: 0 0 0.4rem;
+    font-size: 0.98rem;
+}
+
+.md-typeset .split-item p {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.6;
+    color: var(--guide-muted);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .split-item p {
+    color: #b6c0d2;
+}
+
+/* -- Блок покрокових інструкцій --------------------------- */
+.md-typeset .steps {
+    position: relative;
+    margin: 1.3rem 0 1.8rem;
+    padding: 1.2rem 1.4rem 1.2rem 1.5rem;
+    border: 1px solid var(--guide-line);
+    border-inline-start: 3px solid var(--guide-accent);
+    border-radius: 4px 16px 16px 4px;
+    background: rgba(216, 237, 240, 0.28);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .steps {
+    background: rgba(57, 91, 96, 0.24);
+    border-color: rgba(255, 255, 255, 0.1);
+    border-inline-start-color: var(--guide-accent);
+}
+
+.md-typeset .steps > p {
+    margin: 0 0 0.85rem;
+    line-height: 1.7;
+}
+
+.md-typeset .steps > p:last-child {
+    margin-bottom: 0;
+}
+
+.md-typeset .steps strong:first-child {
+    color: var(--guide-accent);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .steps strong:first-child {
+    color: #7fd3e0;
+}
+
+/* -- Місце під скріншот ----------------------------------- */
+.md-typeset .shot {
+    margin: 1.4rem 0;
+    padding: 1.1rem 1.3rem;
+    border: 2px dashed rgba(239, 109, 88, 0.4);
+    border-radius: 16px;
+    background: rgba(239, 109, 88, 0.05);
+}
+
+.md-typeset .shot::before {
+    content: "🖼 Місце під скріншот";
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--guide-primary-strong);
+}
+
+.md-typeset .shot p {
+    margin: 0 0 0.3rem;
+    font-size: 0.87rem;
+    line-height: 1.6;
+}
+
+.md-typeset .shot p:last-child {
+    margin-bottom: 0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .shot {
+    background: rgba(123, 77, 69, 0.22);
+    border-color: rgba(239, 109, 88, 0.45);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .shot::before {
+    color: #ffab97;
+}
+
+/* -- Чеклісти --------------------------------------------- */
+.md-typeset .task-list-item {
+    margin-bottom: 0.35rem;
+}
+
+.md-typeset .task-list-control .task-list-indicator::before {
+    background-color: rgba(29, 106, 120, 0.2);
+}
+
+.md-typeset .task-list-control [type="checkbox"]:checked + .task-list-indicator::before {
+    background-color: var(--guide-accent);
+}
+
+/* -- Згорнуті питання (??? question) ---------------------- */
+.md-typeset details.question {
+    border-color: rgba(29, 106, 120, 0.2);
+    background: rgba(235, 245, 247, 0.62);
+}
+
+[data-md-color-scheme="slate"] .md-typeset details.question {
+    background: rgba(57, 91, 96, 0.3);
+}
+
+.md-typeset details.question summary {
+    font-size: 0.94rem;
+}
+
+/* -- Мобільні уточнення ----------------------------------- */
+@media screen and (max-width: 44.98em) {
+    .md-typeset .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .md-typeset .steps {
+        padding: 1rem 1rem 1rem 1.1rem;
+    }
+
+    .md-typeset .shot {
+        padding: 0.9rem 1rem;
+    }
+}
