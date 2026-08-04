@@ -6,18 +6,33 @@ Use it for landing pages, product marketing copy, documentation structure, and G
 
 ## Source Of Truth
 Do not invent platform capabilities.
-Before writing landing pages or product copy, inspect the sibling workspace root `insomnia.workshop` for real functionality.
 
-Read these files first when working on messaging or product positioning:
-- `insomnia.workshop/docs/owner-guide.md`
+**Start here:** `docs/_internal/platform-facts.md` in this repo. It is the
+distilled, verified list of every command, tab, field, status and payment
+method, taken directly from the product code. It is excluded from the built
+site. Keep it updated whenever the product UI changes.
+
+**Do not read `insomnia.workshop/docs/owner-guide.md`.** That copy is
+deprecated and out of date. The canonical owner guide lives in this repo at
+`docs/owner-guide.md`.
+
+For deeper product context, inspect the sibling workspace root
+`insomnia.workshop`:
 - `insomnia.workshop/docs/PROJECT_CONTEXT_FOR_AGENTS.md`
 - `insomnia.workshop/README.md`
 
-When claims depend on implementation details, verify them in code. Priority files:
-- `insomnia.workshop/backend/app/application/feature_registry.py`
-- `insomnia.workshop/backend/webapp/admin_products/main.js`
-- `insomnia.workshop/backend/app/bot/admin_ui.py`
-- `insomnia.workshop/backend/app/bot/guide_ui.py`
+When claims depend on implementation details, verify them in code:
+
+| What | Where |
+|---|---|
+| Bot commands | `insomnia.workshop/backend/app/bot/handlers.py` |
+| Bot admin menu | `insomnia.workshop/backend/app/bot/admin_ui.py` |
+| Bot reply keyboard | `insomnia.workshop/backend/app/bot/keyboards.py` |
+| In-bot `/guide` content | `insomnia.workshop/backend/app/bot/guide_ui.py` |
+| WebApp shell tabs | `insomnia.workshop/backend/app/api/shop_webapp.py` (`_build_shop_sections`) |
+| Admin hub tabs and settings | `insomnia.workshop/backend/webapp/admin_products/main.js` (`HUB_TABS`) |
+| Order statuses, payment methods | `insomnia.workshop/backend/app/domain/order_status.py` |
+| Feature gating by plan | `insomnia.workshop/backend/app/application/feature_registry.py` |
 
 ## Landing Page Rules
 The landing page should sell a real product, not a generic SaaS template.
@@ -35,6 +50,12 @@ Avoid these mistakes:
 - calling the product website-first
 - describing it as "just a bot"
 - vague AI-style marketing filler
+- claiming the WebApp has eight top-level tabs — it has three
+  (`Каталог`, `Замовлення`, `Керування`); the eight live inside `Керування`
+
+## Documentation Rules
+See `CLAUDE.md` in the repo root for the full documentation writing contract:
+audience, tone, how UI labels are quoted, and how screenshot placeholders work.
 
 ## Workflow
 For landing work, first gather context from both repos, then summarize:
@@ -56,3 +77,14 @@ This repo is the MkDocs source repo.
 `main` should contain `mkdocs.yml` and `docs/`.
 `gh-pages` is publish output only.
 Do not edit landing/source files on `gh-pages`.
+
+Local build:
+
+```bash
+pip install mkdocs-material
+mkdocs serve
+mkdocs build --strict
+```
+
+Requires `mkdocs-material` 9.4 or newer (the config uses
+`material.extensions.emoji`).

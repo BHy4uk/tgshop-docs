@@ -18,6 +18,7 @@ theme:
     - content.tabs.link
     - search.highlight
     - search.share
+    - toc.follow
   palette:
     - scheme: default
       primary: blue grey
@@ -34,6 +35,9 @@ theme:
   font:
     text: Manrope
     code: JetBrains Mono
+  icon:
+    admonition:
+      question: material/help-circle-outline
 
 plugins:
   - search
@@ -47,11 +51,21 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - attr_list
   - md_in_html
   - tables
+  # slugify обовʼязковий: без нього кириличні заголовки дають якорі _1, _2…
+  # і всі посилання виду #швидкий-старт ламаються
   - toc:
       permalink: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
 
 extra:
   generator: false   # прибирає "Made with Material"
@@ -60,6 +74,8 @@ extra_css:
   - styles/extra.css
 
 exclude_docs: |
+  _internal/
+  assets/shots/README.md
   ARCHITECTURE_SCALING.md
   PLATFORM_CONTEXT.md
   PRICING_NARRATIVE.md
