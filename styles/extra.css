@@ -38,6 +38,20 @@ body {
     max-width: 1420px;
 }
 
+/* -- Logo -------------------------------------------------- */
+/* Material force-fits the logo into a 1.2rem square; the Cartium mark is
+   ~1.5:1, so let it keep its own width and give it a readable height. */
+.md-logo :is(img, svg) {
+    width: auto;
+    height: 1.6rem;
+}
+
+/* The header is light in the default scheme (see below), so the dark-ink
+   mark is the default and the light one is swapped in for slate. */
+[data-md-color-scheme="slate"] .md-logo img {
+    content: url("../assets/logo-dark.svg");
+}
+
 /* -- Header ----------------------------------------------- */
 .md-header {
     background: rgba(255, 250, 244, 0.78);
