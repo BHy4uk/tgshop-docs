@@ -6,7 +6,7 @@ theme:
   name: material
   language: uk
   logo: assets/logo.svg
-  favicon: assets/favicon.ico
+  favicon: assets/favicon.svg
   features:
     - navigation.sections
     - navigation.prune
