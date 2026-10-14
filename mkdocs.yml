@@ -86,6 +86,7 @@ exclude_docs: |
 nav:
   - Початок: index.md
   - Інструкція для власника: owner-guide.md
+  - Імпорт каталогу: import.md
   - Запуск магазину: launch.md
   - Оплати: payments.md
   - Нова пошта: nova-poshta.md

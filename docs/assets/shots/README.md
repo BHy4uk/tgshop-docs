@@ -1,45 +1,47 @@
 # Скріншоти для документації
 
-Сюди кладуться зображення, які замінюють плейсхолдери в гайдах.
+Цей файл не публікується на сайті.
 
-## Які файли потрібні
+## Мобільна версія — основна
 
-| Файл | Що має бути на скріншоті | Сторінка |
+Більшість власників керують магазином з телефона, тому **усі знімки Mini App — мобільні** (390×844, ×2), а не з веб-версії.
+
+Знімки Mini App не робляться руками: їх генерує сценарій у репозиторії продукту (`insomnia.workshop`) на тестових даних, тож у них немає реальних клієнтів, телефонів чи ключів.
+
+```bash
+# з кореня insomnia.workshop
+node tools/webapp-harness/run.mjs docshots
+python tools/webapp-harness/docshots_export.py <шлях до tgshop-docs>/docs/assets/shots
+```
+
+Сценарій: `tools/webapp-harness/suites/docshots.mjs` (один сценарій = один файл; назва сценарію = назва PNG). Скрипт експорту обрізає порожню смугу зверху, округлює кути й оптимізує PNG. Після зміни інтерфейсу продукту запустіть обидві команди й перегляньте результат.
+
+## Які файли є
+
+| Файл | Що на ньому | Сторінка |
 |---|---|---|
-| `admin-menu.png` | Адмін-меню бота після `/admin`, видно всі шість кнопок | owner-guide |
-| `webapp-hub-tabs.png` | Розділ `Керування` у WebApp з рядом вкладок | owner-guide |
-| `product-form.png` | Форма створення товару із заповненими полями і фото | owner-guide |
-| `order-card.png` | Картка замовлення в боті з кнопками дій | owner-guide |
-| `appearance-editor.png` | Редактор вигляду з вибором акцентного кольору | owner-guide |
-| `payments-card.png` | Картка **Оплати клієнтів** з блоками способів оплати | payments |
-| `monobank-token.png` | Блок `plata by mono` з полем `Merchant Token` | payments |
-| `np-api-key.png` | Створення API ключа в кабінеті Нової пошти | nova-poshta |
-| `np-settings.png` | Картка **Нова пошта** із заповненими полями | nova-poshta |
-| `np-create-ttn.png` | Картка замовлення з кнопкою `🚚 Створити ТТН` | nova-poshta |
-| `test-order-done.png` | Тестове замовлення зі статусом `✅ Оплачено` | launch |
+| `shell-catalog` | Вітрина з нижньою панеллю | owner-guide, index |
+| `hub-products`, `hub-more-menu` | Розділ «Керування» і меню «Ще» | owner-guide |
+| `product-create`, `product-create-variants` | Форма товару | owner-guide |
+| `import-empty`, `import-preview`, `import-result` | Імпорт каталогу | import, owner-guide |
+| `orders-list`, `order-details`, `order-actions`, `order-ttn` | Замовлення і дії з ТТН | owner-guide, nova-poshta, launch |
+| `settings-subscription`, `settings-access-mode`, `settings-modules` | Підписка, режими доступу, модулі | owner-guide |
+| `payments-list`, `payments-liqpay`, `payments-mono`, `payments-link`, `payments-details` | Способи оплати | payments |
+| `settings-delivery` | Нова пошта | nova-poshta, owner-guide |
+| `appearance` | Редактор вигляду | owner-guide |
+| `promos`, `campaigns`, `analytics`, `customers` | Модулі зростання | owner-guide |
 
-## Як замінити плейсхолдер
+## Те, що генерувати не можна
 
-У тексті сторінки плейсхолдер виглядає так:
+Ці знімки зроблені вручну з реальних сервісів і не оновлюються автоматично — перевіряйте їх при кожній зміні відповідних кабінетів:
 
-```html
-<div class="shot" markdown>
-**Скріншот:** адмін-меню бота одразу після команди `/admin`.
-`assets/shots/admin-menu.png`
-</div>
-```
+| Файл | Що на ньому |
+|---|---|
+| `admin-menu.png` | Адмін-меню бота після `/admin` (Telegram) |
+| `np-api-key.png` | Створення API ключа в кабінеті Нової пошти (зовнішній сайт) |
 
-Покладіть файл у цю теку і замініть весь блок на:
+## Вимоги до знімків
 
-```markdown
-![Адмін-меню бота після /admin](assets/shots/admin-menu.png)
-```
-
-Плейсхолдер із пунктирною рамкою зникне, зʼявиться зображення.
-
-## Вимоги до скріншотів
-
-- Ширина 900–1400 px, формат PNG.
-- Затріть реальні дані: номери телефонів, ПІБ клієнтів, токени, API ключі.
-- Знімайте у світлій темі — вона на сайті за замовчуванням.
-- Обрізайте зайве: потрібен той елемент, про який іде мова, плюс трохи контексту.
+- Mini App — мобільні, світла тема, генеруються сценарієм вище.
+- Ніяких реальних даних: номерів телефонів, ПІБ клієнтів, токенів, API ключів.
+- Ручні знімки — PNG, обрізати зайве; на сайті вони відображаються з рамкою (клас `.phone`) або на всю ширину тексту.
