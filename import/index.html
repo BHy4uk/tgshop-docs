@@ -1,0 +1,1036 @@
+
+<!doctype html>
+<html lang="uk" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Документація платформи Cartium">
+      
+      
+      
+        <link rel="canonical" href="https://bhy4uk.github.io/tgshop-docs/import/">
+      
+      
+        <link rel="prev" href="../owner-guide/">
+      
+      
+        <link rel="next" href="../launch/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Імпорт каталогу - Cartium</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M11%2018h2v-2h-2zm1-16A10%2010%200%200%200%202%2012a10%2010%200%200%200%2010%2010%2010%2010%200%200%200%2010-10A10%2010%200%200%200%2012%202m0%2018c-4.41%200-8-3.59-8-8s3.59-8%208-8%208%203.59%208%208-3.59%208-8%208m0-14a4%204%200%200%200-4%204h2a2%202%200%200%201%202-2%202%202%200%200%201%202%202c0%202-3%201.75-3%205h2c0-2.25%203-2.5%203-5a4%204%200%200%200-4-4%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Manrope";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../styles/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#імпорт-каталогу" class="md-skip">
+          Перейти до змісту
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Хедер">
+    <a href=".." title="Cartium" class="md-header__button md-logo" aria-label="Cartium" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Cartium
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Імпорт каталогу
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Темна тема"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Темна тема" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="Світла тема"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Світла тема" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Пошук" placeholder="Пошук" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Шукати">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Поділитись" aria-label="Поділитись" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистити" aria-label="Очистити" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Пошук розпочато
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Навігація" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Cartium" class="md-nav__button md-logo" aria-label="Cartium" data-md-component="logo">
+      
+  <img src="../assets/logo.svg" alt="logo">
+
+    </a>
+    Cartium
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Початок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../owner-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Інструкція для власника
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Імпорт каталогу
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Імпорт каталогу
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#як-це-працює" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Як це працює
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#що-ви-побачите-після-перевірити-файл" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Що ви побачите після «Перевірити файл»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#які-колонки-заповнювати" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Які колонки заповнювати
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#кілька-значень-в-одній-клітинці" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Кілька значень в одній клітинці
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#варіанти-й-залишки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Варіанти й залишки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#фото" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фото
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#повторний-імпорт-і-дублікати" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Повторний імпорт і дублікати
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#результат-і-скасування" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Результат і скасування
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#обмеження" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обмеження
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#що-означають-зауваження-після-перевірки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Що означають зауваження після перевірки
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../launch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Запуск магазину
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Оплати
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nova-poshta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Нова пошта
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Зміст">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Зміст
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#як-це-працює" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Як це працює
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#що-ви-побачите-після-перевірити-файл" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Що ви побачите після «Перевірити файл»
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#які-колонки-заповнювати" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Які колонки заповнювати
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#кілька-значень-в-одній-клітинці" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Кілька значень в одній клітинці
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#варіанти-й-залишки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Варіанти й залишки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#фото" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Фото
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#повторний-імпорт-і-дублікати" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Повторний імпорт і дублікати
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#результат-і-скасування" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Результат і скасування
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#обмеження" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Обмеження
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#що-означають-зауваження-після-перевірки" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Що означають зауваження після перевірки
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="імпорт-каталогу">Імпорт каталогу<a class="headerlink" href="#імпорт-каталогу" title="Permanent link">&para;</a></h1>
+<p class="lede">Завантажте всі товари одним файлом замість того, щоб додавати їх по одному. Система спочатку перевіряє файл і показує, що саме буде додано, — і лише після вашого підтвердження створює товари. Помилились — імпорт можна скасувати.</p>
+
+<div class="admonition info">
+<p class="admonition-title">Де знаходиться</p>
+<p><code>Керування</code> → <code>Ще</code> → <code>Імпорт</code> (або кнопка <code>Імпорт товарів</code> на екрані <code>Товари</code>). Потрібен тариф <strong>Pro</strong> або вище; на нижчому тарифі вкладки немає.</p>
+</div>
+<hr />
+<h2 id="як-це-працює">Як це працює<a class="headerlink" href="#як-це-працює" title="Permanent link">&para;</a></h2>
+<div class="with-shot">
+<div>
+<div class="steps">
+<p><strong>1. Візьміть шаблон.</strong> Натисніть <code>Шаблон CSV</code> або <code>Шаблон XLSX</code> — файл-приклад прийде вам у Telegram. Або завантажте готові приклади нижче.</p>
+<p><strong>2. Заповніть.</strong> Відкрийте файл в Excel, Google Таблицях чи Numbers, замініть приклади своїми товарами. Перший рядок із назвами колонок не видаляйте.</p>
+<p><strong>3. Збережіть.</strong> Для CSV оберіть кодування UTF-8 (в Excel це <code>CSV UTF-8 (розділений комами)</code>), інакше українські літери зіпсуються. XLSX зберігається як є.</p>
+<p><strong>4. Перевірте.</strong> Оберіть файл і натисніть <code>Перевірити файл</code>. Нічого ще не створюється.</p>
+<p><strong>5. Підтвердіть.</strong> Натисніть кнопку з кількістю товарів, наприклад <code>Імпортувати 5 товарів</code>.</p>
+<p><strong>6. Передумали?</strong> Одразу після імпорту — <code>Скасувати цей імпорт</code>.</p>
+</div>
+</div>
+<p><img alt="Екран імпорту" class="phone" src="../assets/shots/import-empty.png" /></p>
+</div>
+<p><strong>Приклади файлів на 5 товарів</strong> — з варіантами й залишками, знижкою, категорією з підкатегорією, товаром «під замовлення» й прихованим товаром:</p>
+<ul>
+<li><a href="../assets/examples/products-import-5-items.csv">products-import-5-items.csv</a></li>
+<li><a href="../assets/examples/products-import-5-items.xlsx">products-import-5-items.xlsx</a></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Безпечний спосіб імпорту</p>
+<p>Не заливайте одразу весь каталог. Візьміть файл на 5–10 позицій, імпортуйте, а потім відкрийте кілька товарів руками і перевірте: назва, ціна, категорія, фото, режим залишків. Якщо все правильно — заливайте решту.</p>
+</div>
+<hr />
+<h2 id="що-ви-побачите-після-перевірити-файл">Що ви побачите після «Перевірити файл»<a class="headerlink" href="#що-ви-побачите-після-перевірити-файл" title="Permanent link">&para;</a></h2>
+<div class="with-shot">
+<div>
+<p>Система показує:</p>
+<ul>
+<li>скільки товарів і варіантів <strong>буде створено</strong>, скільки рядків пропущено;</li>
+<li>які колонки <strong>розпізнано</strong>, а які не використано;</li>
+<li>які <strong>нові категорії</strong> з'являться;</li>
+<li>перші рядки таблицею — щоб звірити назву, ціну, варіанти й кількість фото;</li>
+<li><strong>помилки</strong> (рядок пропущено — червоним) і <strong>зауваження</strong> (рядок додасться, але є на що глянути), згруповані за типом, із номерами рядків.</li>
+</ul>
+<p>Якщо все влаштовує — <code>Імпортувати …</code>. Якщо ні — виправте файл і натисніть <code>Перевірити файл</code> ще раз, або <code>Скасувати</code>.</p>
+</div>
+<p><img alt="Результат перевірки файлу" class="phone" src="../assets/shots/import-preview.png" /></p>
+</div>
+<hr />
+<h2 id="які-колонки-заповнювати">Які колонки заповнювати<a class="headerlink" href="#які-колонки-заповнювати" title="Permanent link">&para;</a></h2>
+<p>Обов'язкові лише <strong>назва</strong> і <strong>ціна</strong>. Решту можна залишити порожніми або видалити з файлу. Назви колонок можна писати англійською (як у шаблоні) <strong>або українською</strong> — великі й малі літери не важливі. Якщо якусь колонку не розпізнано, <code>Перевірити файл</code> скаже, яку саме не буде використано.</p>
+<table>
+<thead>
+<tr>
+<th>Колонка в шаблоні</th>
+<th>Можна написати й так</th>
+<th>Що вписати</th>
+<th>Приклад</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td><code>Назва</code>, <code>Товар</code>, <code>Назва товару</code></td>
+<td>Назва товару. <strong>Обов'язково</strong></td>
+<td><code>Худі Oversize</code></td>
+</tr>
+<tr>
+<td><code>price_uah</code></td>
+<td><code>Ціна</code>, <code>Вартість</code>, <code>Ціна грн</code></td>
+<td>Ціна в гривнях, більша за нуль. Підійде <code>1299</code>, <code>1 299</code>, <code>1299,50</code>, <code>1299 грн</code>; копійки округлюються. <strong>Обов'язково</strong></td>
+<td><code>1899</code></td>
+</tr>
+<tr>
+<td><code>compare_at_price_uah</code></td>
+<td><code>Стара ціна</code>, <code>Ціна до знижки</code></td>
+<td>Ціна до знижки. Має бути вищою за звичайну, інакше її буде проігноровано</td>
+<td><code>2299</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td><code>Опис</code></td>
+<td>Опис товару</td>
+<td><code>Щільний футер з начосом</code></td>
+</tr>
+<tr>
+<td><code>category</code></td>
+<td><code>Категорія</code>, <code>Група</code></td>
+<td>Категорія. Для підкатегорії напишіть <code>Розділ &gt; Підрозділ</code>. Якщо такої категорії ще немає, її буде створено</td>
+<td><code>Одяг &gt; Худі</code></td>
+</tr>
+<tr>
+<td><code>inventory_mode</code></td>
+<td><code>Облік</code></td>
+<td><code>tracked</code> (<code>Відстежувати залишки</code>) або <code>untracked</code> (<code>Без ліміту залишку</code>). Якщо залишити порожнім: з варіантами й залишками буде <code>tracked</code>, в усіх інших випадках <code>untracked</code></td>
+<td><code>tracked</code></td>
+</tr>
+<tr>
+<td><code>option_label</code></td>
+<td><code>Назва варіанта</code></td>
+<td>Як називається вибір</td>
+<td><code>Розмір</code></td>
+</tr>
+<tr>
+<td><code>options</code></td>
+<td><code>Варіанти</code>, <code>Розміри</code>, <code>Розмір</code></td>
+<td>Самі варіанти через <code>&#124;</code></td>
+<td><code>S&#124;M&#124;L&#124;XL</code></td>
+</tr>
+<tr>
+<td><code>stocks</code></td>
+<td><code>Залишки</code>, <code>Кількість</code></td>
+<td>Залишки в тому ж порядку, що й варіанти, через <code>&#124;</code></td>
+<td><code>6&#124;10&#124;8&#124;3</code></td>
+</tr>
+<tr>
+<td><code>photos</code></td>
+<td><code>Фото</code>, <code>Зображення</code>, <code>Картинки</code></td>
+<td>Прямі посилання на фото через <code>&#124;</code>, до 10 штук. <a href="#фото">Дивіться розділ «Фото»</a></td>
+<td><code>https://example.com/1.jpg&#124;https://example.com/2.jpg</code></td>
+</tr>
+<tr>
+<td><code>is_active</code></td>
+<td><code>Активний</code>, <code>Показувати</code></td>
+<td><code>так</code> — товар видно в каталозі, <code>ні</code> — приховано</td>
+<td><code>так</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="кілька-значень-в-одній-клітинці">Кілька значень в одній клітинці<a class="headerlink" href="#кілька-значень-в-одній-клітинці" title="Permanent link">&para;</a></h2>
+<p>Варіанти, залишки й фото записуються в одну клітинку, тому їх потрібно розділяти. Найнадійніше — вертикальна риска <code>|</code> (на клавіатурі зазвичай над Enter, з Shift): <code>S|M|L</code>.</p>
+<p>Працюють також крапка з комою (<code>S;M;L</code>), кома (<code>S,M,L</code>) і перенос рядка всередині клітинки (<code>Alt+Enter</code> в Excel). Але <strong>в одній клітинці використовуйте лише один вид роздільника</strong>. Якщо в назві варіанта є кома, наприклад <code>1,5 л</code>, розділяйте варіанти саме через <code>|</code>: <code>0,5 л|1,5 л</code>.</p>
+<hr />
+<h2 id="варіанти-й-залишки">Варіанти й залишки<a class="headerlink" href="#варіанти-й-залишки" title="Permanent link">&para;</a></h2>
+<p>Перший залишок належить першому варіанту, другий — другому і так далі.</p>
+<table>
+<thead>
+<tr>
+<th><code>options</code></th>
+<th><code>stocks</code></th>
+<th>Що вийде</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>S&#124;M&#124;L</code></td>
+<td><code>6&#124;10&#124;8</code></td>
+<td>S — 6 шт., M — 10 шт., L — 8 шт.</td>
+</tr>
+<tr>
+<td><code>Чорний&#124;Білий</code></td>
+<td><code>15&#124;0</code></td>
+<td>Чорний — 15 шт., Білий — немає в наявності</td>
+</tr>
+<tr>
+<td><code>150 мл&#124;300 мл</code></td>
+<td>порожньо</td>
+<td>Товар «без ліміту залишку» з двома варіантами</td>
+</tr>
+</tbody>
+</table>
+<p>Залишків можна не вказувати, якщо товар продається без ліміту. Якщо залишків менше, ніж варіантів, решта отримає 0. Для зручності підійде й запис <code>S:6|M:10|L:8</code> в одній колонці <code>options</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Товар із відстеженням залишків без варіантів не купити</p>
+<p>Якщо вказати <code>tracked</code>, але не вказати варіанти й залишки, товар створиться, проте покупець не зможе його замовити. <code>Перевірити файл</code> попередить про такі рядки. Для товарів без розмірів і кольорів вказуйте <code>untracked</code> або просто залишайте колонку порожньою.</p>
+</div>
+<hr />
+<h2 id="фото">Фото<a class="headerlink" href="#фото" title="Permanent link">&para;</a></h2>
+<p>У файл імпорту можна додати <strong>лише посилання на фото в інтернеті</strong>. Фотографії з комп'ютера чи телефона до файлу вставити не можна — ні в CSV, ні в XLSX.</p>
+<p><strong>Посилання має бути прямим</strong>: якщо відкрити його в браузері, ви бачите лише саму картинку, без сторінки навколо і без входу в акаунт. Зазвичай такі посилання закінчуються на <code>.jpg</code>, <code>.png</code> або <code>.webp</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Підійде</th>
+<th>Не підійде</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Фото на вашому сайті чи хостингу зображень</td>
+<td>Google Диск, Dropbox, iCloud</td>
+</tr>
+<tr>
+<td>Пряме посилання на файл (<code>…/photo.jpg</code>)</td>
+<td>Сторінки в Instagram, OLX, Vinted, Telegram-каналі</td>
+</tr>
+<tr>
+<td></td>
+<td>Посилання, що вимагають входу в акаунт</td>
+</tr>
+</tbody>
+</table>
+<p>Як це працює: товар створюється одразу, а фото підтягуються у фоні й з'являються в товарі за кілька хвилин. Якщо посилання не вдалося завантажити, товар залишається, а фото потрібно додати вручну.</p>
+<div class="admonition tip">
+<p class="admonition-title">Як додати фото з комп'ютера або телефона</p>
+<p>Імпортуйте товари без фото, потім відкрийте товар, у блоці <code>Фото товару</code> натисніть <code>Додати фото</code> і оберіть знімки з галереї телефона або з папки на комп'ютері. Можна вибрати відразу кілька.</p>
+</div>
+<hr />
+<h2 id="повторний-імпорт-і-дублікати">Повторний імпорт і дублікати<a class="headerlink" href="#повторний-імпорт-і-дублікати" title="Permanent link">&para;</a></h2>
+<p>Якщо в каталозі вже є товар із такою самою назвою (великі й малі літери та зайві пробіли не враховуються), рядок із файлу пропускається. Тому виправлений файл можна безпечно завантажити ще раз: уже додані товари не задвояться.</p>
+<p>Якщо потрібно додати такі товари все одно, увімкніть галочку <code>Додавати й товари, назви яких уже є в каталозі</code> — кількість у перевірці оновиться.</p>
+<div class="admonition note">
+<p class="admonition-title">Імпорт лише додає товари</p>
+<p>Імпорт не змінює ціни, залишки чи фото товарів, які вже є в каталозі. Для таких змін відкривайте товар і редагуйте його.</p>
+</div>
+<hr />
+<h2 id="результат-і-скасування">Результат і скасування<a class="headerlink" href="#результат-і-скасування" title="Permanent link">&para;</a></h2>
+<div class="with-shot">
+<div>
+<p>Після <code>Імпортувати …</code> ви побачите підсумок: скільки товарів, варіантів і категорій створено, скільки рядків пропущено.</p>
+<p>Кнопка <strong><code>Скасувати цей імпорт</code></strong> (потрібно підтвердити другим натисканням) приховує всі товари, додані цим імпортом. Це можна зробити протягом <strong>7 днів</strong>. Створені імпортом категорії залишаються.</p>
+</div>
+<p><img alt="Підсумок імпорту з кнопкою скасування" class="phone" src="../assets/shots/import-result.png" /></p>
+</div>
+<hr />
+<h2 id="обмеження">Обмеження<a class="headerlink" href="#обмеження" title="Permanent link">&para;</a></h2>
+<ul>
+<li>до <strong>5 МБ</strong> і до <strong>2000 товарів</strong> в одному файлі — більший каталог діліть на частини;</li>
+<li>для кожного товару потрібні назва й ціна більша за нуль, інакше рядок пропускається;</li>
+<li>у XLSX дані мають бути на першому аркуші;</li>
+<li>скільки товарів можна тримати в магазині, визначає ваш тариф — дивіться <a href="../owner-guide/#підписка">Підписка</a>;</li>
+<li>за хвилину можна виконати обмежену кількість перевірок і імпортів — якщо побачите «Забагато спроб», зачекайте хвилину.</li>
+</ul>
+<hr />
+<h2 id="що-означають-зауваження-після-перевірки">Що означають зауваження після перевірки<a class="headerlink" href="#що-означають-зауваження-після-перевірки" title="Permanent link">&para;</a></h2>
+<details class="question">
+<summary>Список зауважень і помилок</summary>
+<p><strong>Помилки — рядок не буде додано:</strong></p>
+<ul>
+<li><strong>Не вказано назву</strong> — заповніть колонку з назвою.</li>
+<li><strong>Некоректна або нульова ціна</strong> — вкажіть ціну числом, більшою за нуль.</li>
+<li><strong>Надто велика ціна</strong> — перевірте, чи не зайві нулі.</li>
+</ul>
+<p><strong>Зауваження — рядок буде додано, але гляньте на нього:</strong></p>
+<ul>
+<li><strong>Товар з такою назвою вже є в каталозі / назва повторюється у файлі</strong> — рядок пропущено, щоб не створити дубль.</li>
+<li><strong>Це не схоже на посилання на фото</strong> — це фото пропущено, товар буде додано без нього.</li>
+<li><strong>Забагато фото</strong> — взято перші 10.</li>
+<li><strong>Не вказано залишки</strong> — варіанти отримають 0 шт., доки ви не вкажете кількість.</li>
+<li><strong>Залишків менше, ніж варіантів</strong> — решта варіантів матиме 0 шт.</li>
+<li><strong>Облік залишків увімкнено, але немає варіантів</strong> — товар не можна буде замовити.</li>
+<li><strong>Залишок без варіантів не враховано</strong> — кількість нема до чого прив'язати.</li>
+<li><strong>Стара ціна має бути вищою за ціну</strong> — знижку не додано.</li>
+<li><strong>Ціну округлено</strong> — у каталозі ціна в цілих гривнях.</li>
+<li><strong>Категорії бувають двох рівнів</strong> — третій і далі рівні відкинуто.</li>
+<li><strong>Назву або опис скорочено</strong> — перевищено допустиму довжину.</li>
+</ul>
+</details>
+<details class="question">
+<summary>Помилки, які можуть з'явитися замість перевірки</summary>
+<ul>
+<li><strong>Файл завеликий / забагато рядків</strong> — розділіть каталог на кілька файлів.</li>
+<li><strong>Не вдалося прочитати CSV</strong> — збережіть файл у кодуванні UTF-8.</li>
+<li><strong>Не вдалося відкрити файл</strong> — перевірте, що він не пошкоджений і це справді CSV або XLSX.</li>
+<li><strong>Не знайдено колонок з назвою та ціною</strong> — завантажте шаблон і скопіюйте дані в нього.</li>
+<li><strong>Імпорт уже виконується</strong> — зачекайте, поки завершиться попередній.</li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Повернутись нагору
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.prune", "navigation.top", "header.autohide", "navigation.instant", "navigation.tracking", "content.code.copy", "content.tabs.link", "search.highlight", "search.share", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0456\u0439\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u0421\u043a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438 \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0429\u0435 1 \u0437\u0431\u0456\u0433 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.more.other": "\u0429\u0435 # \u0437\u0431\u0456\u0433\u0456\u0432 \u043d\u0430 \u0446\u0456\u0439 \u0441\u0442\u043e\u0440\u0456\u043d\u0446\u0456", "search.result.none": "\u0417\u0431\u0456\u0433\u0456\u0432 \u043d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0437\u0431\u0456\u0433", "search.result.other": "\u0417\u043d\u0430\u0439\u0434\u0435\u043d\u043e # \u0437\u0431\u0456\u0433\u0456\u0432", "search.result.placeholder": "\u0420\u043e\u0437\u043f\u043e\u0447\u043d\u0456\u0442\u044c \u043f\u0438\u0441\u0430\u0442\u0438 \u0434\u043b\u044f \u043f\u043e\u0448\u0443\u043a\u0443", "search.result.term.missing": "\u041d\u0435 \u0437\u043d\u0430\u0439\u0434\u0435\u043d\u043e \u0437\u0430\u043f\u0438\u0442\u0443", "select.version": "\u041e\u0431\u0440\u0430\u0442\u0438 \u0432\u0435\u0440\u0441\u0456\u044e"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

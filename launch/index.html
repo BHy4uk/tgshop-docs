@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://bhy4uk.github.io/tgshop-docs/launch/">
       
       
-        <link rel="prev" href="../owner-guide/">
+        <link rel="prev" href="../import/">
       
       
         <link rel="next" href="../payments/">
@@ -286,6 +286,33 @@
     
   
     Інструкція для власника
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Імпорт каталогу
   
 
     
@@ -729,7 +756,7 @@
 <hr />
 <h2 id="мінімальний-шлях-до-першого-продажу">Мінімальний шлях до першого продажу<a class="headerlink" href="#мінімальний-шлях-до-першого-продажу" title="Permanent link">&para;</a></h2>
 <div class="steps">
-<p><strong>1.</strong> Відкрийте бота і виконайте <code>/admin</code>.</p>
+<p><strong>1.</strong> Створіть магазин (<code>🛍️ Створити мій магазин</code> у боті Cartium), відкрийте бота магазину і виконайте <code>/admin</code>.</p>
 <p><strong>2.</strong> Якщо система просить — прийміть політику конфіденційності та правила використання.</p>
 <p><strong>3.</strong> Переконайтеся, що бачите розділи <code>📦 Товари</code>, <code>📂 Категорії</code>, <code>📋 Замовлення</code>, <code>⚙️ Налаштування</code>.</p>
 <p><strong>4.</strong> Створіть категорії, потім додайте товари з фото, цінами і варіантами.</p>
@@ -737,6 +764,7 @@
 <p><strong>6.</strong> Якщо плануєте доставку Новою поштою — збережіть API ключ і дані відправника.</p>
 <p><strong>7.</strong> Перевірте вигляд магазину і тексти кнопок.</p>
 <p><strong>8.</strong> Пройдіть повний тестовий сценарій як покупець.</p>
+<p><strong>9.</strong> Оберіть тариф у <code>Налаштування</code> → <code>Підписка</code> до завершення пробного періоду (14 днів).</p>
 </div>
 <hr />
 <h2 id="чекліст">Чекліст<a class="headerlink" href="#чекліст" title="Permanent link">&para;</a></h2>
@@ -754,32 +782,33 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Ціни коректні</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Розміри й кольори заведені <strong>варіантами</strong>, а не текстом в описі</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Режим залишків обраний свідомо для кожного товару</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Для товарів із відстеженням залишків є варіанти з ненульовим залишком</li>
 </ul>
 <h3 id="оплати">Оплати<a class="headerlink" href="#оплати" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Увімкнений хоча б один спосіб оплати</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Для товарів у режимі <code>Без ліміту залишку</code> є хоча б одна онлайн-оплата</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Якщо використовуєте LiqPay — <code>Public key</code> і <code>Private key</code> збережені</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Якщо використовуєте Monobank — <code>Merchant Token</code> збережений</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Натиснута кнопка <code>Зберегти оплату</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Якщо використовуєте LiqPay — збережені <strong>бойові</strong> <code>Public key</code> і <code>Private key</code> (не <code>sandbox_…</code>) і компанію активовано</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Якщо використовуєте Monobank — збережений бойовий <code>Merchant Token</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Натиснута кнопка <code>Зберегти зміни</code>, статус способу — <code>Активний</code></li>
 </ul>
 <h3 id="доставка">Доставка<a class="headerlink" href="#доставка" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> API ключ Нової пошти збережений</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Місто і точка відправлення вибрані <strong>зі списків пошуку</strong></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Заповнені <code>ПІБ відправника</code> і <code>Телефон відправника</code></li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Натиснута кнопка <code>Зберегти доставку</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Натиснута кнопка <code>Зберегти доставку</code>, API ключ не прострочений</li>
 </ul>
 <h3 id="вигляд-і-тексти">Вигляд і тексти<a class="headerlink" href="#вигляд-і-тексти" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Логотип і банер завантажені</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Тема й акцентний колір обрані</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Шаблон, тема й акцентний колір обрані</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Тексти магазину перевірені</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Назви кнопок зрозумілі покупцю</li>
 </ul>
 <h3 id="підписка">Підписка<a class="headerlink" href="#підписка" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Підписка активна</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Підписка активна або пробний період ще триває</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Режим доступу магазину — <code>За статусом підписки</code> або <code>Працює у звичайному режимі</code></li>
 </ul>
 <hr />
@@ -794,12 +823,15 @@
 <li>Перейдіть у каталог і знайдіть товар.</li>
 <li>Додайте його в кошик.</li>
 <li>Пройдіть оформлення до кінця.</li>
-<li>Завершіть оплату реальними грошима.</li>
+<li>Завершіть оплату: для LiqPay на тестових ключах — тестовою карткою, в усіх інших випадках — реальною карткою на мінімальну суму.</li>
 <li>Перевірте, що замовлення зʼявилося у вас в адмінці.</li>
-<li>Перевірте, що статус коректний — для онлайн-оплати має стати <code>✅ Оплачено</code> автоматично.</li>
-<li>Якщо використовується доставка — переконайтеся, що кнопка <code>🚚 Створити ТТН</code> доступна і ТТН створюється без помилки.</li>
+<li>Перевірте, що статус коректний — для LiqPay і <code>plata by mono</code> має стати <code>Оплачено</code> автоматично.</li>
+<li>Якщо використовується доставка — переконайтеся, що кнопка <code>Створити ТТН</code> доступна і ТТН створюється без помилки.</li>
 </ol>
-<p><img alt="Успішно відправлене тестове замовлення в адмінці" src="../assets/shots/test-order-done.png" /></p>
+<div class="phones">
+<p><img alt="Список замовлень в адмінці" class="phone" src="../assets/shots/orders-list.png" />
+<img alt="Картка замовлення зі створеною ТТН" class="phone" src="../assets/shots/order-ttn.png" /></p>
+</div>
 <hr />
 <h2 id="не-запускайте-магазин-якщо">Не запускайте магазин, якщо<a class="headerlink" href="#не-запускайте-магазин-якщо" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
@@ -810,7 +842,8 @@
 <li>товари не мають фото або ціни;</li>
 <li>не перевірені тексти й кнопки;</li>
 <li>для Нової пошти не внесені дані відправника;</li>
-<li>ви не знаєте, що робити із замовленням у статусі <code>🧾 Оплата на перевірці</code>.</li>
+<li>магазин працює на тестових ключах <code>sandbox_…</code>;</li>
+<li>ви не знаєте, що робити із замовленням у статусі <code>Оплата на перевірці</code>.</li>
 </ul>
 </div>
 <p>Кожен із цих пунктів на живому трафіку перетворюється на втраченого покупця, який більше не повернеться.</p>
@@ -826,7 +859,7 @@
 </thead>
 <tbody>
 <tr>
-<td>Перевіряти фільтри <code>⏳ Очікують</code> і <code>🧾 На перевірці</code></td>
+<td>Перевіряти фільтри <code>Очікують</code> і <code>На перевірці</code></td>
 <td>Двічі на день</td>
 </tr>
 <tr>
