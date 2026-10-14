@@ -13,10 +13,6 @@
         <link rel="canonical" href="https://bhy4uk.github.io/tgshop-docs/import/">
       
       
-        <link rel="prev" href="../owner-guide/">
-      
-      
-        <link rel="next" href="../launch/">
       
       
         
@@ -294,190 +290,6 @@
   
 
       </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Імпорт каталогу
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Імпорт каталогу
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Зміст">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Зміст
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#як-це-працює" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Як це працює
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#що-ви-побачите-після-перевірити-файл" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Що ви побачите після «Перевірити файл»
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#які-колонки-заповнювати" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Які колонки заповнювати
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#кілька-значень-в-одній-клітинці" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Кілька значень в одній клітинці
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#варіанти-й-залишки" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Варіанти й залишки
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#фото" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Фото
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#повторний-імпорт-і-дублікати" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Повторний імпорт і дублікати
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#результат-і-скасування" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Результат і скасування
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#обмеження" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Обмеження
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#що-означають-зауваження-після-перевірки" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Що означають зауваження після перевірки
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -769,81 +581,70 @@
 <table>
 <thead>
 <tr>
-<th>Колонка в шаблоні</th>
-<th>Можна написати й так</th>
+<th>Колонка</th>
 <th>Що вписати</th>
-<th>Приклад</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>name</code></td>
-<td><code>Назва</code>, <code>Товар</code>, <code>Назва товару</code></td>
-<td>Назва товару. <strong>Обов'язково</strong></td>
-<td><code>Худі Oversize</code></td>
+<td><code>name</code><br><em>Назва, Товар</em></td>
+<td>Назва товару. <strong>Обов'язково.</strong><br>Приклад: <code>Худі Oversize</code></td>
 </tr>
 <tr>
-<td><code>price_uah</code></td>
-<td><code>Ціна</code>, <code>Вартість</code>, <code>Ціна грн</code></td>
-<td>Ціна в гривнях, більша за нуль. Підійде <code>1299</code>, <code>1 299</code>, <code>1299,50</code>, <code>1299 грн</code>; копійки округлюються. <strong>Обов'язково</strong></td>
-<td><code>1899</code></td>
+<td><code>price_uah</code><br><em>Ціна, Вартість</em></td>
+<td>Ціна в гривнях, більша за нуль. Підійде <code>1299</code>, <code>1 299</code>, <code>1299,50</code>, <code>1299 грн</code>; копійки округлюються. <strong>Обов'язково.</strong><br>Приклад: <code>1899</code></td>
 </tr>
 <tr>
-<td><code>compare_at_price_uah</code></td>
-<td><code>Стара ціна</code>, <code>Ціна до знижки</code></td>
-<td>Ціна до знижки. Має бути вищою за звичайну, інакше її буде проігноровано</td>
-<td><code>2299</code></td>
+<td><code>compare_at_price_uah</code><br><em>Стара ціна</em></td>
+<td>Ціна до знижки. Має бути вищою за звичайну, інакше її буде проігноровано.<br>Приклад: <code>2299</code></td>
 </tr>
 <tr>
-<td><code>description</code></td>
-<td><code>Опис</code></td>
+<td><code>description</code><br><em>Опис</em></td>
 <td>Опис товару</td>
-<td><code>Щільний футер з начосом</code></td>
 </tr>
 <tr>
-<td><code>category</code></td>
-<td><code>Категорія</code>, <code>Група</code></td>
-<td>Категорія. Для підкатегорії напишіть <code>Розділ &gt; Підрозділ</code>. Якщо такої категорії ще немає, її буде створено</td>
-<td><code>Одяг &gt; Худі</code></td>
+<td><code>category</code><br><em>Категорія, Група</em></td>
+<td>Категорія. Для підкатегорії напишіть <code>Розділ &gt; Підрозділ</code>. Якщо такої категорії ще немає, її буде створено.<br>Приклад: <code>Одяг &gt; Худі</code></td>
 </tr>
 <tr>
-<td><code>inventory_mode</code></td>
-<td><code>Облік</code></td>
+<td><code>inventory_mode</code><br><em>Облік</em></td>
 <td><code>tracked</code> (<code>Відстежувати залишки</code>) або <code>untracked</code> (<code>Без ліміту залишку</code>). Якщо залишити порожнім: з варіантами й залишками буде <code>tracked</code>, в усіх інших випадках <code>untracked</code></td>
-<td><code>tracked</code></td>
 </tr>
 <tr>
-<td><code>option_label</code></td>
-<td><code>Назва варіанта</code></td>
-<td>Як називається вибір</td>
-<td><code>Розмір</code></td>
+<td><code>option_label</code><br><em>Назва варіанта</em></td>
+<td>Як називається вибір: <code>Розмір</code>, <code>Колір</code>, <code>Об'єм</code></td>
 </tr>
 <tr>
-<td><code>options</code></td>
-<td><code>Варіанти</code>, <code>Розміри</code>, <code>Розмір</code></td>
-<td>Самі варіанти через <code>&#124;</code></td>
-<td><code>S&#124;M&#124;L&#124;XL</code></td>
+<td><code>options</code><br><em>Варіанти, Розміри</em></td>
+<td>Самі варіанти через <code>&#124;</code><br>Приклад: <code>S&#124;M&#124;L&#124;XL</code></td>
 </tr>
 <tr>
-<td><code>stocks</code></td>
-<td><code>Залишки</code>, <code>Кількість</code></td>
-<td>Залишки в тому ж порядку, що й варіанти, через <code>&#124;</code></td>
-<td><code>6&#124;10&#124;8&#124;3</code></td>
+<td><code>stocks</code><br><em>Залишки, Кількість</em></td>
+<td>Залишки в тому ж порядку, що й варіанти, через <code>&#124;</code><br>Приклад: <code>6&#124;10&#124;8&#124;3</code></td>
 </tr>
 <tr>
-<td><code>photos</code></td>
-<td><code>Фото</code>, <code>Зображення</code>, <code>Картинки</code></td>
-<td>Прямі посилання на фото через <code>&#124;</code>, до 10 штук. <a href="#фото">Дивіться розділ «Фото»</a></td>
-<td><code>https://example.com/1.jpg&#124;https://example.com/2.jpg</code></td>
+<td><code>photos</code><br><em>Фото, Зображення</em></td>
+<td>Прямі посилання на фото через <code>&#124;</code>, до 10 штук. <a href="#фото">Дивіться розділ «Фото»</a><br>Приклад: <code>https://a.com/1.jpg</code></td>
 </tr>
 <tr>
-<td><code>is_active</code></td>
-<td><code>Активний</code>, <code>Показувати</code></td>
+<td><code>is_active</code><br><em>Активний, Показувати</em></td>
 <td><code>так</code> — товар видно в каталозі, <code>ні</code> — приховано</td>
-<td><code>так</code></td>
 </tr>
 </tbody>
 </table>
+<p>Під назвою колонки курсивом — інші назви, які теж розпізнаються (їх можна писати українською).</p>
+<p>---|---|---|---|
+| <code>name</code> | <code>Назва</code>, <code>Товар</code>, <code>Назва товару</code> | Назва товару. <strong>Обов'язково</strong> | <code>Худі Oversize</code> |
+| <code>price_uah</code> | <code>Ціна</code>, <code>Вартість</code>, <code>Ціна грн</code> | Ціна в гривнях, більша за нуль. Підійде <code>1299</code>, <code>1 299</code>, <code>1299,50</code>, <code>1299 грн</code>; копійки округлюються. <strong>Обов'язково</strong> | <code>1899</code> |
+| <code>compare_at_price_uah</code> | <code>Стара ціна</code>, <code>Ціна до знижки</code> | Ціна до знижки. Має бути вищою за звичайну, інакше її буде проігноровано | <code>2299</code> |
+| <code>description</code> | <code>Опис</code> | Опис товару | <code>Щільний футер з начосом</code> |
+| <code>category</code> | <code>Категорія</code>, <code>Група</code> | Категорія. Для підкатегорії напишіть <code>Розділ &gt; Підрозділ</code>. Якщо такої категорії ще немає, її буде створено | <code>Одяг &gt; Худі</code> |
+| <code>inventory_mode</code> | <code>Облік</code> | <code>tracked</code> (<code>Відстежувати залишки</code>) або <code>untracked</code> (<code>Без ліміту залишку</code>). Якщо залишити порожнім: з варіантами й залишками буде <code>tracked</code>, в усіх інших випадках <code>untracked</code> | <code>tracked</code> |
+| <code>option_label</code> | <code>Назва варіанта</code> | Як називається вибір | <code>Розмір</code> |
+| <code>options</code> | <code>Варіанти</code>, <code>Розміри</code>, <code>Розмір</code> | Самі варіанти через <code>&#124;</code> | <code>S&#124;M&#124;L&#124;XL</code> |
+| <code>stocks</code> | <code>Залишки</code>, <code>Кількість</code> | Залишки в тому ж порядку, що й варіанти, через <code>&#124;</code> | <code>6&#124;10&#124;8&#124;3</code> |
+| <code>photos</code> | <code>Фото</code>, <code>Зображення</code>, <code>Картинки</code> | Прямі посилання на фото через <code>&#124;</code>, до 10 штук. <a href="#фото">Дивіться розділ «Фото»</a> | <code>https://a.com/1.jpg</code> |
+| <code>is_active</code> | <code>Активний</code>, <code>Показувати</code> | <code>так</code> — товар видно в каталозі, <code>ні</code> — приховано | <code>так</code> |</p>
 <hr />
 <h2 id="кілька-значень-в-одній-клітинці">Кілька значень в одній клітинці<a class="headerlink" href="#кілька-значень-в-одній-клітинці" title="Permanent link">&para;</a></h2>
 <p>Варіанти, залишки й фото записуються в одну клітинку, тому їх потрібно розділяти. Найнадійніше — вертикальна риска <code>|</code> (на клавіатурі зазвичай над Enter, з Shift): <code>S|M|L</code>.</p>
@@ -866,9 +667,9 @@
 <td>S — 6 шт., M — 10 шт., L — 8 шт.</td>
 </tr>
 <tr>
-<td><code>Чорний&#124;Білий</code></td>
-<td><code>15&#124;0</code></td>
-<td>Чорний — 15 шт., Білий — немає в наявності</td>
+<td><code>42&#124;43</code></td>
+<td><code>3&#124;0</code></td>
+<td>42 — 3 шт., 43 — немає в наявності</td>
 </tr>
 <tr>
 <td><code>150 мл&#124;300 мл</code></td>

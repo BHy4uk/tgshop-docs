@@ -815,3 +815,39 @@ body {
     font-size: 0.78rem;
     font-weight: 600;
 }
+
+/* -- Таблиці на телефоні: без переносів посеред слова -------- */
+.md-typeset table:not([class]) td,
+.md-typeset table:not([class]) th {
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+}
+
+.md-typeset table:not([class]) code {
+    white-space: normal;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+}
+
+@media screen and (max-width: 600px) {
+    .md-typeset table:not([class]) td,
+    .md-typeset table:not([class]) th {
+        /* html у Material = 125%, тож 1rem = 20px: розміри тут підібрані під це */
+        padding: 0.4rem 0.4rem;
+        font-size: 0.7rem;
+    }
+
+    .md-typeset table:not([class]) code {
+        font-size: 0.85em;
+        padding: 0 0.2em;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .md-typeset table:not([class]) th,
+    .md-typeset table:not([class]) td {
+        min-width: 0;
+    }
+}
