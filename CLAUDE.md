@@ -2,7 +2,7 @@
 
 Це репозиторій публічної документації Telegram-платформи магазинів
 (продукт: `insomnia.workshop`). Сайт збирається MkDocs Material і
-публікується на https://bhy4uk.github.io/tgshop-docs/
+публікується на https://docs.cartium.store/ (GitHub Pages, домен задає файл `docs/CNAME`)
 
 ## Канонічність
 

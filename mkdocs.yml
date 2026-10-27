@@ -1,6 +1,6 @@
 site_name: Cartium
 site_description: Документація платформи Cartium
-site_url: https://bhy4uk.github.io/tgshop-docs/
+site_url: https://docs.cartium.store/
 
 theme:
   name: material
