@@ -3490,3 +3490,19 @@ body::after {
         scroll-behavior: auto !important;
     }
 }
+
+/* Логотипи способів оплати (payments.md): маленька плитка поруч із назвою,
+   ті самі файли, що й у панелі Керування. */
+.md-typeset img.pay-logo {
+    width: 1.6em;
+    height: 1.6em;
+    margin-right: 0.35em;
+    border-radius: 0.4em;
+    vertical-align: middle;
+}
+
+.md-typeset h2 img.pay-logo {
+    width: 1.3em;
+    height: 1.3em;
+    vertical-align: -0.2em;
+}

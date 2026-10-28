@@ -20,12 +20,12 @@ icon: ph/credit-card
 
 | Спосіб | Як працює | Підтвердження |
 |---|---|---|
-| `Stripe` | Онлайн-оплата для Європи: картка, Apple Pay, Google Pay, BLIK, iDEAL та інші | Автоматичне |
-| `PayPal` | Гаманець PayPal або картка на сторінці PayPal | Автоматичне |
+| ![Stripe](assets/payment-logos/stripe.svg){ .pay-logo } `Stripe` | Онлайн-оплата для Європи: картка, Apple Pay, Google Pay, BLIK, iDEAL та інші | Автоматичне |
+| ![PayPal](assets/payment-logos/paypal.svg){ .pay-logo } `PayPal` | Гаманець PayPal або картка на сторінці PayPal | Автоматичне |
 | `LiqPay` | Онлайн-еквайринг: картка, Apple Pay, Google Pay | Автоматичне |
 | `plata by mono` | Онлайн-еквайринг Monobank: картка будь-якого банку, Apple Pay, Google Pay | Автоматичне |
 | `Оплата за посиланням` | Покупець переходить за вашим платіжним посиланням (банка або платіжна сторінка) | Ручне |
-| `Оплата за реквізитами` | Переказ на рахунок за IBAN | Ручне |
+| ![IBAN](assets/payment-logos/iban.svg){ .pay-logo } `Оплата за реквізитами` | Переказ на рахунок за IBAN | Ручне |
 | `Післяплата` | Оплата при отриманні посилки | — |
 
 Усе налаштовується в одному місці:
@@ -66,7 +66,7 @@ icon: ph/credit-card
 
 ---
 
-## Stripe
+## ![](assets/payment-logos/stripe.svg){ .pay-logo } Stripe { #stripe }
 
 Stripe приймає оплату в євро, злотих і доларах. Покупець бачить картки, Apple Pay і Google Pay, а також місцеві способи: BLIK у Польщі, iDEAL у Нідерландах, Bancontact у Бельгії. Які саме способи показувати, ви обираєте в кабінеті Stripe.
 
@@ -100,7 +100,7 @@ Stripe приймає оплату в євро, злотих і доларах. 
 
 ---
 
-## PayPal
+## ![](assets/payment-logos/paypal.svg){ .pay-logo } PayPal { #paypal }
 
 PayPal зручний покупцям, які не хочуть вводити картку: вони входять у свій PayPal і підтверджують оплату. Без акаунта PayPal теж можна оплатити карткою.
 
