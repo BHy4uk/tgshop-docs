@@ -1206,12 +1206,12 @@
 </thead>
 <tbody>
 <tr>
-<td><code>Stripe</code></td>
+<td><img alt="Stripe" class="pay-logo" src="../assets/payment-logos/stripe.svg" /> <code>Stripe</code></td>
 <td>Онлайн-оплата для Європи: картка, Apple Pay, Google Pay, BLIK, iDEAL та інші</td>
 <td>Автоматичне</td>
 </tr>
 <tr>
-<td><code>PayPal</code></td>
+<td><img alt="PayPal" class="pay-logo" src="../assets/payment-logos/paypal.svg" /> <code>PayPal</code></td>
 <td>Гаманець PayPal або картка на сторінці PayPal</td>
 <td>Автоматичне</td>
 </tr>
@@ -1231,7 +1231,7 @@
 <td>Ручне</td>
 </tr>
 <tr>
-<td><code>Оплата за реквізитами</code></td>
+<td><img alt="IBAN" class="pay-logo" src="../assets/payment-logos/iban.svg" /> <code>Оплата за реквізитами</code></td>
 <td>Переказ на рахунок за IBAN</td>
 <td>Ручне</td>
 </tr>
@@ -1270,7 +1270,7 @@
 <li>Ціни вводяться цілими числами, без центів.</li>
 </ul>
 <hr />
-<h2 id="stripe">Stripe<a class="headerlink" href="#stripe" title="Permanent link">&para;</a></h2>
+<h2 id="stripe"><img alt="" class="pay-logo" src="../assets/payment-logos/stripe.svg" /> Stripe<a class="headerlink" href="#stripe" title="Permanent link">&para;</a></h2>
 <p>Stripe приймає оплату в євро, злотих і доларах. Покупець бачить картки, Apple Pay і Google Pay, а також місцеві способи: BLIK у Польщі, iDEAL у Нідерландах, Bancontact у Бельгії. Які саме способи показувати, ви обираєте в кабінеті Stripe.</p>
 <p>Вам знадобиться один ключ: <code>Secret key</code>.</p>
 <h3 id="крок-1-створіть-акаунт-stripe">Крок 1. Створіть акаунт Stripe<a class="headerlink" href="#крок-1-створіть-акаунт-stripe" title="Permanent link">&para;</a></h3>
@@ -1292,7 +1292,7 @@
 <p>З тестовим ключем оплатіть замовлення тестовою карткою <code>4242 4242 4242 4242</code> (будь-яка дата в майбутньому, будь-який CVC). Після оплати покупець повертається в Telegram, а замовлення стає <code>Оплачено</code> само.</p>
 <p>Коли Stripe активує акаунт, замініть тестовий ключ на бойовий <code>sk_live_…</code>.</p>
 <hr />
-<h2 id="paypal">PayPal<a class="headerlink" href="#paypal" title="Permanent link">&para;</a></h2>
+<h2 id="paypal"><img alt="" class="pay-logo" src="../assets/payment-logos/paypal.svg" /> PayPal<a class="headerlink" href="#paypal" title="Permanent link">&para;</a></h2>
 <p>PayPal зручний покупцям, які не хочуть вводити картку: вони входять у свій PayPal і підтверджують оплату. Без акаунта PayPal теж можна оплатити карткою.</p>
 <p>Вам знадобляться <code>Client ID</code> і <code>Secret</code>.</p>
 <h3 id="крок-1-потрібен-бізнес-акаунт">Крок 1. Потрібен бізнес-акаунт<a class="headerlink" href="#крок-1-потрібен-бізнес-акаунт" title="Permanent link">&para;</a></h3>
