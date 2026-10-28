@@ -5,6 +5,10 @@
          <lastmod>2026-10-28</lastmod>
     </url>
     <url>
+         <loc>https://docs.cartium.store/bot/</loc>
+         <lastmod>2026-10-28</lastmod>
+    </url>
+    <url>
          <loc>https://docs.cartium.store/import/</loc>
          <lastmod>2026-10-28</lastmod>
     </url>
@@ -22,6 +26,10 @@
     </url>
     <url>
          <loc>https://docs.cartium.store/payments/</loc>
+         <lastmod>2026-10-28</lastmod>
+    </url>
+    <url>
+         <loc>https://docs.cartium.store/quick-start/</loc>
          <lastmod>2026-10-28</lastmod>
     </url>
 </urlset>

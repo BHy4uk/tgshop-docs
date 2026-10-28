@@ -1098,9 +1098,14 @@ body::after {
     mask-size: 18px;
 }
 
-.md-typeset .admonition > .admonition-title,
-.md-typeset details > summary {
+.md-typeset .admonition[class] > .admonition-title,
+.md-typeset details[class] > summary {
     background-color: transparent;
+}
+
+.md-typeset details[class],
+.md-typeset .admonition[class] {
+    background-color: var(--surface);
 }
 
 .md-typeset .admonition > .admonition-title::before,
@@ -1326,47 +1331,171 @@ body::after {
     border-radius: 16px;
 }
 
-/* Знімок Mini App у рамці iPhone: титанова смуга, чорна рамка, тінь як на сайті.
-   PNG уже з округленими кутами, тож чорна підкладка домальовує екран. */
-.md-typeset img.phone {
+/* Рамка iPhone, як на cartium.store (Device.astro + global.css «iPhone frame»).
+   Розмітку додає hooks/phone_frame.py навколо кожного ![…](…){ .phone }.
+   Усе в cqw від ширини .iphone, тож одна рамка масштабується від 180 до 320px. */
+.md-typeset .iphone {
+    --device-w: 300px;
+    container-type: inline-size;
+    position: relative;
     display: block;
-    width: min(100%, 300px);
-    height: auto;
-    margin: 32px auto;
-    padding: 7px;
-    border: 0;
-    border-radius: 44px;
-    background: #050506;
-    box-shadow:
-        0 0 0 3px #2a2a2e,
-        0 0 0 3.6px rgba(255, 255, 255, 0.18),
-        var(--shadow-phone);
-    transition: transform 0.7s var(--ease-spring), box-shadow 0.5s var(--ease-out);
+    width: min(var(--device-w), 100%);
+    margin: 40px auto;
+    line-height: 0;
+    transition: transform 0.7s var(--ease-spring);
 }
 
-[data-md-color-scheme="slate"] .md-typeset img.phone {
+.md-typeset .iphone-body {
+    display: block;
+    position: relative;
+    padding: 1.15cqw;
+    border-radius: 16.6cqw;
+    background: var(--titanium);
     box-shadow:
-        0 0 0 3px #6e6e75,
-        0 0 0 3.6px rgba(255, 255, 255, 0.25),
+        inset 0 0 0 0.3cqw rgba(255, 255, 255, 0.22),
         var(--shadow-phone);
+}
+
+.md-typeset .iphone-glass {
+    display: block;
+    padding: 2.35cqw;
+    border-radius: 15.45cqw;
+    background: #050506;
+    box-shadow: inset 0 0 0 0.25cqw rgba(255, 255, 255, 0.08);
+}
+
+.md-typeset .iphone-screen {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 13.1cqw;
+    background: #f6f6f6;
+    isolation: isolate;
+}
+
+.md-typeset .iphone-status {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 12cqw;
+    padding: 0.6cqw 7cqw 0 9.6cqw;
+    color: #0a0a0b;
+    font: 600 3.9cqw/1 -apple-system, "SF Pro Text", "Fixel Text", system-ui, sans-serif;
+    letter-spacing: -0.01em;
+}
+
+.md-typeset .iphone-island {
+    position: absolute;
+    left: 50%;
+    top: 2.5cqw;
+    width: 28.5cqw;
+    height: 8.3cqw;
+    translate: -50% 0;
+    border-radius: 99px;
+    background: #000;
+}
+
+.md-typeset .iphone-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.4cqw;
+}
+
+.md-typeset .iphone-icons svg {
+    display: block;
+    width: auto;
+    height: 3.2cqw;
+    fill: currentColor;
+}
+
+.md-typeset .iphone img.phone {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+}
+
+.md-typeset .iphone-home {
+    display: block;
+    position: relative;
+    height: 7cqw;
+}
+
+.md-typeset .iphone-home::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2.1cqw;
+    width: 34cqw;
+    height: 1.35cqw;
+    translate: -50% 0;
+    border-radius: 99px;
+    background: #0a0a0b;
+}
+
+/* Бокові кнопки: Action і гучність зліва, бокова справа */
+.md-typeset .iphone-key {
+    position: absolute;
+    z-index: -1;
+    width: 1.1cqw;
+    border-radius: 0.6cqw;
+    background: linear-gradient(90deg, #2a2a2e, #6b6b72 60%, #2a2a2e);
+}
+
+.md-typeset .iphone-key--action {
+    left: -0.55cqw;
+    top: 21%;
+    height: 8cqw;
+}
+
+.md-typeset .iphone-key--up {
+    left: -0.55cqw;
+    top: 29%;
+    height: 12.5cqw;
+}
+
+.md-typeset .iphone-key--down {
+    left: -0.55cqw;
+    top: 37%;
+    height: 12.5cqw;
+}
+
+.md-typeset .iphone-key--side {
+    right: -0.55cqw;
+    top: 31%;
+    height: 19cqw;
 }
 
 @media (hover: hover) {
-    .md-typeset img.phone:hover {
-        transform: translateY(-6px) rotate(-0.6deg);
+    .md-typeset .iphone:hover {
+        transform: translateY(-6px);
     }
+}
+
+/* Абзац, у якому стоїть лише знімок, не додає зайвих відступів */
+.md-typeset p:has(> .iphone:only-child) {
+    margin: 0;
 }
 
 .md-typeset .phones {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 28px;
-    margin: 32px 0;
+    align-items: flex-start;
+    gap: 36px;
+    margin: 40px 0;
 }
 
-.md-typeset .phones img.phone {
-    width: min(100%, 240px);
+.md-typeset .phones .iphone {
+    --device-w: 250px;
+    flex: 0 1 250px;
     margin: 0;
 }
 
@@ -1390,32 +1519,39 @@ body::after {
 /* Текст зліва, знімок справа; на вузьких екранах — один під одним */
 .md-typeset .with-shot {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
-    gap: 40px;
+    grid-template-columns: minmax(0, 1fr) 270px;
+    gap: 48px;
     align-items: start;
-    margin: 28px 0;
-}
-
-.md-typeset .with-shot img.phone {
-    position: sticky;
-    top: calc(var(--header-h) + 24px);
-    width: 100%;
-    margin: 0;
+    margin: 32px 0;
 }
 
 .md-typeset .with-shot > :first-child {
     margin-top: 0;
 }
 
+.md-typeset .with-shot > p:has(> .iphone) {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    margin: 0;
+}
+
+.md-typeset .with-shot .iphone {
+    --device-w: 270px;
+    margin: 0;
+}
+
 @media (max-width: 760px) {
     .md-typeset .with-shot {
         grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
+        gap: 28px;
     }
 
-    .md-typeset .with-shot img.phone {
+    .md-typeset .with-shot > p:has(> .iphone) {
         position: static;
-        width: min(100%, 280px);
+    }
+
+    .md-typeset .with-shot .iphone {
+        --device-w: 260px;
         margin: 0 auto;
     }
 }
@@ -1768,6 +1904,420 @@ body::after {
     color: var(--on-accent);
 }
 
+/* -- Шлях у меню: «Керування → Товари» ------------------------ */
+.md-typeset .c-path {
+    display: flex;
+    width: fit-content;
+    max-width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 18px;
+    padding: 6px 12px 6px 10px;
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--muted);
+}
+
+.md-typeset .c-path::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    flex: none;
+    background: var(--muted);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.md-typeset .c-path code {
+    background: none;
+    padding: 0;
+    color: var(--ink);
+}
+
+/* -- «Детальніше →» -------------------------------------------- */
+.md-typeset a.c-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.md-typeset a.c-more::after {
+    content: "→";
+    transition: transform 0.4s var(--ease-spring);
+}
+
+.md-typeset a.c-more:hover::after {
+    transform: translateX(4px);
+}
+
+/* -- Три цифри над кроками -------------------------------------- */
+.md-typeset .c-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 0 0 32px;
+}
+
+.md-typeset .c-summary-item {
+    display: grid;
+    gap: 2px;
+    padding: 18px 20px;
+    border-radius: var(--r-block);
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line), var(--shadow-soft);
+}
+
+.md-typeset .c-summary-item p {
+    display: contents;
+}
+
+.md-typeset .c-summary-value {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--ink);
+}
+
+.md-typeset .c-summary-label {
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+/* -- Кроки «Швидкого старту»: нумерована шкала зліва, знімок справа --- */
+.md-typeset .c-steps {
+    margin: 48px 0 24px;
+    counter-reset: c-step;
+}
+
+.md-typeset .c-step {
+    --dot: 48px;
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--dot) minmax(0, 1fr) 250px;
+    column-gap: 36px;
+    align-items: start;
+    padding-bottom: 64px;
+    counter-increment: c-step;
+}
+
+/* кружечок із номером */
+.md-typeset .c-step::before {
+    content: counter(c-step);
+    grid-column: 1;
+    grid-row: 1;
+    position: sticky;
+    top: calc(var(--header-h) + 20px);
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: var(--dot);
+    height: var(--dot);
+    border-radius: 50%;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1.5px var(--line-strong), var(--shadow-soft);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 19px;
+    color: var(--ink);
+    transition: background-color 0.5s var(--ease-out), color 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+
+/* лінія до наступного кроку */
+.md-typeset .c-step::after {
+    content: "";
+    position: absolute;
+    left: calc(var(--dot) / 2 - 0.75px);
+    top: calc(var(--dot) + 8px);
+    bottom: 8px;
+    width: 1.5px;
+    border-radius: 2px;
+    background: linear-gradient(var(--line-strong), var(--line-strong)) top / 100% var(--fill, 0%) no-repeat, var(--line);
+}
+
+.md-typeset .c-step:last-child {
+    padding-bottom: 8px;
+}
+
+.md-typeset .c-step:last-child::after {
+    display: none;
+}
+
+/* пройдені кроки (cartium.js) зафарбовуються */
+.md-typeset .c-step.is-done::before {
+    background: var(--accent);
+    color: var(--on-accent);
+    box-shadow: 0 10px 24px -12px var(--accent-glow);
+}
+
+.md-typeset .c-step.is-done::after {
+    --fill: 100%;
+}
+
+.md-typeset .c-step-body {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+    padding-top: 4px;
+}
+
+.md-typeset .c-step:not(:has(.iphone)) .c-step-body {
+    grid-column: 2 / -1;
+    max-width: 680px;
+}
+
+.md-typeset .c-step > p:has(> .iphone) {
+    grid-column: 3;
+    grid-row: 1;
+    position: sticky;
+    top: calc(var(--header-h) + 20px);
+    margin: 0;
+}
+
+.md-typeset .c-step .iphone {
+    --device-w: 250px;
+    margin: 0;
+}
+
+.md-typeset .c-step-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 6px;
+}
+
+.md-typeset .c-step-meta span {
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    padding: 0 10px;
+    border-radius: var(--r-pill);
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+.md-typeset .c-step-meta span:first-child {
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.md-typeset .c-step-meta span:nth-child(3) {
+    background: var(--accent);
+    box-shadow: none;
+    color: var(--on-accent);
+}
+
+.md-typeset .c-step h2 {
+    margin: 0 0 16px;
+    font-size: clamp(24px, 18px + 0.9vw, 30px);
+}
+
+.md-typeset .c-step-body > :last-child {
+    margin-bottom: 0;
+}
+
+.md-typeset .c-step .admonition,
+.md-typeset .c-step details {
+    margin: 20px 0 0;
+}
+
+/* -- Швидкі переходи на початку інструкції ------------------------ */
+.md-typeset .c-jump {
+    margin: 28px 0 8px;
+}
+
+.md-typeset .c-jump > p {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+    gap: 8px;
+    margin: 0;
+}
+
+.md-typeset .c-jump a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line);
+    color: var(--ink);
+    font-size: 15.5px;
+    font-weight: 500;
+    line-height: 1.3;
+    text-decoration: none;
+    transition: transform 0.5s var(--ease-spring), box-shadow 0.3s var(--ease-out);
+}
+
+.md-typeset .c-jump a:hover {
+    transform: translateY(-2px);
+    box-shadow: inset 0 0 0 1px var(--line-strong), var(--shadow-soft);
+}
+
+.md-typeset .c-jump a .twemoji {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 11px;
+    background: var(--bg);
+}
+
+.md-typeset .c-jump a .twemoji svg {
+    width: 18px;
+    height: 18px;
+    max-height: none;
+    fill: var(--ink);
+}
+
+@media (max-width: 960px) {
+    .md-typeset .c-step {
+        grid-template-columns: var(--dot) minmax(0, 1fr);
+        column-gap: 20px;
+    }
+
+    .md-typeset .c-step > p:has(> .iphone) {
+        grid-column: 2;
+        grid-row: 2;
+        position: static;
+        margin-top: 28px;
+    }
+
+    .md-typeset .c-step .iphone {
+        --device-w: 240px;
+        margin: 0 auto 0 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .md-typeset .c-step {
+        --dot: 36px;
+        column-gap: 14px;
+        padding-bottom: 48px;
+    }
+
+    .md-typeset .c-step::before {
+        font-size: 16px;
+    }
+
+    .md-typeset .c-step .iphone {
+        --device-w: 230px;
+        margin: 0 auto;
+    }
+
+    .md-typeset .c-summary {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .md-typeset .c-summary-item {
+        grid-template-columns: auto 1fr;
+        align-items: baseline;
+        gap: 12px;
+        padding: 14px 16px;
+    }
+
+    .md-typeset .c-summary-value {
+        font-size: 21px;
+    }
+}
+
+/* -- Чекліст запуску: групи в картках ---------------------------- */
+.md-typeset .c-checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 16px;
+    margin: 24px 0 8px;
+}
+
+.md-typeset .c-check-card {
+    padding: 22px 24px 18px;
+    border-radius: var(--r-block);
+    background: var(--surface);
+    box-shadow: inset 0 0 0 1px var(--line), var(--shadow-soft);
+}
+
+.md-typeset .c-check-card h3 {
+    margin: 0 0 12px;
+    font-size: 19px;
+}
+
+.md-typeset .c-check-card h3 .headerlink {
+    display: none;
+}
+
+.md-typeset .c-check-card ul {
+    margin: 0;
+    font-size: 15.5px;
+    line-height: 1.5;
+}
+
+.md-typeset .c-check-card .task-list-item {
+    margin-bottom: 10px;
+    transition: color 0.3s var(--ease-out);
+}
+
+.md-typeset .c-check-card .task-list-item:has(input:checked) {
+    color: var(--muted);
+}
+
+.md-typeset .c-checklist .task-list-item {
+    cursor: pointer;
+    user-select: none;
+}
+
+.md-typeset .c-check-progress {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 4px;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink-2);
+}
+
+.md-typeset .c-check-progress-bar {
+    flex: 1;
+    max-width: 260px;
+    height: 6px;
+    border-radius: 99px;
+    background: var(--line-strong);
+    overflow: hidden;
+}
+
+.md-typeset .c-check-progress-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--ink);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--done, 0));
+    transition: transform 0.6s var(--ease-spring);
+}
+
+@media screen and (min-width: 76.25em) {
+    .c-home .md-typeset .cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
 /* =========================================================
    Головна сторінка
    ========================================================= */
@@ -1877,37 +2427,37 @@ body::after {
     transition: transform 0.9s var(--ease-out);
 }
 
-.md-typeset .c-hero-tilt img.phone {
+.md-typeset .c-hero-tilt .iphone {
+    --device-w: clamp(180px, 17vw, 270px);
     position: absolute;
     top: 50%;
     left: 50%;
-    width: clamp(170px, 17vw, 260px);
     margin: 0;
     animation: c-phone-in 1.4s var(--ease-out) both;
 }
 
-.md-typeset .c-hero-tilt img.phone:nth-of-type(1) {
+.md-typeset .c-hero-tilt .iphone:nth-of-type(1) {
     --pos: translate(-118%, -46%) rotate(-9deg) scale(0.88);
     transform: var(--pos);
     animation-delay: 0.25s;
     z-index: 1;
 }
 
-.md-typeset .c-hero-tilt img.phone:nth-of-type(2) {
+.md-typeset .c-hero-tilt .iphone:nth-of-type(2) {
     --pos: translate(18%, -46%) rotate(9deg) scale(0.88);
     transform: var(--pos);
     animation-delay: 0.35s;
     z-index: 1;
 }
 
-.md-typeset .c-hero-tilt img.phone:nth-of-type(3) {
+.md-typeset .c-hero-tilt .iphone:nth-of-type(3) {
     --pos: translate(-50%, -50%);
     transform: var(--pos);
     animation-delay: 0.1s;
     z-index: 2;
 }
 
-.md-typeset .c-hero-tilt img.phone:hover {
+.md-typeset .c-hero-tilt .iphone:hover {
     transform: var(--pos);
 }
 
@@ -2012,15 +2562,15 @@ body::after {
     margin: 0;
 }
 
-.md-typeset .c-stage img.phone {
+.md-typeset .c-stage .iphone-body {
+    background: linear-gradient(150deg, #e2e2e6 0%, #8c8c93 16%, #55555b 40%, #76767d 64%, #4a4a50 84%, #c4c4ca 100%);
     box-shadow:
-        0 0 0 3px #6e6e75,
-        0 0 0 3.6px rgba(255, 255, 255, 0.25),
+        inset 0 0 0 0.3cqw rgba(255, 255, 255, 0.22),
         0 70px 120px -50px rgba(0, 0, 0, 0.8);
 }
 
-.md-typeset .c-stage .phones img.phone:nth-of-type(even) {
-    margin-top: 48px;
+.md-typeset .c-stage .phones .iphone:nth-of-type(even) {
+    margin-top: 56px;
 }
 
 /* =========================================================
@@ -2207,6 +2757,7 @@ body::after {
 
 /* Кнопка «Нагору» */
 .md-top {
+    white-space: nowrap;
     top: auto;
     bottom: 24px;
     height: 44px;
@@ -2775,8 +3326,8 @@ body::after {
         mask-image: linear-gradient(#000 70%, transparent);
     }
 
-    .md-typeset .c-hero-tilt img.phone {
-        width: 200px;
+    .md-typeset .c-hero-tilt .iphone {
+        --device-w: 200px;
         top: 52%;
     }
 }
@@ -2895,13 +3446,13 @@ body::after {
         scrollbar-width: none;
     }
 
-    .md-typeset .c-stage .phones img.phone {
-        flex: none;
-        width: 210px;
+    .md-typeset .c-stage .phones .iphone {
+        --device-w: 220px;
+        flex: 0 0 220px;
         scroll-snap-align: center;
     }
 
-    .md-typeset .c-stage .phones img.phone:nth-of-type(even) {
+    .md-typeset .c-stage .phones .iphone:nth-of-type(even) {
         margin-top: 0;
     }
 

@@ -75,10 +75,13 @@
       ".md-typeset > .with-shot",
       ".md-typeset > .split > .split-item",
       ".md-typeset > .cards > .card",
-      ".md-typeset > .phones img.phone",
+      ".md-typeset > .phones .iphone",
       ".md-typeset > .c-stage",
       ".md-typeset > .c-section-head",
-      ".md-typeset > p > img.phone",
+      ".md-typeset > .c-steps > .c-step",
+      ".md-typeset > .c-summary > .c-summary-item",
+      ".md-typeset > .c-jump",
+      ".md-typeset > p > .iphone",
     ];
     var items = $$(selectors.join(","), content);
     if (!items.length) return;
@@ -262,6 +265,65 @@
     updateActive();
   }
 
+  /* ---------- Кроки «Швидкого старту»: пройдені зафарбовуються ---------- */
+  function setupSteps(content) {
+    var steps = $$(".c-step", content);
+    if (!steps.length) return;
+    var raf = 0;
+    function update() {
+      var line = window.innerHeight * 0.45;
+      steps.forEach(function (step) {
+        step.classList.toggle("is-done", step.getBoundingClientRect().top < line);
+      });
+    }
+    on(window, "scroll", function () {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    }, { passive: true });
+    update();
+  }
+
+  /* ---------- Чекліст запуску: відмітки клікабельні й запамʼятовуються ---------- */
+  function setupChecklist(content) {
+    var list = $(".c-checklist", content);
+    if (!list) return;
+    var key = "cartium-docs-checklist:" + location.pathname;
+    var saved = {};
+    try {
+      saved = JSON.parse(localStorage.getItem(key) || "{}");
+    } catch (e) {}
+    var boxes = $$('input[type="checkbox"]', list);
+    var progress = document.createElement("p");
+    progress.className = "c-check-progress";
+    progress.innerHTML = '<span data-count></span><span class="c-check-progress-bar"><span></span></span>';
+    list.parentNode.insertBefore(progress, list);
+    function render() {
+      var done = boxes.filter(function (b) { return b.checked; }).length;
+      $("[data-count]", progress).textContent = "Готово " + done + " з " + boxes.length;
+      progress.style.setProperty("--done", boxes.length ? done / boxes.length : 0);
+    }
+    boxes.forEach(function (box, i) {
+      box.disabled = false;
+      box.checked = !!saved[i];
+      var item = box.closest("li");
+      if (item) {
+        item.addEventListener("click", function (e) {
+          if (e.target.closest("a, label")) return;
+          box.checked = !box.checked;
+          box.dispatchEvent(new Event("change"));
+        });
+      }
+      box.addEventListener("change", function () {
+        saved[i] = box.checked;
+        try {
+          localStorage.setItem(key, JSON.stringify(saved));
+        } catch (e) {}
+        render();
+      });
+    });
+    render();
+  }
+
   /* ---------- Пункти мобільного меню виїжджають по черзі ---------- */
   function setupDrawer() {
     $$(".md-nav--primary > .md-nav__list > .md-nav__item").forEach(function (li, i) {
@@ -290,6 +352,8 @@
     setupReveal(content);
     setupSpot();
     setupMobileToc(content);
+    setupSteps(content);
+    setupChecklist(content);
     setupDrawer();
     syncThemeColor();
     lastY = window.scrollY;
