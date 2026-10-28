@@ -1347,7 +1347,7 @@
 </details>
 <div class="admonition note">
 <p class="admonition-title">А чат-бот?</p>
-<p>Бот магазину залишається вашим швидким пультом: категорії поки створюються саме в ньому, а кількома командами можна відкрити замовлення без панелі. Усе про бота зібрано на окремій сторінці <a href="../bot/">Telegram-бот</a>.</p>
+<p>Бот магазину залишається швидким пультом: сповіщення про нові замовлення приходять туди з кнопкою, яка одразу відкриває замовлення, а кількома командами можна працювати без панелі. Усе про бота зібрано на сторінці <a href="../bot/">Telegram-бот</a>.</p>
 </div>
 <hr />
 <h2 id="товари">Товари<a class="headerlink" href="#товари" title="Permanent link">&para;</a></h2>
@@ -1357,6 +1357,7 @@
 <p>Тут увесь каталог: пошук, фільтри <code>Усі</code>, <code>Активні</code>, <code>Неактивні</code>, ціни, залишки й статуси.</p>
 <ul>
 <li><code>Додати товар</code> відкриває форму нового товару.</li>
+<li><code>Категорії</code> створює категорії й підкатегорії.</li>
 <li><code>Імпорт товарів</code> завантажує багато товарів файлом.</li>
 <li><code>⋮</code> у рядку товару: <code>Редагувати</code>, <code>Дублювати</code>, <code>Деактивувати</code> / <code>Активувати</code>.</li>
 </ul>
@@ -1365,8 +1366,21 @@
 <p><span class="iphone"><span class="iphone-key iphone-key--action"></span><span class="iphone-key iphone-key--up"></span><span class="iphone-key iphone-key--down"></span><span class="iphone-key iphone-key--side"></span><span class="iphone-body"><span class="iphone-glass"><span class="iphone-screen"><span class="iphone-status" aria-hidden="true"><span>9:41</span><span class="iphone-island"></span><span class="iphone-icons"><svg viewBox="0 0 18 12" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M8 2.4c2.3 0 4.4.9 6 2.4l1.3-1.4A10.6 10.6 0 0 0 8 .4 10.6 10.6 0 0 0 .7 3.4L2 4.8a8.6 8.6 0 0 1 6-2.4Zm0 3.8c1.3 0 2.5.5 3.4 1.3l1.3-1.4A7 7 0 0 0 8 4.2a7 7 0 0 0-4.7 1.9l1.3 1.4c.9-.8 2.1-1.3 3.4-1.3Zm0 3.8c.4 0 .8.2 1.1.4L8 11.6 6.9 10.4c.3-.2.7-.4 1.1-.4Z"/></svg><svg viewBox="0 0 27 12" aria-hidden="true"><rect x="0.5" y="0.5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity="0.4"/><rect x="2" y="2" width="20" height="8" rx="2"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2Z" fill-opacity="0.45"/></svg></span></span><img alt="Список товарів" class="phone" src="../assets/shots/hub-products.webp" loading="lazy" decoding="async"><span class="iphone-home" aria-hidden="true"></span></span></span></span></span></p>
 </div>
 <h3 id="категорії">Категорії<a class="headerlink" href="#категорії" title="Permanent link">&para;</a></h3>
+<p class="c-path"><code>Керування</code> → <code>Товари</code> → <code>Категорії</code></p>
+<div class="with-shot">
+<div>
 <p>Створіть категорії <strong>до</strong> товарів. Від них залежить, чи знайде покупець потрібне за два дотики, чи гортатиме довгу стрічку.</p>
-<p>Категорії й підкатегорії поки створюються в боті: <code>/admin</code> → <code>📂 Категорії</code> → <code>➕ Додати категорію</code>. Там же можна змінити їхній порядок. Під час імпорту категорії з файлу створюються автоматично.</p>
+<ol>
+<li>Введіть <code>Назва</code>, наприклад «Одяг».</li>
+<li>У полі <code>Де розмістити</code> залиште <code>Основна категорія</code> або оберіть <code>Підкатегорія в «…»</code>.</li>
+<li>Натисніть <code>Створити категорію</code>.</li>
+</ol>
+<p>Нижче, у списку <code>Ваші категорії</code>, видно всі категорії. Кнопка <code>+ Підкатегорія</code> біля категорії одразу готує підкатегорію саме в ній. Можливі два рівні: категорія і підкатегорія, наприклад «Одяг / Футболки».</p>
+<p>Якщо категорії бракує вже під час додавання товару, натисніть <code>+ Нова</code> поруч із полем <code>Основна категорія</code>: вона створиться й одразу обереться для товару.</p>
+<p>Під час імпорту категорії з файлу створюються автоматично. Змінити порядок, у якому категорії бачать покупці, поки можна в боті: <code>/admin</code> → <code>📂 Категорії</code>, кнопки <code>⬆️ Підняти</code> і <code>⬇️ Опустити</code>.</p>
+</div>
+<p><span class="iphone"><span class="iphone-key iphone-key--action"></span><span class="iphone-key iphone-key--up"></span><span class="iphone-key iphone-key--down"></span><span class="iphone-key iphone-key--side"></span><span class="iphone-body"><span class="iphone-glass"><span class="iphone-screen"><span class="iphone-status" aria-hidden="true"><span>9:41</span><span class="iphone-island"></span><span class="iphone-icons"><svg viewBox="0 0 18 12" aria-hidden="true"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg viewBox="0 0 16 12" aria-hidden="true"><path d="M8 2.4c2.3 0 4.4.9 6 2.4l1.3-1.4A10.6 10.6 0 0 0 8 .4 10.6 10.6 0 0 0 .7 3.4L2 4.8a8.6 8.6 0 0 1 6-2.4Zm0 3.8c1.3 0 2.5.5 3.4 1.3l1.3-1.4A7 7 0 0 0 8 4.2a7 7 0 0 0-4.7 1.9l1.3 1.4c.9-.8 2.1-1.3 3.4-1.3Zm0 3.8c.4 0 .8.2 1.1.4L8 11.6 6.9 10.4c.3-.2.7-.4 1.1-.4Z"/></svg><svg viewBox="0 0 27 12" aria-hidden="true"><rect x="0.5" y="0.5" width="23" height="11" rx="3.2" fill="none" stroke="currentColor" stroke-opacity="0.4"/><rect x="2" y="2" width="20" height="8" rx="2"/><path d="M25 4v4c.8-.3 1.4-1.1 1.4-2s-.6-1.7-1.4-2Z" fill-opacity="0.45"/></svg></span></span><img alt="Вікно «Категорії»" class="phone" src="../assets/shots/categories.webp" loading="lazy" decoding="async"><span class="iphone-home" aria-hidden="true"></span></span></span></span></span></p>
+</div>
 <h3 id="форма-товару">Форма товару<a class="headerlink" href="#форма-товару" title="Permanent link">&para;</a></h3>
 <div class="with-shot">
 <div>
