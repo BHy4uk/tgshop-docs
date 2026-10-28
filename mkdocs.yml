@@ -96,6 +96,10 @@ extra:
   terms_url: https://cartium.work/terms
   privacy_url: https://cartium.work/privacy
 
+# Знімки Mini App автоматично отримують рамку iPhone (див. hooks/phone_frame.py)
+hooks:
+  - hooks/phone_frame.py
+
 extra_css:
   - styles/extra.css
 
@@ -117,7 +121,9 @@ exclude_docs: |
 
 nav:
   - Початок: index.md
-  - Інструкція для власника: owner-guide.md
-  - Запуск магазину: launch.md
+  - Швидкий старт: quick-start.md
+  - Інструкція: owner-guide.md
   - Оплати: payments.md
   - Нова пошта: nova-poshta.md
+  - Перед запуском: launch.md
+  - Telegram-бот: bot.md

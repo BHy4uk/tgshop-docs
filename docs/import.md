@@ -35,7 +35,7 @@ icon: ph/file-arrow-up
 
 </div>
 
-![Екран імпорту](assets/shots/import-empty.png){ .phone }
+![Екран імпорту](assets/shots/import-empty.webp){ .phone }
 
 </div>
 
@@ -67,7 +67,7 @@ icon: ph/file-arrow-up
 
 </div>
 
-![Результат перевірки файлу](assets/shots/import-preview.png){ .phone }
+![Результат перевірки файлу](assets/shots/import-preview.webp){ .phone }
 
 </div>
 
@@ -175,7 +175,7 @@ icon: ph/file-arrow-up
 
 </div>
 
-![Підсумок імпорту з кнопкою скасування](assets/shots/import-result.png){ .phone }
+![Підсумок імпорту з кнопкою скасування](assets/shots/import-result.webp){ .phone }
 
 </div>
 

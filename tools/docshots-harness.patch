@@ -1,0 +1,40 @@
+diff --git a/tools/webapp-harness/drive.mjs b/tools/webapp-harness/drive.mjs
+index aef7aec..bfb4b4f 100644
+--- a/tools/webapp-harness/drive.mjs
++++ b/tools/webapp-harness/drive.mjs
+@@ -53,7 +53,7 @@ for (const sc of scenarios) {
+   if (filter && !sc.name.includes(filter)) continue;
+   log = []; const failures = [];
+   await fetch(BASE + "/__reset?" + new URLSearchParams(sc.reset || {}));
+-  await send("Emulation.setDeviceMetricsOverride", { width: sc.w || 390, height: sc.h || 844, deviceScaleFactor: 2, mobile: true });
++  await send("Emulation.setDeviceMetricsOverride", { width: sc.w || 390, height: sc.h || 844, deviceScaleFactor: Number(process.env.DSF || 2), mobile: true });
+   /* touch: a phone — coarse pointer, touch events (so `pointer: coarse` CSS and pointer-type logic run). */
+   await send("Emulation.setTouchEmulationEnabled", { enabled: Boolean(sc.touch), maxTouchPoints: sc.touch ? 5 : 1 });
+   await send("Emulation.setEmitTouchEventsForMouse", { enabled: Boolean(sc.touch), configuration: "mobile" });
+@@ -71,7 +71,7 @@ for (const sc of scenarios) {
+     try {
+       if (st.wait) await sleep(st.wait);
+       /* metrics: resize the viewport mid-scenario — what Telegram does when the keyboard opens/closes. */
+-      if (st.metrics) { await send("Emulation.setDeviceMetricsOverride", { width: st.metrics.w || sc.w || 390, height: st.metrics.h || sc.h || 844, deviceScaleFactor: 2, mobile: true }); await sleep(st.after ?? 500); }
++      if (st.metrics) { await send("Emulation.setDeviceMetricsOverride", { width: st.metrics.w || sc.w || 390, height: st.metrics.h || sc.h || 844, deviceScaleFactor: Number(process.env.DSF || 2), mobile: true }); await sleep(st.after ?? 500); }
+       /* swipe: a real vertical touch drag from a point (a scroll gesture, not a tap). */
+       if (st.swipe) { await evaluate(HELPERS); const pt = await evaluate(`(function(){var p=${st.swipe}; return {x:p.x,y:p.y}})()`); await send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: pt.x, y: pt.y }] }); for (let k = 1; k <= 4; k++) { await send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: pt.x, y: pt.y - 20 * k }] }); } await send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] }); await sleep(st.after ?? 450); }
+       /* tap: a real touch at a point (x/y are JS expressions evaluated in the page). */
+diff --git a/tools/webapp-harness/server.mjs b/tools/webapp-harness/server.mjs
+index 4c3a8c8..14cc10f 100644
+--- a/tools/webapp-harness/server.mjs
++++ b/tools/webapp-harness/server.mjs
+@@ -216,7 +216,12 @@ http.createServer(async (req, res) => {
+     if (p === "/app/manifest.webmanifest") return json(res, { name: "Shop" });
+     if (p === "/app/icon.svg") { res.writeHead(200, { "Content-Type": "image/svg+xml" }); return res.end(svg("tee")); }
+     if (p === "/__reset") { reset(Object.fromEntries(u.searchParams)); return json(res, { ok: true }); }
+-    if (p.startsWith("/__img/")) { res.writeHead(200, { "Content-Type": "image/svg+xml" }); return res.end(svg(p.slice(7).replace(".svg", ""), u.searchParams.get("alt"))); }
++    if (p.startsWith("/__img/")) {
++      const PHOTO = { tee: "tee.png", jeans: "pants.png", shorts: "shorts.png", ring: "ring.png" };
++      const shape = p.slice(7).replace(".svg", "");
++      if (process.env.PRODUCT_PHOTOS && PHOTO[shape]) { res.writeHead(200, { "Content-Type": "image/png" }); return res.end(fs.readFileSync(path.join(process.env.PRODUCT_PHOTOS, PHOTO[shape]))); }
++      res.writeHead(200, { "Content-Type": "image/svg+xml" }); return res.end(svg(shape, u.searchParams.get("alt")));
++    }
+     if (p.startsWith("/__frame")) { // iframe wrapper for fixed-width screenshots of the whole shell
+       res.writeHead(200, { "Content-Type": "text/html" }); return res.end(`<body style="margin:0;background:#888"><iframe src="${u.searchParams.get("src")}" style="width:${u.searchParams.get("w") || 390}px;height:${u.searchParams.get("h") || 844}px;border:0;display:block"></iframe></body>`);
+     }
