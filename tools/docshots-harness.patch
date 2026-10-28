@@ -21,7 +21,7 @@ index aef7aec..bfb4b4f 100644
        if (st.swipe) { await evaluate(HELPERS); const pt = await evaluate(`(function(){var p=${st.swipe}; return {x:p.x,y:p.y}})()`); await send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: pt.x, y: pt.y }] }); for (let k = 1; k <= 4; k++) { await send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: pt.x, y: pt.y - 20 * k }] }); } await send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] }); await sleep(st.after ?? 450); }
        /* tap: a real touch at a point (x/y are JS expressions evaluated in the page). */
 diff --git a/tools/webapp-harness/server.mjs b/tools/webapp-harness/server.mjs
-index 4c3a8c8..14cc10f 100644
+index 63d9de1..43ea1f0 100644
 --- a/tools/webapp-harness/server.mjs
 +++ b/tools/webapp-harness/server.mjs
 @@ -216,7 +216,12 @@ http.createServer(async (req, res) => {
@@ -38,3 +38,23 @@ index 4c3a8c8..14cc10f 100644
      if (p.startsWith("/__frame")) { // iframe wrapper for fixed-width screenshots of the whole shell
        res.writeHead(200, { "Content-Type": "text/html" }); return res.end(`<body style="margin:0;background:#888"><iframe src="${u.searchParams.get("src")}" style="width:${u.searchParams.get("w") || 390}px;height:${u.searchParams.get("h") || 844}px;border:0;display:block"></iframe></body>`);
      }
+diff --git a/tools/webapp-harness/suites/docshots.mjs b/tools/webapp-harness/suites/docshots.mjs
+index 25b97c1..55ba4e6 100644
+--- a/tools/webapp-harness/suites/docshots.mjs
++++ b/tools/webapp-harness/suites/docshots.mjs
+@@ -29,6 +29,15 @@ export default [
+     { js: `[].slice.call(${F}.querySelectorAll('button')).find(function(b){return /Додати товар/.test(b.textContent)}).click()`, after: 900 },
+     lift("#createDrawer .pf-photos", 160),
+   ]),
++  sc("categories", [
++    { js: `${id('productsCategoriesBtn')}.click()`, after: 600 },
++    { js: `(function(){var i=${id('categoryName')}; i.value='Одяг'; i.dispatchEvent(new (${W}.Event)('input',{bubbles:true}))})()` },
++    { js: `${id('categorySubmitBtn')}.click()`, after: 1100 },
++    { js: `[].filter.call(${F}.querySelectorAll('#categoryTree .category-tree-root'), function(r){return /Одяг/.test(r.textContent)})[0].querySelector('[data-category-add-child]').click()`, after: 300 },
++    { js: `(function(){var i=${id('categoryName')}; i.value='Футболки'; i.dispatchEvent(new (${W}.Event)('input',{bubbles:true}))})()` },
++    { js: `${id('categorySubmitBtn')}.click()`, after: 1100 },
++    { js: `(function(){var i=${id('categoryName')}; i.value='Худі'; i.dispatchEvent(new (${W}.Event)('input',{bubbles:true}))})()`, after: 300 },
++  ]),
+   sc("import-empty", [more("Імпорт")]),
+   sc("import-preview", [more("Імпорт"), pick("products.csv"), { js: `${id('importSubmitBtn')}.click()`, after: 900 }, lift('#importPreview')]),
+   sc("import-result", [more("Імпорт"), pick("products.csv"), { js: `${id('importSubmitBtn')}.click()`, after: 900 }, { js: `${id('importConfirmBtn')}.click()`, after: 1400 }, lift('#importReport')]),
