@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {# Fixel, як на cartium.store: основні накреслення вантажимо одразу, решта — за потреби #}
+  <link rel="preload" href="{{ 'assets/fonts/FixelText-Regular.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ 'assets/fonts/FixelDisplay-SemiBold.woff2' | url }}" as="font" type="font/woff2" crossorigin>
+  <meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111113" media="(prefers-color-scheme: dark)">
+{% endblock %}

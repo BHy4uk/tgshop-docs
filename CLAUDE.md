@@ -56,6 +56,24 @@
 - Картки-посилання на головній — `<div class="cards" markdown>` (стилі в
   `docs/styles/extra.css`).
 
+### Дизайн (одна родина з cartium.store)
+
+Вигляд повторює сайт `cartium-website` (`src/styles/global.css`): шрифт Fixel
+(лежить у `docs/assets/fonts/`, Google Fonts не використовуються), палітра
+«soft graphite» (світла `#f4f4f5` / темна `#111113`), кнопки-«пігулки»,
+картки з радіусом 28px. Якщо на сайті змінюються токени — переносьте їх у
+`:root` на початку `extra.css`.
+
+- Шапка й підвал — `overrides/partials/header.html` і `footer.html`;
+  посилання в них задаються в `extra:` у `mkdocs.yml`.
+- Анімації, мобільна кнопка «Зміст», час читання — `docs/javascripts/cartium.js`.
+- Іконки — Phosphor, як на сайті: `:ph-rocket-launch:` у тексті,
+  `icon: ph/…` у front matter сторінки (іконка в меню). Файли — `overrides/.icons/ph/`;
+  нову іконку беріть з пакета `@phosphor-icons/core` (regular).
+- Головна: герой `<section class="c-hero" markdown>`, графітова сцена зі
+  знімками `<div class="c-stage" markdown>`, заголовок секції
+  `<div class="c-section-head" markdown>`.
+
 ## Скріншоти
 
 Знімки Mini App — **мобільні** (більшість власників працює з телефона) і **генеруються**, а не робляться руками: див. `docs/assets/shots/README.md` (сценарій `docshots` у репозиторії продукту + скрипт експорту). Вставляйте їх так:

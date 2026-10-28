@@ -1,0 +1,48 @@
+{#-
+  Шапка в стилі cartium.store: плаваюча «пігулка» зі склом, логотип зі словом
+  Cartium, пошук, перемикач теми і кнопка створення магазину.
+  Основа — partials/header.html з mkdocs-material 9.7, змінено розмітку й класи.
+-#}
+<header class="md-header c-header" data-md-component="header">
+  <div class="c-progress" aria-hidden="true"><span data-c-progress></span></div>
+  <nav class="md-header__inner c-nav" aria-label="{{ lang.t('header') }}">
+    <label class="md-header__button md-icon c-burger" for="__drawer" aria-label="Меню">
+      <span class="c-burger-line"></span>
+      <span class="c-burger-line"></span>
+    </label>
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-header__button md-logo c-logo" aria-label="{{ config.site_name }}, документація" data-md-component="logo">
+      {% include "partials/logo.html" %}
+      <span class="c-logo-word">{{ config.site_name }}</span>
+      <span class="c-logo-badge">Docs</span>
+    </a>
+    <div class="c-nav-spacer"></div>
+    <div class="c-nav-actions">
+      {% if "material/search" in config.plugins %}
+        {% set search = config.plugins["material/search"] | attr("config") %}
+        {% if search.enabled %}
+          <label class="md-header__button c-search-btn" for="__search" aria-label="Пошук">
+            {% include ".icons/ph/magnifying-glass.svg" %}
+            <span class="c-search-label">Пошук у документації</span>
+            <kbd class="c-kbd">/</kbd>
+          </label>
+          {% include "partials/search.html" %}
+        {% endif %}
+      {% endif %}
+      {% if config.theme.palette and not config.theme.palette is mapping %}
+        {% include "partials/palette.html" %}
+        {% include "partials/javascripts/palette.html" %}
+      {% endif %}
+      {% if config.extra.site_url_main %}
+        <a class="c-nav-link" href="{{ config.extra.site_url_main }}" target="_blank" rel="noopener">
+          cartium.store {% include ".icons/ph/arrow-up-right.svg" %}
+        </a>
+      {% endif %}
+      {% if config.extra.signup_url %}
+        <a class="c-btn c-btn-primary c-btn-sm c-nav-cta" href="{{ config.extra.signup_url }}" target="_blank" rel="noopener">
+          <span>Створити<span class="c-cta-more"> магазин</span></span>
+          <span class="c-btn-icon">{% include ".icons/ph/paper-plane-tilt.svg" %}</span>
+        </a>
+      {% endif %}
+    </div>
+  </nav>
+</header>
