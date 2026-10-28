@@ -20,13 +20,13 @@ icon: ph/credit-card
 
 | Спосіб | Як працює | Підтвердження |
 |---|---|---|
-| ![Stripe](assets/payment-logos/stripe.svg){ .pay-logo } `Stripe` | Онлайн-оплата для Європи: картка, Apple Pay, Google Pay, BLIK, iDEAL та інші | Автоматичне |
-| ![PayPal](assets/payment-logos/paypal.svg){ .pay-logo } `PayPal` | Гаманець PayPal або картка на сторінці PayPal | Автоматичне |
-| `LiqPay` | Онлайн-еквайринг: картка, Apple Pay, Google Pay | Автоматичне |
-| `plata by mono` | Онлайн-еквайринг Monobank: картка будь-якого банку, Apple Pay, Google Pay | Автоматичне |
-| `Оплата за посиланням` | Покупець переходить за вашим платіжним посиланням (банка або платіжна сторінка) | Ручне |
-| ![IBAN](assets/payment-logos/iban.svg){ .pay-logo } `Оплата за реквізитами` | Переказ на рахунок за IBAN | Ручне |
-| `Післяплата` | Оплата при отриманні посилки | — |
+| ![](assets/payment-logos/stripe.svg){ .pay-logo width="24" height="24" } **Stripe** | Онлайн-оплата для Європи: картка, Apple Pay, Google Pay, BLIK, iDEAL та інші | Автоматичне |
+| ![](assets/payment-logos/paypal.svg){ .pay-logo width="24" height="24" } **PayPal** | Гаманець PayPal або картка на сторінці PayPal | Автоматичне |
+| ![](assets/payment-logos/liqpay.svg){ .pay-logo width="24" height="24" } **LiqPay** | Онлайн-еквайринг: картка, Apple Pay, Google Pay | Автоматичне |
+| ![](assets/payment-logos/mono.svg){ .pay-logo width="24" height="24" } **plata by mono** | Онлайн-еквайринг Monobank: картка будь-якого банку, Apple Pay, Google Pay | Автоматичне |
+| ![](assets/payment-logos/link.svg){ .pay-logo width="24" height="24" } **Оплата за посиланням** | Покупець переходить за вашим платіжним посиланням (банка або платіжна сторінка) | Ручне |
+| ![](assets/payment-logos/iban.svg){ .pay-logo width="24" height="24" } **Оплата за реквізитами** | Переказ на рахунок за IBAN | Ручне |
+| ![](assets/payment-logos/cod.svg){ .pay-logo width="24" height="24" } **Післяплата** | Оплата при отриманні посилки | — |
 
 Усе налаштовується в одному місці:
 
@@ -57,12 +57,22 @@ icon: ph/credit-card
 
 ## Валюти магазину
 
+<div class="with-shot" markdown>
+
+<div markdown>
+
 Нагорі екрана `Оплати` два налаштування.
 
 - `Основна валюта`: `Гривня (грн)`, `Євро (€)`, `Злотий (zł)` або `Долар США ($)`. У ній ви вводите ціни товарів.
 - `Покупці можуть платити в`: позначте від однієї до чотирьох валют. Основна позначена завжди.
 
 Якщо позначено кілька валют, у вітрині поруч із пошуком з'являється кнопка валюти. Покупець обирає валюту, і ціни в каталозі, кошику й на оплаті показуються в ній. Вибір запам'ятовується.
+
+</div>
+
+![Валюти магазину](assets/shots/payments-currency.webp){ .phone }
+
+</div>
 
 ### Як рахуються ціни в інших валютах
 
@@ -101,7 +111,7 @@ icon: ph/credit-card
 
 ---
 
-## ![](assets/payment-logos/stripe.svg){ .pay-logo } Stripe { #stripe }
+## ![](assets/payment-logos/stripe.svg){ .pay-logo width="28" height="28" } Stripe { #stripe }
 
 Stripe приймає оплату в євро, злотих і доларах. Покупець бачить картки, Apple Pay і Google Pay, а також місцеві способи: BLIK у Польщі, iDEAL у Нідерландах, Bancontact у Бельгії. Які саме способи показувати, ви обираєте в кабінеті Stripe.
 
@@ -120,12 +130,22 @@ Stripe приймає оплату в євро, злотих і доларах. 
 
 ### Крок 3. Підключіть у магазині
 
+<div class="with-shot" markdown>
+
+<div markdown>
+
 <p class="c-path" markdown="span">`Керування` → `Налаштування` → `Оплати` → `Stripe`</p>
 
 1. Вставте ключ у поле `Secret key`.
 2. Увімкніть перемикач і натисніть `Зберегти зміни`.
 
 Магазин одразу перевіряє ключ у Stripe. Якщо Stripe його не прийняв, ключ не збережеться.
+
+</div>
+
+![Налаштування Stripe](assets/shots/payments-stripe.webp){ .phone }
+
+</div>
 
 ### Крок 4. Перевірте оплату
 
@@ -135,7 +155,7 @@ Stripe приймає оплату в євро, злотих і доларах. 
 
 ---
 
-## ![](assets/payment-logos/paypal.svg){ .pay-logo } PayPal { #paypal }
+## ![](assets/payment-logos/paypal.svg){ .pay-logo width="28" height="28" } PayPal { #paypal }
 
 PayPal зручний покупцям, які не хочуть вводити картку: вони входять у свій PayPal і підтверджують оплату. Без акаунта PayPal теж можна оплатити карткою.
 
@@ -155,6 +175,10 @@ PayPal зручний покупцям, які не хочуть вводити 
 
 ### Крок 3. Підключіть у магазині
 
+<div class="with-shot" markdown>
+
+<div markdown>
+
 <p class="c-path" markdown="span">`Керування` → `Налаштування` → `Оплати` → `PayPal`</p>
 
 1. Вставте `Client ID` і `Secret`.
@@ -162,13 +186,19 @@ PayPal зручний покупцям, які не хочуть вводити 
 
 Магазин сам визначить, тестові це ключі чи бойові, і перевірить їх у PayPal.
 
+</div>
+
+![Налаштування PayPal](assets/shots/payments-paypal.webp){ .phone }
+
+</div>
+
 ### Крок 4. Перевірте оплату
 
 З ключами Sandbox оплатіть замовлення тестовим покупцем: його логін і пароль є на developer.paypal.com у розділі **Sandbox accounts**. Після оплати замовлення стає `Оплачено` само. Потім замініть ключі на Live.
 
 ---
 
-## LiqPay
+## ![](assets/payment-logos/liqpay.svg){ .pay-logo width="28" height="28" } LiqPay { #liqpay }
 
 LiqPay — платіжний сервіс ПриватБанку. Вам знадобляться два ключі з кабінету LiqPay: `Public key` (відкритий) і `Private key` (закритий).
 
@@ -230,7 +260,7 @@ LiqPay — платіжний сервіс ПриватБанку. Вам зна
 
 ---
 
-## Monobank Merchant
+## ![](assets/payment-logos/mono.svg){ .pay-logo width="28" height="28" } Monobank Merchant { #monobank-merchant }
 
 У налаштуваннях магазину цей спосіб називається `plata by mono` — це інтернет-еквайринг monobank. Вам потрібен один ключ — `Merchant Token`.
 
@@ -285,7 +315,7 @@ LiqPay — платіжний сервіс ПриватБанку. Вам зна
 
 ---
 
-## Оплата за посиланням і за реквізитами
+## ![](assets/payment-logos/link.svg){ .pay-logo width="28" height="28" } Оплата за посиланням і за реквізитами { #оплата-за-посиланням-і-за-реквізитами }
 
 Ці способи працюють без банківського еквайрингу, але кожну оплату ви підтверджуєте вручну.
 
@@ -308,7 +338,7 @@ LiqPay — платіжний сервіс ПриватБанку. Вам зна
 
 ---
 
-## Накладений платіж
+## ![](assets/payment-logos/cod.svg){ .pay-logo width="28" height="28" } Накладений платіж { #накладений-платіж }
 
 Покупець платить при отриманні посилки. Налаштовувати нічого не треба, достатньо ввімкнути перемикач `Післяплата`.
 
