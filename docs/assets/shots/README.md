@@ -40,7 +40,8 @@ python tools/export_shots.py <шлях до insomnia.workshop>/tools/webapp-harn
 | `import-empty`, `import-preview`, `import-result` | Імпорт каталогу | import |
 | `orders-list`, `order-details`, `order-actions`, `order-ttn` | Замовлення і дії з ТТН | index, quick-start, owner-guide, nova-poshta, launch |
 | `settings-subscription`, `settings-access-mode`, `settings-modules` | Підписка, режими доступу, модулі | owner-guide |
-| `payments-list`, `payments-liqpay`, `payments-mono`, `payments-link`, `payments-details` | Способи оплати | index, quick-start, owner-guide, payments |
+| `payments-list`, `payments-stripe`, `payments-paypal`, `payments-liqpay`, `payments-mono`, `payments-link`, `payments-details` | Способи оплати (сценарії Stripe і PayPal додано в `tools/docshots-harness.patch`) | index, quick-start, owner-guide, payments |
+| `payments-currency` | Валюти магазину (сценарій у `tools/docshots-harness.patch`) | payments |
 | `settings-delivery` | Нова пошта | quick-start, nova-poshta |
 | `appearance` | Редактор вигляду | quick-start, owner-guide |
 | `promos`, `campaigns`, `analytics`, `customers` | Інструменти зростання | index, owner-guide |
