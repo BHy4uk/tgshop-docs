@@ -42,7 +42,8 @@ python tools/export_shots.py <шлях до insomnia.workshop>/tools/webapp-harn
 | `settings-subscription`, `settings-access-mode`, `settings-modules` | Підписка, режими доступу, модулі | owner-guide |
 | `payments-list`, `payments-stripe`, `payments-paypal`, `payments-liqpay`, `payments-mono`, `payments-link`, `payments-details` | Способи оплати (сценарії Stripe і PayPal додано в `tools/docshots-harness.patch`) | index, quick-start, owner-guide, payments |
 | `payments-currency` | Валюти магазину (сценарій у `tools/docshots-harness.patch`) | payments |
-| `settings-delivery` | Нова пошта | quick-start, nova-poshta |
+| `settings-delivery` | Екран `Підключення Нової пошти` | quick-start, nova-poshta |
+| `delivery-list`, `delivery-service` | Екран `Доставка` і екран служби (сценарії в `tools/docshots-harness.patch`) | owner-guide |
 | `appearance` | Редактор вигляду | quick-start, owner-guide |
 | `promos`, `campaigns`, `analytics`, `customers` | Інструменти зростання | index, owner-guide |
 | `settings-all`, `shell-orders` | Генеруються сценарієм, поки ніде не використані | — |

@@ -21,10 +21,10 @@ index aef7aec..bfb4b4f 100644
        if (st.swipe) { await evaluate(HELPERS); const pt = await evaluate(`(function(){var p=${st.swipe}; return {x:p.x,y:p.y}})()`); await send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x: pt.x, y: pt.y }] }); for (let k = 1; k <= 4; k++) { await send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: pt.x, y: pt.y - 20 * k }] }); } await send("Input.dispatchTouchEvent", { type: "touchEnd", touchPoints: [] }); await sleep(st.after ?? 450); }
        /* tap: a real touch at a point (x/y are JS expressions evaluated in the page). */
 diff --git a/tools/webapp-harness/server.mjs b/tools/webapp-harness/server.mjs
-index 1dd1f83..119eef3 100644
+index 3519af4..bf3ac9e 100644
 --- a/tools/webapp-harness/server.mjs
 +++ b/tools/webapp-harness/server.mjs
-@@ -253,7 +253,12 @@ http.createServer(async (req, res) => {
+@@ -262,7 +262,12 @@ http.createServer(async (req, res) => {
      if (p === "/app/manifest.webmanifest") return json(res, { name: "Shop" });
      if (p === "/app/icon.svg") { res.writeHead(200, { "Content-Type": "image/svg+xml" }); return res.end(svg("tee")); }
      if (p === "/__reset") { reset(Object.fromEntries(u.searchParams)); return json(res, { ok: true }); }
@@ -39,7 +39,7 @@ index 1dd1f83..119eef3 100644
        res.writeHead(200, { "Content-Type": "text/html" }); return res.end(`<body style="margin:0;background:#888"><iframe src="${u.searchParams.get("src")}" style="width:${u.searchParams.get("w") || 390}px;height:${u.searchParams.get("h") || 844}px;border:0;display:block"></iframe></body>`);
      }
 diff --git a/tools/webapp-harness/suites/docshots.mjs b/tools/webapp-harness/suites/docshots.mjs
-index 25b97c1..6a6826c 100644
+index 25b97c1..61be870 100644
 --- a/tools/webapp-harness/suites/docshots.mjs
 +++ b/tools/webapp-harness/suites/docshots.mjs
 @@ -29,6 +29,15 @@ export default [
@@ -58,7 +58,7 @@ index 25b97c1..6a6826c 100644
    sc("import-empty", [more("Імпорт")]),
    sc("import-preview", [more("Імпорт"), pick("products.csv"), { js: `${id('importSubmitBtn')}.click()`, after: 900 }, lift('#importPreview')]),
    sc("import-result", [more("Імпорт"), pick("products.csv"), { js: `${id('importSubmitBtn')}.click()`, after: 900 }, { js: `${id('importConfirmBtn')}.click()`, after: 1400 }, lift('#importReport')]),
-@@ -44,7 +53,10 @@ export default [
+@@ -44,13 +53,18 @@ export default [
    sc("settings-all", [tab("Налаштування")], { reset: { pay: "1" } }),
    sc("settings-subscription", [tab("Налаштування"), section("subscription")], { reset: { sub: "1" } }),
    sc("settings-access-mode", [tab("Налаштування"), section("subscription"), into("#settingsSubscriptionAccessMode")], { reset: { sub: "1" } }),
@@ -66,7 +66,16 @@ index 25b97c1..6a6826c 100644
 +  sc("payments-list", [tab("Налаштування"), section("payments"), lift('[data-paymethod="stripe"]', 138)], { reset: { pay: "1" } }),
 +  sc("payments-stripe", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-paymethod="stripe"] [data-paymethod-open]').click()`, after: 700 }], { reset: { pay: "1" } }),
 +  sc("payments-paypal", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-paymethod="paypal"] [data-paymethod-open]').click()`, after: 700 }], { reset: { pay: "1" } }),
-+  sc("payments-currency", [tab("Налаштування"), section("payments"), lift("#settingsPaymentCurrency", 200)], { reset: { pay: "1", fx: "1" } }),
++  sc("payments-currency", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-set-page-open="pay-currency"]').click()`, after: 700 }], { reset: { pay: "1", fx: "1" } }),
    sc("payments-liqpay", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-paymethod="liqpay"] [data-paymethod-open]').click()`, after: 700 }], { reset: { pay: "1" } }),
    sc("payments-mono", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-paymethod="monobank"] [data-paymethod-open]').click()`, after: 700 }], { reset: { pay: "1" } }),
    sc("payments-link", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-paymethod="link"] [data-paymethod-open]').click()`, after: 700 }, lift('[data-paymethod="link"]', 130)], { reset: { pay: "1" } }),
+   sc("payments-details", [tab("Налаштування"), section("payments"), { js: `${F}.querySelector('[data-paymethod="details"] [data-paymethod-open]').click()`, after: 700 }, lift('[data-paymethod="details"]', 130)], { reset: { pay: "1" } }),
+   sc("settings-modules", [tab("Налаштування"), section("modules")], { reset: { mod: "1" } }),
+-  sc("settings-delivery", [tab("Налаштування"), section("delivery")], { reset: { pay: "1", np: "1" } }),
++  sc("settings-delivery", [tab("Налаштування"), section("delivery"), { js: `(function(){var b=${F}.createElement('button'); b.setAttribute('data-set-page-open','ship-np'); ${F}.body.appendChild(b); b.click(); b.remove()})()`, after: 700 }], { reset: { pay: "1", np: "1" } }),
++  sc("delivery-list", [tab("Налаштування"), section("delivery")], { reset: { ship: "1", shipApi: "1" } }),
++  sc("delivery-service", [tab("Налаштування"), section("delivery"), { js: `${F}.querySelector('[data-set-page-open="ship-ukrposhta"]').click()`, after: 700 }], { reset: { ship: "1", shipApi: "1" } }),
+   sc("appearance", [tab("Налаштування"), { js: `${F}.querySelector('[data-settings-section-chip=appearance]').click()`, after: 1500 }]),
+ 
+   // ── growth ────────────────────────────────────────────────────────────
