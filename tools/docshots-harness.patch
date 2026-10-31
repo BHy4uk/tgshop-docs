@@ -39,7 +39,7 @@ index 3519af4..bf3ac9e 100644
        res.writeHead(200, { "Content-Type": "text/html" }); return res.end(`<body style="margin:0;background:#888"><iframe src="${u.searchParams.get("src")}" style="width:${u.searchParams.get("w") || 390}px;height:${u.searchParams.get("h") || 844}px;border:0;display:block"></iframe></body>`);
      }
 diff --git a/tools/webapp-harness/suites/docshots.mjs b/tools/webapp-harness/suites/docshots.mjs
-index 25b97c1..61be870 100644
+index 25b97c1..37ad251 100644
 --- a/tools/webapp-harness/suites/docshots.mjs
 +++ b/tools/webapp-harness/suites/docshots.mjs
 @@ -29,6 +29,15 @@ export default [
@@ -58,7 +58,7 @@ index 25b97c1..61be870 100644
    sc("import-empty", [more("Імпорт")]),
    sc("import-preview", [more("Імпорт"), pick("products.csv"), { js: `${id('importSubmitBtn')}.click()`, after: 900 }, lift('#importPreview')]),
    sc("import-result", [more("Імпорт"), pick("products.csv"), { js: `${id('importSubmitBtn')}.click()`, after: 900 }, { js: `${id('importConfirmBtn')}.click()`, after: 1400 }, lift('#importReport')]),
-@@ -44,13 +53,18 @@ export default [
+@@ -44,13 +53,19 @@ export default [
    sc("settings-all", [tab("Налаштування")], { reset: { pay: "1" } }),
    sc("settings-subscription", [tab("Налаштування"), section("subscription")], { reset: { sub: "1" } }),
    sc("settings-access-mode", [tab("Налаштування"), section("subscription"), into("#settingsSubscriptionAccessMode")], { reset: { sub: "1" } }),
@@ -76,6 +76,7 @@ index 25b97c1..61be870 100644
 +  sc("settings-delivery", [tab("Налаштування"), section("delivery"), { js: `(function(){var b=${F}.createElement('button'); b.setAttribute('data-set-page-open','ship-np'); ${F}.body.appendChild(b); b.click(); b.remove()})()`, after: 700 }], { reset: { pay: "1", np: "1" } }),
 +  sc("delivery-list", [tab("Налаштування"), section("delivery")], { reset: { ship: "1", shipApi: "1" } }),
 +  sc("delivery-service", [tab("Налаштування"), section("delivery"), { js: `${F}.querySelector('[data-set-page-open="ship-ukrposhta"]').click()`, after: 700 }], { reset: { ship: "1", shipApi: "1" } }),
++  sc("delivery-countries", [tab("Налаштування"), section("delivery"), { js: `${F}.querySelector('[data-set-page-open="ship-countries"]').click()`, after: 700 }], { reset: { ship: "1", shipApi: "1" } }),
    sc("appearance", [tab("Налаштування"), { js: `${F}.querySelector('[data-settings-section-chip=appearance]').click()`, after: 1500 }]),
  
    // ── growth ────────────────────────────────────────────────────────────
