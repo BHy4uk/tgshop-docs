@@ -44,7 +44,7 @@ python tools/export_shots.py <шлях до insomnia.workshop>/tools/webapp-harn
 | `payments-currency` | Валюти магазину (сценарій у `tools/docshots-harness.patch`) | payments |
 | `settings-delivery` | Екран `Підключення Нової пошти` | quick-start, nova-poshta |
 | `delivery-list`, `delivery-service`, `delivery-countries` | Екран `Доставка`, екран служби й екран `Країни доставки` (сценарії в `tools/docshots-harness.patch`) | owner-guide |
-| `appearance` | Редактор вигляду | quick-start, owner-guide |
+| `appearance`, `appearance-edit` | Редактор вигляду: макет магазину і відкрита панель `Кнопки в шапці` | quick-start, owner-guide |
 | `promos`, `campaigns`, `analytics`, `customers` | Інструменти зростання | index, owner-guide |
 | `settings-all`, `shell-orders` | Генеруються сценарієм, поки ніде не використані | — |
 
